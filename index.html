@@ -1645,7 +1645,31 @@ async function resolveAdminSupport(){if(!activeAdminConversation){alert('Please 
 function csvDownload(rows,name){const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
 $('navLogin').onclick=$('heroLogin').onclick=()=>openAuth(false);$('navSignup').onclick=$('heroSignup').onclick=()=>openAuth(true);$('authClose').onclick=()=>page(user?(isAdmin?'adminPanel':'customerPanel'):'welcomePanel');$('passwordResetBack').onclick=()=>page('authPanel');$('authSwitch').onclick=()=>openAuth($('authPanel').dataset.signup!=='yes');$('authSubmit').onclick=submitAuth;$('forgotPasswordLink').onclick=async e=>{e.preventDefault();const email=$('loginEmail').value.trim();if(!email){$('authMsg').textContent='Enter your account email address first.';$('loginEmail').focus();return}$('authMsg').textContent='Sending password reset email...';const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin+window.location.pathname+'?password-reset=1'});$('authMsg').textContent=error?'Could not send the reset email: '+error.message:'If an account exists for that email, a password reset link has been sent. Please check your inbox and spam folder.'};$('saveNewPassword').onclick=async()=>{const p=$('newPassword').value,c=$('confirmNewPassword').value;if(p.length<8){$('passwordResetMsg').textContent='Your password must be at least 8 characters.';return}if(p!==c){$('passwordResetMsg').textContent='The passwords do not match.';return}$('saveNewPassword').disabled=true;$('passwordResetMsg').textContent='Updating your password...';const {error}=await supabase.auth.updateUser({password:p});$('saveNewPassword').disabled=false;if(error){$('passwordResetMsg').textContent='Could not update password: '+error.message;return}$('passwordResetMsg').textContent='Your password has been updated. You can now log in with your new password.';$('newPassword').value='';$('confirmNewPassword').value='';setTimeout(()=>{supabase.auth.signOut();page('welcomePanel');openAuth(false)},1200)};$('adminOpen').onclick=async()=>{if(!user||!isAdmin)return;page('adminPanel');await renderAdmin()};$('navLogout').onclick=leaveApp;
 $('menuOpen').onclick=openMenu;$('menuClose').onclick=closeMenu;$('drawerShade').onclick=closeMenu;document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>{const map={dashboard:'customerPanel',airtime:'airtimePanel',data:'dataPanel',orders:'ordersPanel',transactions:'transactionsPanel',pendingPayments:'pendingPaymentsPanel',profile:'profilePanel',topup:'topupPanel',support:'supportPanel'};if(b.dataset.page==='dashboard')loadOrders();if(b.dataset.page==='orders')renderOrders();if(b.dataset.page==='transactions'||b.dataset.page==='pendingPayments')loadTransactions();if(b.dataset.page==='support')loadCustomerSupport();page(map[b.dataset.page]||'customerPanel')}));$('profileOpen').onclick=()=>page('profilePanel');$('quickAirtime').onclick=()=>{loadWallet();page('airtimePanel')};$('quickData').onclick=()=>{loadWallet();page('dataPanel')};$('quickOrders').onclick=()=>{renderOrders();page('ordersPanel')};$('quickTransactions').onclick=()=>{loadTransactions();page('transactionsPanel')};$('quickProfile').onclick=()=>page('profilePanel');$('quickSupport').onclick=()=>{loadCustomerSupport();page('supportPanel')};$('recentViewAll').onclick=()=>{renderOrders();page('ordersPanel')};$('topUpBtn').onclick=()=>{loadWallet();page('topupPanel')};document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>page('customerPanel'));
-let xtopayReference=null;
+let xtopayReference=null,xtopayPollToken=0;
+async function watchXtopayTopup(reference){
+ const token=++xtopayPollToken;
+ for(let attempt=0;attempt<60;attempt++){
+  if(token!==xtopayPollToken||!user||!reference)return;
+  try{
+   const {data,error}=await supabase.from('transactions').select('status,provider_status').eq('user_id',user.id).eq('payment_provider','xtopay').eq('provider_reference',reference).maybeSingle();
+   if(!error&&data?.status==='completed'){
+    await loadWallet();await loadTransactions();
+    $('topupMsg').textContent='Payment confirmed! Your wallet has been credited automatically.';
+    $('verifyXtopay').classList.add('hidden');
+    return;
+   }
+   if(!error&&data?.status==='failed'){
+    $('topupMsg').textContent='This payment was not completed. No money was added to your wallet.';
+    $('verifyXtopay').classList.add('hidden');
+    return;
+   }
+  }catch(e){console.warn('Automatic Xtopay status check will retry:',e)}
+  await new Promise(resolve=>setTimeout(resolve,2000));
+ }
+ if(token===xtopayPollToken&&xtopayReference===reference){
+  $('topupMsg').textContent='We are still waiting for Xtopay to confirm this payment. Your wallet will update automatically when confirmation arrives; you can also check its status.';
+ }
+}
 async function startWalletTopup(){
  const amount=Number($('topupAmount').value),phone=$('topupPhone').value.trim(),button=$('paystackTopup');
  if(!Number.isFinite(amount)||amount<1||amount>5000||Math.round(amount*100)!==amount*100){$('topupMsg').textContent='Enter an amount between GHS 1.00 and GHS 5,000.00.';return}
@@ -1657,7 +1681,10 @@ async function startWalletTopup(){
   if(data?.reference)xtopayReference=data.reference;
   $('topupMsg').textContent=data?.message||(data?.pending?'Payment started. Approve the Mobile Money prompt.':'Xtopay test mode will simulate the result. No real Mobile Money prompt or funds will be sent.');
   if(xtopayReference&&data?.mode!=='test'&&data?.pending!==true){$('topupMsg').textContent='Payment reference received. Check its status before retrying.'}
-  if(xtopayReference&&String(xtopayReference).startsWith('XTP-'))$('verifyXtopay').classList.remove('hidden');
+  if(xtopayReference&&String(xtopayReference).startsWith('XTP-')){
+  $('verifyXtopay').classList.remove('hidden');
+  watchXtopayTopup(xtopayReference);
+ }
  }catch(e){$('topupMsg').textContent=e.message||'Could not start the Xtopay test payment.'}
  finally{button.disabled=false;button.textContent='Continue with Mobile Money (Xtopay Test)'}
 }
