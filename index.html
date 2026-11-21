@@ -1207,7 +1207,7 @@ button.gold:hover:not(:disabled),.btn.gold:hover:not(:disabled),.btn-gold:hover:
 </nav>
 </div>
 </section>
-<section id="topupPanel" class="panel hidden"><div class="head"><div><h2>Top Up Wallet</h2><div class="muted">Add money to your Ghana Cedis wallet.</div></div><button class="btn soft" data-back>← Back</button></div><div class="wallet"><div><small>Current Balance</small><h2 id="topupBalance">GHS 0.00</h2></div></div><div class="field"><label>Amount to top up (GHS)</label><input id="topupAmount" type="number" min="1" max="5000" step="0.01" placeholder="e.g. 20.00"></div><div class="field"><label>Mobile Money number</label><input id="topupPhone" type="tel" inputmode="tel" placeholder="e.g. 0241234567" autocomplete="tel"></div><button id="paystackTopup" class="btn primary">Continue to Secure Checkout (Test)</button><a id="xtopayCheckoutLink" class="btn primary hidden" href="#" target="_blank" rel="noopener noreferrer" style="display:block;text-align:center;margin-top:10px">Open secure payment page</a><button id="verifyXtopay" class="btn soft hidden" style="margin-top:10px">Check payment status</button><div id="topupMsg" class="notice">Secure Xtopay hosted checkout is connected in TEST mode. Test payments do not move real money. Live wallet deposits remain disabled until final verification is complete.</div></section>
+<section id="topupPanel" class="panel hidden"><div class="head"><div><h2>Top Up Wallet</h2><div class="muted">Add money to your Ghana Cedis wallet.</div></div><button class="btn soft" data-back>← Back</button></div><div class="wallet"><div><small>Current Balance</small><h2 id="topupBalance">GHS 0.00</h2></div></div><div class="field"><label>Amount to top up (GHS)</label><input id="topupAmount" type="number" min="1" max="5000" step="0.01" placeholder="e.g. 20.00"></div><div class="field"><label>Mobile Money number</label><input id="topupPhone" type="tel" inputmode="tel" placeholder="e.g. 0241234567" autocomplete="tel"></div><button id="paystackTopup" class="btn primary">Continue to Secure Checkout (Test)</button><div id="topupMsg" class="notice">Secure Xtopay hosted checkout is connected in TEST mode. Test payments do not move real money. Live wallet deposits remain disabled until final verification is complete.</div></section>
 <section id="airtimePanel" class="panel hidden"><div class="head"><div><h2>Buy Airtime</h2><div class="muted">Airtime purchases will open after supplier delivery is verified.</div></div><button class="btn soft" data-back>← Back</button></div><div class="wallet"><div><small>WALLET BALANCE</small><h2 id="airtimeBalance">GHS 0.00</h2></div><button class="btn light" data-page="topup">Top Up</button></div><div class="field"><label>Network</label><div class="network-grid"><button class="network network-card active" data-airnet="MTN"><span class="brand-mark brand-mtn">MTN</span><span class="network-name">MTN<span class="network-sub">Mobile network</span></span></button><button class="network network-card" data-airnet="AirtelTigo"><span class="brand-mark brand-at">AT</span><span class="network-name">AirtelTigo<span class="network-sub">Mobile network</span></span></button><button class="network network-card" data-airnet="Telecel"><span class="brand-mark brand-telecel">T</span><span class="network-name">Telecel<span class="network-sub">Mobile network</span></span></button></div></div><div class="field"><label>Phone Number</label><input id="airtimePhone" type="tel" placeholder="Recipient phone number"></div><div class="field"><label>Amount (GHS)</label><input id="airtimeAmount" type="number" min="1" step=".01" placeholder="Amount"></div><div class="muted" id="airtimeNetworkLabel">Network: MTN</div><button id="airtimePay" class="btn primary" style="margin-top:15px" disabled>Pay GHS 0.00 →</button><div class="notice">Airtime supplier activation is still pending. Purchases are disabled until live delivery is verified.</div></section>
 <section id="dataPanel" class="panel hidden"><div class="head"><div><h2>Data Bundles</h2><div class="muted">Buy live MTN, Telecel and AT data bundles. Live supplier delivery is connected. Instant delivery.</div></div><button class="btn soft" data-back>← Back</button></div><div class="wallet"><div><small>WALLET BALANCE</small><h2 id="dataBalance">GHS 0.00</h2></div><button class="btn light" data-page="topup">Top Up</button></div><div class="field"><label>Network</label><div class="network-grid"><button class="network network-card active" data-datanet="MTN"><span class="brand-mark brand-mtn">MTN</span><span class="network-name">MTN<span class="network-sub">Mobile data</span></span></button><button class="network network-card" data-datanet="AirtelTigo"><span class="brand-mark brand-at">AT</span><span class="network-name">AirtelTigo<span class="network-sub">Mobile data</span></span></button><button class="network network-card" data-datanet="Telecel"><span class="brand-mark brand-telecel">T</span><span class="network-name">Telecel<span class="network-sub">Mobile data</span></span></button></div></div><div class="field"><label>Select Data Package</label><select id="dataPackage"><option value="">Loading approved packages…</option></select><div id="dataCatalogMsg" class="muted" style="margin-top:7px" aria-live="polite">Choose an active package and enter the recipient number. Data orders are securely processed by our delivery partner; the retail price is deducted from your NetVanta wallet.</div></div><div class="field"><label>Recipient Number: 10 digits</label><input id="dataPhone" inputmode="numeric" maxlength="10" placeholder="e.g. 0550200000"></div><div class="muted">Wallet Balance: <b id="dataWalletInline">0.00</b></div><button id="dataPay" class="btn primary" style="margin-top:15px">Buy Data Bundle</button><div id="dataPurchaseNotice" class="notice">Live supplier delivery is connected. Instant delivery.</div></section>
 <section id="ordersPanel" class="panel hidden"><div class="head"><div><h2>My Orders</h2><div class="muted">All your order records and status updates.</div></div><div class="row"><button class="btn soft" data-back type="button">← Back</button><button id="exportCsv" class="btn soft">Export CSV</button><button id="refreshOrders" class="btn soft">Refresh</button></div></div><div class="stat" style="margin-bottom:16px"><small>Total Orders</small><b id="ordersCount">0</b></div><div class="field order-search"><label for="orderSearch">Search orders</label><input id="orderSearch" type="search" placeholder="Search by order ID, network or product" autocomplete="off"></div><div class="tabs" id="orderTabs"><button class="tab active" data-status="all">All</button><button class="tab" data-status="completed">Completed (0)</button><button class="tab" data-status="processing">Processing (0)</button><button class="tab" data-status="queued">Queued (0)</button><button class="tab" data-status="pending">Pending (0)</button><button class="tab" data-status="failed">Failed (0)</button><button class="tab" data-status="cancelled">Cancelled (0)</button><button class="tab" data-status="reversed">Reversed (0)</button><button class="tab" data-status="refunded">Refunded (0)</button></div><div class="row"><div class="field"><label>Product type</label><select id="orderType"><option value="">All products</option><option value="data">Data</option><option value="airtime">Airtime</option></select></div><div class="field"><label>From</label><input id="orderFrom" type="date"></div><div class="field"><label>To</label><input id="orderTo" type="date"></div></div><div class="tablewrap"><table><thead><tr><th>Order</th><th>Network</th><th>Product</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody id="ordersRows"><tr><td colspan="6" class="empty">No orders found.</td></tr></tbody></table></div></section>
@@ -1655,13 +1655,12 @@ async function watchXtopayTopup(reference){
    if(!error&&data?.status==='completed'){
     await loadWallet();await loadTransactions();
     $('topupMsg').textContent='Payment confirmed! Your wallet has been credited automatically.';
-    $('verifyXtopay').classList.add('hidden');
-    $('xtopayCheckoutLink').classList.add('hidden');
+
     return;
    }
    if(!error&&data?.status==='failed'){
     $('topupMsg').textContent='This payment was not completed. No money was added to your wallet.';
-    $('verifyXtopay').classList.add('hidden');
+
     return;
    }
    // Xtopay requires a status lookup if its webhook has not arrived within five minutes.
@@ -1679,50 +1678,43 @@ async function startWalletTopup(){
  const amount=Number($('topupAmount').value),phone=$('topupPhone').value.trim(),button=$('paystackTopup');
  if(!Number.isFinite(amount)||amount<1||amount>5000||Math.round(amount*100)!==amount*100){$('topupMsg').textContent='Enter an amount between GHS 1.00 and GHS 5,000.00.';return}
  if(!phone){$('topupMsg').textContent='Enter the Mobile Money number for this checkout.';return}
- button.disabled=true;button.textContent='Creating secure checkout…';$('verifyXtopay').classList.add('hidden');xtopayReference=null;
+ button.disabled=true;button.textContent='Opening secure checkout…';xtopayReference=null;
+ const checkoutWindow=window.open('about:blank','_blank');
  try{
   const {data,error}=await supabase.functions.invoke('xtopay-charge',{body:{amount,phone}});
   if(error){let message=error.message||'Could not start checkout.';try{const body=await error.context.json();message=body.error||body.message||message}catch{}throw new Error(message)}
   if(data?.reference)xtopayReference=data.reference;
   if(data?.checkout_url&&data?.mode==='test'){
-   const checkoutLink=$('xtopayCheckoutLink');
-   checkoutLink.href=data.checkout_url;
-   checkoutLink.classList.remove('hidden');
-   $('verifyXtopay').classList.remove('hidden');
-   $('topupMsg').textContent='Your secure Xtopay test checkout is ready. Tap “Open secure payment page” to continue. After approving or returning from checkout, use “Check payment status” if your wallet has not updated.';
+   $('topupMsg').textContent='Opening secure Xtopay checkout… Your wallet will update automatically after payment is confirmed.';
+   if(checkoutWindow&&!checkoutWindow.closed)checkoutWindow.location.href=data.checkout_url;
+   else window.location.assign(data.checkout_url);
    if(xtopayReference)watchXtopayTopup(xtopayReference);
    return;
   }
-  $('topupMsg').textContent=data?.message||'Checkout is still being prepared. Do not submit another top-up; check its status shortly.';
-  if(xtopayReference)$('verifyXtopay').classList.remove('hidden');
- }catch(e){$('topupMsg').textContent=e.message||'Could not start the Xtopay checkout.'}
+  if(checkoutWindow&&!checkoutWindow.closed)checkoutWindow.close();
+  $('topupMsg').textContent=data?.message||'Checkout is still being prepared. Please review your transactions before trying again.';
+ }catch(e){if(checkoutWindow&&!checkoutWindow.closed)checkoutWindow.close();$('topupMsg').textContent=e.message||'Could not start the Xtopay checkout.'}
  finally{button.disabled=false;button.textContent='Continue to Secure Checkout (Test)'}
 }
-async function verifyXtopayPayment(){
- if(!xtopayReference){$('topupMsg').textContent='The checkout reference is not available yet. Refresh your transactions shortly; do not submit another top-up.';return}
- const verifyButton=$('verifyXtopay');verifyButton.disabled=true;verifyButton.textContent='Checking…';
+async function verifyXtopayPayment(reference=xtopayReference){
+ if(!reference)return {success:false,message:'The checkout reference is not available yet.'};
  try{
-  const {data,error}=await supabase.functions.invoke('xtopay-verify',{body:{reference:xtopayReference}});
+  const {data,error}=await supabase.functions.invoke('xtopay-verify',{body:{reference}});
   if(error){let message=error.message||'Could not verify checkout.';try{const body=await error.context.json();message=body.error||body.message||message}catch{}throw new Error(message)}
-  $('topupMsg').textContent=data?.already_credited?'This top-up was already added to your wallet.':data?.credited?'Payment confirmed! Your wallet has been credited.':data?.message||'Checkout is still awaiting confirmation.';
-  if(data?.success){await loadWallet();await loadTransactions();verifyButton.classList.add('hidden');$('xtopayCheckoutLink').classList.add('hidden')}
- }catch(e){$('topupMsg').textContent=e.message||'Could not verify the checkout yet. Please try again shortly.'}
- finally{verifyButton.disabled=false;verifyButton.textContent='Check payment status'}
+  if(data?.success){await loadWallet();await loadTransactions()}
+  return data||{success:false,message:'Checkout is awaiting confirmation.'};
+ }catch(e){console.warn('Xtopay verification will retry automatically:',e);return {success:false,message:e.message||'Payment verification is still pending.'}}
 }
 async function handleXtopayReturn(){
  const params=new URLSearchParams(window.location.search);
  if(params.get('payment')!=='xtopay-return')return;
  const reference=params.get('checkout')||params.get('topup')||params.get('reference');
- $('topupMsg').textContent='Checking your Xtopay checkout…';page('topupPanel');
- if(!reference){$('topupMsg').textContent='We could not find the checkout reference. Please check your transactions before trying again.';return}
- xtopayReference=reference;$('verifyXtopay').classList.remove('hidden');
- try{
-  const {data,error}=await supabase.functions.invoke('xtopay-verify',{body:{reference}});
-  if(error){let message=error.message||'Could not verify checkout.';try{const body=await error.context.json();message=body.error||body.message||message}catch{}throw new Error(message)}
-  $('topupMsg').textContent=data?.already_credited?'This top-up was already added to your wallet.':data?.credited?'Payment confirmed! Your wallet has been credited.':data?.message||'Checkout is awaiting Xtopay confirmation.';
-  if(data?.success){await loadWallet();await loadTransactions();$('verifyXtopay').classList.add('hidden');$('xtopayCheckoutLink').classList.add('hidden')}
-  else watchXtopayTopup(reference);
- }catch(e){$('topupMsg').textContent=e.message||'Could not verify the checkout yet. We will keep checking its status.';watchXtopayTopup(reference)}
+ $('topupMsg').textContent='Confirming your Xtopay payment…';page('topupPanel');
+ if(!reference){$('topupMsg').textContent='We could not find the checkout reference. Please review your transactions.';return}
+ xtopayReference=reference;
+ const result=await verifyXtopayPayment(reference);
+ $('topupMsg').textContent=result?.already_credited?'This top-up was already added to your wallet.':result?.credited?'Payment confirmed! Your wallet has been credited automatically.':result?.message||'Payment is awaiting confirmation. Your wallet will update automatically once confirmed.';
+ if(!result?.success)watchXtopayTopup(reference);
  history.replaceState({},document.title,window.location.pathname);
 }
 async function handlePaystackReturn(){
@@ -1739,7 +1731,7 @@ async function handlePaystackReturn(){
  }catch(e){$('topupMsg').textContent=e.message||'We could not verify the payment yet. Please refresh shortly.'}
  history.replaceState({},document.title,window.location.pathname);
 }
-$('paystackTopup').onclick=startWalletTopup;$('verifyXtopay').onclick=verifyXtopayPayment;
+$('paystackTopup').onclick=startWalletTopup;
 document.querySelectorAll('[data-airnet]').forEach(b=>b.onclick=()=>{airNetwork=b.dataset.airnet;document.querySelectorAll('[data-airnet]').forEach(x=>x.classList.toggle('active',x===b));$('airtimeNetworkLabel').textContent='Network: '+airNetwork});$('airtimeAmount').oninput=()=>{$('airtimePay').textContent='Pay '+money($('airtimeAmount').value)+' →'};$('airtimePay').onclick=()=>alert('Airtime ordering will be enabled after the supplier connection is approved and tested.');
 document.querySelectorAll('[data-datanet]').forEach(b=>b.onclick=()=>{dataNetwork=b.dataset.datanet;document.querySelectorAll('[data-datanet]').forEach(x=>x.classList.toggle('active',x===b));loadCustomerCatalog()});$('dataPay').onclick=buyDataWithWallet;
 $('orderTabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{activeFilter=b.dataset.status;$('orderTabs').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));renderOrders()});$('orderSearch').oninput=renderOrders;['orderType','orderFrom','orderTo'].forEach(id=>$(id).onchange=renderOrders);$('refreshOrders').onclick=refreshLiveOrderStatuses;$('exportCsv').onclick=()=>csvDownload([['Order','Network','Product','Amount GHS','Status','Date'],...orders.map(o=>[o.id,o.network,o.product_type||'data',o.amount,o.status,o.created_at])],'netvanta-orders.csv');$('refreshTransactions').onclick=async()=>{await loadWallet();await loadTransactions()};$('refreshPendingPayments').onclick=loadTransactions;$('pendingPaymentRows').addEventListener('click',e=>{const b=e.target.closest('[data-pending-verify]');if(b)explainPendingVerification()});$('transactionSearch').oninput=renderTransactions;$('transactionStatusFilter').onchange=renderTransactions;$('transactionTypeFilter').onchange=renderTransactions;$('exportTransactions').onclick=()=>csvDownload([['Date','Description','Type','Amount','Status','Reference'],...transactions.map(t=>[t.created_at,t.description,t.type,t.amount,t.status,t.reference])],'netvanta-transactions.csv');
