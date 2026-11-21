@@ -1651,7 +1651,7 @@ async function watchXtopayTopup(reference){
  for(let attempt=0;attempt<150;attempt++){
   if(token!==xtopayPollToken||!user||!reference)return;
   try{
-   const {data,error}=await supabase.from('transactions').select('status,provider_status').eq('user_id',user.id).eq('payment_provider','xtopay').eq('provider_reference',reference).maybeSingle();
+   const {data,error}=await supabase.from('transactions').select('status,provider_status').eq('user_id',user.id).eq('payment_provider','xtopay').or('reference.eq.'+reference+',provider_reference.eq.'+reference).maybeSingle();
    if(!error&&data?.status==='completed'){
     await loadWallet();await loadTransactions();
     $('topupMsg').textContent='Payment confirmed! Your wallet has been credited automatically.';
