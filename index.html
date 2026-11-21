@@ -1654,7 +1654,7 @@ async function startWalletTopup(){
   const {data,error}=await supabase.functions.invoke('xtopay-charge',{body:{amount,phone}});
   if(error){let message=error.message||'Could not start payment.';try{const body=await error.context.json();message=body.error||body.message||message}catch{}throw new Error(message)}
   if(data?.reference)xtopayReference=data.reference;
-  $('topupMsg').textContent=data?.message||(data?.pending?'Payment started. Approve the Mobile Money prompt.':'Payment request submitted.');
+  $('topupMsg').textContent=data?.message||(data?.pending?'Payment started. Approve the Mobile Money prompt.':'Xtopay test mode will simulate the result. No real Mobile Money prompt or funds will be sent.');
   if(xtopayReference&&data?.mode!=='test'&&data?.pending!==true){$('topupMsg').textContent='Payment reference received. Check its status before retrying.'}
   if(xtopayReference&&String(xtopayReference).startsWith('XTP-'))$('verifyXtopay').classList.remove('hidden');
  }catch(e){$('topupMsg').textContent=e.message||'Could not start the Xtopay test payment.'}
