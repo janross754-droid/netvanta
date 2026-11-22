@@ -1369,7 +1369,77 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  #customerPanel .customer-quick-panel .action-card{min-height:78px!important;padding:10px!important;font-size:11px!important}
 }
 
-.customer-welcome-actions{display:flex;align-items:center;gap:12px;position:relative;z-index:8}.customer-notification-wrap{position:relative}.customer-notification-btn{position:relative;width:48px;height:48px;border:1px solid #dce7f5;border-radius:15px;background:#fff;color:#164b82;font-size:25px;box-shadow:0 6px 18px #0b2b5012}.customer-notification-btn i{position:absolute;right:-5px;top:-5px;min-width:19px;height:19px;padding:0 5px;border:2px solid #fff;border-radius:99px;background:#e33d55;color:#fff;font-size:10px;font-style:normal;font-weight:850;display:grid;place-items:center}.customer-notifications-panel{position:absolute;right:0;top:58px;width:min(360px,calc(100vw - 30px));max-height:430px;overflow:hidden;background:#fff;border:1px solid #e1e9f3;border-radius:18px;box-shadow:0 18px 48px #0b25452b;color:#10213d}.customer-notifications-head{display:flex;justify-content:space-between;align-items:center;padding:16px 17px;border-bottom:1px solid #edf1f6}.customer-notifications-head strong,.customer-notifications-head small{display:block}.customer-notifications-head small{margin-top:3px;color:#718096;font-size:11px}.customer-notifications-head button{width:30px;height:30px;border:0;border-radius:9px;background:#f1f5fa;color:#43546b;font-size:20px}.customer-notifications-list{max-height:350px;overflow:auto}.customer-notification-item{display:flex;gap:11px;width:100%;padding:14px 16px;border:0;border-bottom:1px solid #f0f3f7;background:#fff;text-align:left;color:inherit}.customer-notification-item.unread{background:#f3f8ff}.customer-notification-icon{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border-radius:12px;background:#e7f1ff;color:#1769ff;font-size:18px}.customer-notification-copy{min-width:0;flex:1}.customer-notification-copy strong,.customer-notification-copy span,.customer-notification-copy time{display:block}.customer-notification-copy strong{font-size:12px}.customer-notification-copy span{margin-top:4px;color:#53647b;font-size:11px;line-height:1.45}.customer-notification-copy time{margin-top:6px;color:#8794a7;font-size:10px}.customer-notifications-empty{padding:27px 20px;text-align:center;color:#718096;font-size:12px;line-height:1.6}@media(max-width:600px){.customer-welcome-actions{gap:7px}.customer-notification-btn{width:43px;height:43px}.customer-notifications-panel{right:-4px;top:52px}}</style>
+.customer-welcome-actions{display:flex;align-items:center;gap:12px;position:relative;z-index:8}.customer-notification-wrap{position:relative}.customer-notification-btn{position:relative;width:48px;height:48px;border:1px solid #dce7f5;border-radius:15px;background:#fff;color:#164b82;font-size:25px;box-shadow:0 6px 18px #0b2b5012}.customer-notification-btn i{position:absolute;right:-5px;top:-5px;min-width:19px;height:19px;padding:0 5px;border:2px solid #fff;border-radius:99px;background:#e33d55;color:#fff;font-size:10px;font-style:normal;font-weight:850;display:grid;place-items:center}.customer-notifications-panel{position:absolute;right:0;top:58px;width:min(360px,calc(100vw - 30px));max-height:430px;overflow:hidden;background:#fff;border:1px solid #e1e9f3;border-radius:18px;box-shadow:0 18px 48px #0b25452b;color:#10213d}.customer-notifications-head{display:flex;justify-content:space-between;align-items:center;padding:16px 17px;border-bottom:1px solid #edf1f6}.customer-notifications-head strong,.customer-notifications-head small{display:block}.customer-notifications-head small{margin-top:3px;color:#718096;font-size:11px}.customer-notifications-head button{width:30px;height:30px;border:0;border-radius:9px;background:#f1f5fa;color:#43546b;font-size:20px}.customer-notifications-list{max-height:350px;overflow:auto}.customer-notification-item{display:flex;gap:11px;width:100%;padding:14px 16px;border:0;border-bottom:1px solid #f0f3f7;background:#fff;text-align:left;color:inherit}.customer-notification-item.unread{background:#f3f8ff}.customer-notification-icon{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border-radius:12px;background:#e7f1ff;color:#1769ff;font-size:18px}.customer-notification-copy{min-width:0;flex:1}.customer-notification-copy strong,.customer-notification-copy span,.customer-notification-copy time{display:block}.customer-notification-copy strong{font-size:12px}.customer-notification-copy span{margin-top:4px;color:#53647b;font-size:11px;line-height:1.45}.customer-notification-copy time{margin-top:6px;color:#8794a7;font-size:10px}.customer-notifications-empty{padding:27px 20px;text-align:center;color:#718096;font-size:12px;line-height:1.6}@media(max-width:600px){.customer-welcome-actions{gap:7px}.customer-notification-btn{width:43px;height:43px}.customer-notifications-panel{right:-4px;top:52px}}
+/* Premium customer dashboard refresh — spacious cards and readable actions */
+#customerPanel .customer-layout{max-width:1120px!important}
+#customerPanel .customer-main{gap:22px!important}
+#customerPanel .customer-welcome{padding:12px 6px 6px!important}
+#customerPanel .customer-welcome h2{font-size:clamp(27px,3vw,34px)!important;letter-spacing:-.8px!important}
+#customerPanel .customer-welcome p{font-size:14px!important}
+#customerPanel .customer-overview,#customerPanel .customer-quick-panel,#customerPanel .customer-recent-panel{padding:26px!important;border-radius:22px!important;box-shadow:0 10px 30px rgba(7,26,53,.07)!important}
+#customerPanel .customer-overview .wallet{min-height:184px!important;padding:30px!important;border-radius:20px!important}
+#customerPanel .customer-overview .wallet small{font-size:13px!important;letter-spacing:.7px!important}
+#customerPanel .customer-overview .wallet h2{font-size:clamp(36px,4vw,44px)!important}
+#customerPanel .customer-overview .wallet p{font-size:14px!important}
+#customerPanel .customer-overview .wallet #topUpBtn{min-height:54px!important;padding:15px 23px!important;font-size:15px!important;border-radius:13px!important}
+#customerPanel .customer-overview .grid{gap:16px!important}
+#customerPanel .customer-overview .stat{min-height:132px!important;padding:23px!important;border-radius:17px!important}
+#customerPanel .customer-overview .stat small{font-size:14px!important}
+#customerPanel .customer-overview .stat b{font-size:30px!important}
+#customerPanel .customer-overview .stat span{font-size:12px!important}
+#customerPanel .customer-quick-panel .head{margin-bottom:20px!important}
+#customerPanel .customer-quick-panel .head h2,#customerPanel .customer-recent-panel .head h2{font-size:24px!important}
+#customerPanel .customer-quick-panel .head .muted,#customerPanel .customer-recent-panel .head .muted{font-size:14px!important}
+#customerPanel .customer-quick-panel .action-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important}
+#customerPanel .customer-quick-panel .action-card{display:flex!important;align-items:center!important;min-height:126px!important;padding:20px!important;gap:16px!important;border-radius:18px!important;font-size:16px!important;box-shadow:0 5px 16px rgba(7,26,53,.055)!important}
+#customerPanel .customer-quick-panel .action-icon{width:56px!important;height:56px!important;flex:0 0 56px!important;border-radius:16px!important;font-size:25px!important}
+#customerPanel .customer-quick-panel .action-card span:last-child{font-size:16px!important;line-height:1.35!important}
+#customerPanel .customer-quick-panel .action-card small{font-size:12px!important;line-height:1.4!important}
+#customerPanel .customer-promo{min-height:180px!important;padding:28px!important;border-radius:21px!important}
+#customerPanel .customer-promo h3{font-size:25px!important}
+#customerPanel .customer-promo p{font-size:14px!important}
+#customerPanel .customer-network-stamps span{width:54px!important;height:54px!important;font-size:12px!important}
+#customerPanel .customer-mobile-nav button{min-height:62px!important;font-size:11px!important}
+#customerPanel .customer-mobile-nav button span{font-size:24px!important}
+#customerPanel .customer-notification-btn{width:52px!important;height:52px!important;font-size:25px!important}
+@media(max-width:700px){
+ #customerPanel .customer-layout{max-width:100%!important}
+ #customerPanel .customer-main{gap:18px!important;padding:15px 14px 24px!important}
+ #customerPanel .customer-welcome{padding:8px 3px 5px!important}
+ #customerPanel .customer-welcome h2{font-size:27px!important}
+ #customerPanel .customer-welcome p{font-size:13px!important}
+ #customerPanel .customer-overview,#customerPanel .customer-quick-panel,#customerPanel .customer-recent-panel{padding:19px!important;border-radius:20px!important}
+ #customerPanel .customer-overview .wallet{min-height:160px!important;padding:21px!important;border-radius:17px!important}
+ #customerPanel .customer-overview .wallet h2{font-size:clamp(31px,8vw,38px)!important}
+ #customerPanel .customer-overview .wallet small{font-size:11px!important}
+ #customerPanel .customer-overview .wallet p{font-size:12px!important}
+ #customerPanel .customer-overview .wallet #topUpBtn{min-height:47px!important;padding:12px 15px!important;font-size:13px!important}
+ #customerPanel .customer-overview .stat{min-height:116px!important;padding:16px!important}
+ #customerPanel .customer-overview .stat small{font-size:12px!important}
+ #customerPanel .customer-overview .stat b{font-size:24px!important}
+ #customerPanel .customer-overview .stat span{font-size:10px!important}
+ #customerPanel .customer-quick-panel .head{margin-bottom:16px!important}
+ #customerPanel .customer-quick-panel .head h2,#customerPanel .customer-recent-panel .head h2{font-size:21px!important}
+ #customerPanel .customer-quick-panel .head .muted,#customerPanel .customer-recent-panel .head .muted{font-size:12px!important}
+ #customerPanel .customer-quick-panel .action-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+ #customerPanel .customer-quick-panel .action-card{flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;min-height:132px!important;padding:16px!important;gap:12px!important;border-radius:17px!important;font-size:14px!important}
+ #customerPanel .customer-quick-panel .action-icon{width:48px!important;height:48px!important;flex:0 0 48px!important;border-radius:14px!important;font-size:22px!important}
+ #customerPanel .customer-quick-panel .action-card span:last-child{font-size:14px!important;line-height:1.3!important}
+ #customerPanel .customer-quick-panel .action-card small{font-size:11px!important;line-height:1.35!important}
+ #customerPanel .customer-promo{min-height:150px!important;padding:19px!important;border-radius:18px!important}
+ #customerPanel .customer-promo h3{font-size:19px!important}
+ #customerPanel .customer-promo p{font-size:12px!important}
+ #customerPanel .customer-mobile-nav{padding-top:9px!important}
+ #customerPanel .customer-mobile-nav button{min-height:58px!important;font-size:10px!important}
+ #customerPanel .customer-mobile-nav button span{font-size:22px!important}
+}
+@media(max-width:390px){
+ #customerPanel .customer-main{padding-left:11px!important;padding-right:11px!important}
+ #customerPanel .customer-quick-panel .action-card{min-height:120px!important;padding:13px!important}
+ #customerPanel .customer-quick-panel .action-icon{width:44px!important;height:44px!important;flex-basis:44px!important}
+}
+
+</style>
 <!-- Meta Pixel Code (NetVanta) -->
 <script>
 (function(){
