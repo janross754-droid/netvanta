@@ -1125,6 +1125,45 @@ button.gold:hover:not(:disabled),.btn.gold:hover:not(:disabled),.btn-gold:hover:
 }
 
 #adminPanel.hidden{display:none!important}
+
+
+/* Customer dashboard: phone-first layout at every screen size */
+#customerPanel{width:100%;max-width:100%;margin:0 auto;padding:0 0 100px!important;box-sizing:border-box}
+#customerPanel .customer-layout{display:block!important;width:100%;max-width:680px;margin:0 auto;grid-template-columns:1fr!important;gap:0}
+#customerPanel .customer-sidebar{display:none!important}
+#customerPanel .customer-main{display:grid;width:100%;max-width:100%;min-width:0;gap:12px;margin:0 auto;padding:0 12px;box-sizing:border-box}
+#customerPanel .customer-welcome{padding:8px 2px 3px}
+#customerPanel .customer-welcome h2{font-size:22px;line-height:1.2}
+#customerPanel .customer-overview{padding:14px;border-radius:17px}
+#customerPanel .customer-overview .wallet{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:0;padding:18px;border-radius:15px}
+#customerPanel .customer-overview .wallet h2{font-size:clamp(24px,5vw,30px);line-height:1.15;overflow-wrap:anywhere}
+#customerPanel .customer-overview .wallet p{font-size:10px;line-height:1.45}
+#customerPanel .customer-overview .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#customerPanel .customer-overview .stat{min-width:0;padding:12px;border-radius:12px}
+#customerPanel .customer-overview .stat b{font-size:18px;overflow-wrap:anywhere}
+#customerPanel .customer-quick-panel,#customerPanel .customer-recent-panel{padding:15px;border-radius:17px}
+#customerPanel .customer-quick-panel .action-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px}
+#customerPanel .customer-quick-panel .action-card{display:flex;min-width:0;min-height:72px;padding:10px;gap:8px;border-radius:13px;font-size:11px}
+#customerPanel .customer-quick-panel .action-card span:last-child{min-width:0;overflow-wrap:anywhere}
+#customerPanel .customer-promo{min-height:0;padding:16px;border-radius:16px;gap:8px}
+#customerPanel .customer-promo h3{font-size:16px;line-height:1.25}
+#customerPanel .customer-promo p{font-size:10px;line-height:1.5}
+#customerPanel .customer-mobile-nav{position:fixed!important;z-index:1000;left:0;right:0;bottom:0;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding:7px 5px calc(7px + env(safe-area-inset-bottom));border-top:1px solid #e5ebf3;background:#ffffffed;backdrop-filter:blur(16px);box-shadow:0 -7px 24px #071a3510}
+#customerPanel .customer-mobile-nav button{display:grid;justify-items:center;align-content:center;gap:3px;min-width:0;min-height:48px;padding:3px 1px;border:0;border-radius:10px;background:transparent;color:#75849a;font-size:9px;font-weight:750}
+#customerPanel .customer-mobile-nav button span{font-size:18px;line-height:1.1}
+#customerPanel .customer-mobile-nav button.active{background:#edf4ff;color:#1455bd}
+#customerPanel #recentOrders{max-width:100%;overflow-x:auto}
+#customerPanel #recentOrders table{min-width:470px}
+@media(max-width:420px){
+ #customerPanel .customer-main{padding-left:9px;padding-right:9px}
+ #customerPanel .customer-overview .wallet{display:block;padding:15px}
+ #customerPanel .customer-overview .wallet h2{font-size:26px}
+ #customerPanel .customer-overview .wallet #topUpBtn{margin-top:12px}
+ #customerPanel .customer-promo{padding:13px}
+ #customerPanel .customer-network-stamps{display:none}
+ #customerPanel .customer-quick-panel .action-card{padding:9px;font-size:10px}
+}
+
 </style></head><body class="session-pending">
 <header class="top"><div class="nav"><div class="brand"><span class="logo">N</span><span>NetVanta</span></div><div class="navright"><button type="button" id="menuOpen" class="iconbtn menu-trigger hidden" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button><button type="button" id="profileOpen" class="profileBtn hidden" aria-label="Open profile">◎</button><button type="button" id="navLogin" class="light">Log in</button><button type="button" id="navSignup" class="primary">Create account</button><button type="button" id="adminOpen" class="light hidden">Admin</button><button type="button" id="navLogout" class="outline hidden">Log out</button></div></div></header>
 <div id="drawerShade" class="drawerShade hidden"></div>
