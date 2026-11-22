@@ -1164,6 +1164,64 @@ button.gold:hover:not(:disabled),.btn.gold:hover:not(:disabled),.btn-gold:hover:
  #customerPanel .customer-quick-panel .action-card{padding:9px;font-size:10px}
 }
 
+
+
+/* Final customer home dashboard layout: mobile-first, not desktop squeezed down */
+#customerPanel{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0 0 calc(86px + env(safe-area-inset-bottom))!important}
+#customerPanel .customer-layout{display:block!important;width:100%!important;max-width:560px!important;margin:0 auto!important;padding:0!important}
+#customerPanel .customer-sidebar{display:none!important}
+#customerPanel .customer-main{display:flex!important;flex-direction:column!important;gap:12px!important;width:100%!important;max-width:none!important;min-width:0!important;margin:0!important;padding:12px 12px 18px!important}
+#customerPanel .customer-welcome{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;padding:4px 2px 2px!important}
+#customerPanel .customer-welcome h2{margin:5px 0 3px!important;font-size:clamp(20px,5vw,24px)!important;line-height:1.2!important;letter-spacing:-.5px!important}
+#customerPanel .customer-welcome p{margin:0!important;font-size:12px!important;line-height:1.45!important}
+#customerPanel .customer-welcome-mark{flex:0 0 40px!important;width:40px!important;height:40px!important}
+#customerPanel .customer-overview,#customerPanel .customer-quick-panel,#customerPanel .customer-recent-panel{width:100%!important;min-width:0!important;margin:0!important;padding:14px!important;border:1px solid #e5ebf3!important;border-radius:17px!important;background:#fff!important;box-shadow:0 5px 18px rgba(7,26,53,.045)!important}
+#customerPanel .customer-overview .wallet{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;min-height:0!important;margin:0 0 11px!important;padding:16px!important;border-radius:14px!important}
+#customerPanel .customer-overview .wallet>div{min-width:0!important}
+#customerPanel .customer-overview .wallet small{display:block!important;font-size:10px!important;letter-spacing:.45px!important}
+#customerPanel .customer-overview .wallet h2{margin:5px 0!important;font-size:clamp(24px,6vw,29px)!important;line-height:1.12!important}
+#customerPanel .customer-overview .wallet p{max-width:230px!important;margin:0!important;font-size:10px!important;line-height:1.4!important}
+#customerPanel .customer-overview .wallet #topUpBtn{flex:0 0 auto!important;min-width:82px!important;padding:10px 11px!important;font-size:12px!important;white-space:nowrap!important}
+#customerPanel .customer-overview .grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+#customerPanel .customer-overview .stat{min-width:0!important;padding:12px!important;border:1px solid #e8edf4!important;border-radius:12px!important;background:#fbfcff!important}
+#customerPanel .customer-overview .stat small{font-size:10px!important;line-height:1.35!important}
+#customerPanel .customer-overview .stat b{margin:5px 0 3px!important;font-size:clamp(17px,4.5vw,20px)!important;line-height:1.2!important;overflow-wrap:anywhere!important}
+#customerPanel .customer-overview .stat span{font-size:9px!important;line-height:1.3!important}
+#customerPanel .customer-quick-panel .head{margin:0 0 11px!important}
+#customerPanel .customer-quick-panel .head h2,#customerPanel .customer-recent-panel .head h2{margin:0 0 3px!important;font-size:17px!important}
+#customerPanel .customer-quick-panel .head .muted,#customerPanel .customer-recent-panel .head .muted{font-size:11px!important;line-height:1.4!important}
+#customerPanel .customer-quick-panel .action-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+#customerPanel .customer-quick-panel .action-card{display:flex!important;align-items:center!important;min-width:0!important;min-height:68px!important;padding:10px!important;gap:8px!important;border:1px solid #e7edf5!important;border-radius:13px!important;background:#fff!important;box-shadow:0 3px 10px rgba(7,26,53,.035)!important;font-size:11px!important}
+#customerPanel .customer-quick-panel .action-icon{width:34px!important;height:34px!important;flex:0 0 34px!important;border-radius:10px!important;font-size:17px!important}
+#customerPanel .customer-quick-panel .action-card span:last-child{min-width:0!important;line-height:1.25!important;overflow-wrap:anywhere!important}
+#customerPanel .customer-quick-panel .action-card small{margin-top:3px!important;font-size:9px!important;line-height:1.25!important}
+#customerPanel .customer-promo{display:block!important;width:100%!important;min-height:0!important;margin:0!important;padding:15px!important;border-radius:15px!important}
+#customerPanel .customer-promo h3{margin:6px 0!important;font-size:16px!important;line-height:1.25!important}
+#customerPanel .customer-promo p{margin:0 0 10px!important;font-size:10px!important;line-height:1.5!important}
+#customerPanel .customer-promo button{padding:9px 12px!important;font-size:11px!important}
+#customerPanel .customer-network-stamps{display:none!important}
+#customerPanel .customer-recent-panel .head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;margin:0 0 10px!important}
+#customerPanel .customer-recent-panel #recentViewAll{flex:0 0 auto!important;padding:8px 10px!important;font-size:10px!important;white-space:nowrap!important}
+#customerPanel #recentOrders{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow-x:auto!important;border:1px solid #edf1f7!important;border-radius:11px!important}
+#customerPanel #recentOrders .tablewrap{max-width:100%!important;overflow-x:auto!important}
+#customerPanel #recentOrders table{width:100%!important;min-width:450px!important}
+#customerPanel #recentOrders th,#customerPanel #recentOrders td{padding:10px 8px!important;font-size:10px!important;white-space:nowrap!important}
+#customerPanel .customer-mobile-nav{position:fixed!important;z-index:1000!important;left:0!important;right:0!important;bottom:0!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:0!important;padding:6px 5px calc(6px + env(safe-area-inset-bottom))!important;background:rgba(255,255,255,.97)!important;border-top:1px solid #e5ebf3!important;box-shadow:0 -5px 20px rgba(7,26,53,.08)!important;backdrop-filter:blur(14px)!important}
+#customerPanel .customer-mobile-nav button{min-width:0!important;min-height:46px!important;padding:3px 1px!important;font-size:9px!important}
+body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-inset-bottom))!important}
+@media(min-width:701px){
+ #customerPanel .customer-layout{max-width:560px!important}
+ #customerPanel .customer-main{padding-top:20px!important}
+}
+@media(max-width:390px){
+ #customerPanel .customer-main{padding-left:9px!important;padding-right:9px!important}
+ #customerPanel .customer-overview,#customerPanel .customer-quick-panel,#customerPanel .customer-recent-panel{padding:12px!important}
+ #customerPanel .customer-overview .wallet{align-items:flex-start!important;padding:13px!important}
+ #customerPanel .customer-overview .wallet #topUpBtn{padding:9px 9px!important;font-size:11px!important}
+ #customerPanel .customer-quick-panel .action-card{min-height:64px!important;padding:8px!important;font-size:10px!important}
+ #customerPanel .customer-quick-panel .action-icon{width:31px!important;height:31px!important;flex-basis:31px!important}
+}
+
 </style></head><body class="session-pending">
 <header class="top"><div class="nav"><div class="brand"><span class="logo">N</span><span>NetVanta</span></div><div class="navright"><button type="button" id="menuOpen" class="iconbtn menu-trigger hidden" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button><button type="button" id="profileOpen" class="profileBtn hidden" aria-label="Open profile">◎</button><button type="button" id="navLogin" class="light">Log in</button><button type="button" id="navSignup" class="primary">Create account</button><button type="button" id="adminOpen" class="light hidden">Admin</button><button type="button" id="navLogout" class="outline hidden">Log out</button></div></div></header>
 <div id="drawerShade" class="drawerShade hidden"></div>
