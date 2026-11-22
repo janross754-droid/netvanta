@@ -1226,6 +1226,32 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
 /* Keep the customer dashboard hidden until the app explicitly opens it */
 #customerPanel.hidden{display:none!important}
 
+
+/* Final homepage and customer dashboard sizing correction */
+#navLogin,#heroLogin{display:none!important}
+#customerPanel .wallet{min-height:148px;padding:26px 28px}
+#customerPanel .wallet h2{font-size:36px}
+#customerPanel .grid .stat{min-height:112px;padding:22px 23px}
+#customerPanel .grid .stat b{font-size:27px}
+#customerPanel .action-grid{gap:13px}
+#customerPanel .action-card{min-height:104px;padding:17px;gap:13px;font-size:15px}
+#customerPanel .action-icon{width:48px;height:48px;flex-basis:48px;font-size:23px}
+#customerPanel .action-card small{font-size:11px}
+#customerPanel .panel:nth-child(2),#customerPanel .panel:nth-child(3){padding:23px}
+@media(max-width:700px){
+ #customerPanel .wallet{min-height:132px;padding:21px}
+ #customerPanel .wallet h2{font-size:30px}
+ #customerPanel .grid .stat{min-height:104px;padding:19px}
+ #customerPanel .grid .stat b{font-size:24px}
+ #customerPanel .action-grid{gap:11px}
+ #customerPanel .action-card{min-height:94px;padding:14px;gap:10px;font-size:14px}
+ #customerPanel .action-icon{width:43px;height:43px;flex-basis:43px;font-size:21px}
+ #customerPanel .panel:nth-child(2),#customerPanel .panel:nth-child(3){padding:19px}
+}
+@media(max-width:380px){
+ #customerPanel .action-card{min-height:88px;padding:11px;font-size:13px}
+ #customerPanel .grid .stat{padding:16px}
+}
 </style></head><body class="session-pending">
 <header class="top"><div class="nav"><div class="brand"><span class="logo">N</span><span>NetVanta</span></div><div class="navright"><button type="button" id="menuOpen" class="iconbtn menu-trigger hidden" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button><button type="button" id="profileOpen" class="profileBtn hidden" aria-label="Open profile">◎</button><button type="button" id="navLogin" class="light">Log in</button><button type="button" id="navSignup" class="primary">Create account</button><button type="button" id="adminOpen" class="light hidden">Admin</button><button type="button" id="navLogout" class="outline hidden">Log out</button></div></div></header>
 <div id="drawerShade" class="drawerShade hidden"></div>
