@@ -1369,7 +1369,25 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  #customerPanel .customer-quick-panel .action-card{min-height:78px!important;padding:10px!important;font-size:11px!important}
 }
 
-</style></head><body class="session-pending">
+</style>
+<!-- Meta Pixel Code (NetVanta) -->
+<script>
+(function(){
+  // Do not load Meta Pixel on payment-return URLs that may contain checkout references.
+  if (/[?&](payment|checkout|topup|reference)=/i.test(window.location.search)) return;
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+  s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
+  }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1636129831338190');
+  fbq('track', 'PageView');
+})();
+</script>
+<!-- End Meta Pixel Code (NetVanta) -->
+</head><body class="session-pending">
 <header class="top"><div class="nav"><div class="brand"><span class="logo">N</span><span>NetVanta</span></div><div class="navright"><button type="button" id="menuOpen" class="iconbtn menu-trigger hidden" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button><button type="button" id="profileOpen" class="profileBtn hidden" aria-label="Open profile">◎</button><button type="button" id="navLogin" class="light">Log in</button><button type="button" id="navSignup" class="primary">Create account</button><button type="button" id="adminOpen" class="light hidden">Admin</button><button type="button" id="navLogout" class="outline hidden">Log out</button></div></div></header>
 <div id="drawerShade" class="drawerShade hidden"></div>
 <aside id="drawer" class="drawer hidden" aria-label="Main navigation" aria-hidden="true">
