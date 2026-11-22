@@ -1989,7 +1989,7 @@ async function loadProfitDashboard(){
  $('profitWithdrawalRows').innerHTML=withdrawals.length?withdrawals.map(x=>{
   const canSend=x.status==='pending',canCheck=x.status==='processing',canReject=x.status==='pending';
   const transferAction=canSend?'<button class="btn primary" data-profit-action="send" data-profit-id="'+esc(x.id)+'">Send via Xtopay LIVE</button>':
-   (canCheck?'<button class="btn soft" data-profit-action="check" data-profit-id="'+esc(x.id)+'">'+(x.external_reference?'Check Xtopay status':'Recover Xtopay submission')+'</button>':'');
+   (canCheck?'<button class="btn soft" data-profit-action="'+(x.external_reference?'check':'recover')+'" data-profit-id="'+esc(x.id)+'">'+(x.external_reference?'Check Xtopay status':'Recover Xtopay submission')+'</button>':'');
   const rejectAction=canReject?'<button class="btn danger" data-profit-action="rejected" data-profit-id="'+esc(x.id)+'">Reject</button>':'';
   const actions=[transferAction,rejectAction].filter(Boolean).join(' ');
   return '<tr><td>'+date(x.created_at)+'</td><td>'+esc(x.recipient_phone)+'</td><td>'+esc(x.recipient_name)+'</td><td>'+money(x.amount)+'</td><td>'+esc(x.status)+'</td><td>'+esc(x.external_reference||'—')+'</td><td>'+ (actions||'—')+'</td></tr>';
@@ -2010,13 +2010,13 @@ async function requestProfitWithdrawal(){
  await loadProfitDashboard();
 }
 async function handleProfitWithdrawalAction(id,status){
- if(status==='send'||status==='check'){
+ if(['send','recover','check'].includes(status)){
   const row=await supabase.from('profit_withdrawals').select('amount,recipient_phone,recipient_name,status,external_reference').eq('id',id).maybeSingle();
   if(row.error||!row.data){$('profitWithdrawalMsg').textContent='Could not load this withdrawal. Refresh and try again.';return}
-  const x=row.data;
-  if(status==='send'&&!confirm('LIVE XTOPAY PAYOUT: Send '+money(x.amount)+' to '+x.recipient_name+' at '+x.recipient_phone+'? Real money may move if Xtopay accepts. This cannot be undone. Continue only if these details are correct.'))return;
-  $('profitWithdrawalMsg').textContent=status==='send'?'Submitting the live payout to Xtopay…':'Checking the existing Xtopay transfer status…';
-  const {data,error}=await supabase.functions.invoke('xtopay-profit-withdrawal',{body:{withdrawal_id:id}});
+  const x=row.data,shouldSubmit=status==='send'||status==='recover';
+  if(shouldSubmit&&!confirm('LIVE XTOPAY PAYOUT: Submit '+money(x.amount)+' to '+x.recipient_name+' at '+x.recipient_phone+'? Real money may move if Xtopay accepts. This cannot be undone. Continue only if these details are correct.'))return;
+  $('profitWithdrawalMsg').textContent=shouldSubmit?'Submitting or safely recovering the live Xtopay payout…':'Checking the existing Xtopay transfer status…';
+  const {data,error}=await supabase.functions.invoke('xtopay-profit-withdrawal',{body:{withdrawal_id:id,action:shouldSubmit?'send':'check',confirm_live:shouldSubmit}});
   if(error){
    let detail=error.message||'Xtopay payout could not be processed.';
    try{const body=await error.context.json();detail=body.error||body.message||detail}catch{}
