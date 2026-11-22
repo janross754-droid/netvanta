@@ -1439,6 +1439,104 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  #customerPanel .customer-quick-panel .action-icon{width:44px!important;height:44px!important;flex-basis:44px!important}
 }
 
+
+/* Approved NetVanta customer dashboard refresh — phone-first */
+#customerPanel .customer-main{gap:16px!important}
+#customerPanel .customer-welcome{
+ position:relative!important;isolation:isolate;overflow:hidden!important;
+ min-height:168px!important;padding:25px 22px!important;border:1px solid #164f9b!important;
+ border-radius:22px!important;background:linear-gradient(115deg,#061b55 0%,#0b43ad 62%,#087bd8 100%)!important;
+ box-shadow:0 15px 32px rgba(8,54,139,.2)!important;color:#fff!important
+}
+#customerPanel .customer-welcome:after{
+ content:"";position:absolute;z-index:-1;width:230px;height:230px;right:-48px;top:-115px;
+ border:1px solid #ffffff45;border-radius:50%;box-shadow:0 0 0 20px #ffffff0d,0 0 0 42px #ffffff0b,0 0 0 64px #ffffff08
+}
+#customerPanel .customer-kicker{color:#ffd34f!important;font-size:10px!important;letter-spacing:2px!important}
+#customerPanel .customer-welcome h2{color:#fff!important;font-size:27px!important;line-height:1.12!important;margin:10px 0 7px!important}
+#customerPanel .customer-welcome p{color:#e0ecff!important;font-size:13px!important}
+#customerPanel .customer-welcome-mark{background:#ffffff18!important;border:1px solid #ffffff55!important;color:#fff!important}
+#customerPanel .customer-overview{padding:17px!important;border:1px solid #e1eaf7!important;border-radius:21px!important;background:#fff!important;box-shadow:0 12px 32px #0b28500d!important}
+#customerPanel .customer-overview .wallet{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;gap:14px!important;
+ min-height:142px!important;margin:0 0 13px!important;padding:20px!important;border-radius:18px!important;
+ background:linear-gradient(115deg,#08285d 0%,#0754c9 70%,#087de8 100%)!important;border:1px solid #2b78df!important
+}
+#customerPanel .customer-overview .wallet>div{min-width:0!important;flex:1 1 auto!important}
+#customerPanel .customer-overview .wallet small{color:#dceaff!important;font-size:10px!important;letter-spacing:1.2px!important}
+#customerPanel .customer-overview .wallet h2{font-size:32px!important;line-height:1.1!important;color:#fff!important;letter-spacing:-1px!important}
+#customerPanel .customer-overview .wallet p{color:#d4e6ff!important;font-size:11px!important;line-height:1.45!important;margin:7px 0 0!important}
+#customerPanel .customer-overview .wallet #topUpBtn{flex:0 0 auto!important;margin:0!important;min-height:45px!important;padding:11px 16px!important;border:0!important;border-radius:13px!important;background:#ffca28!important;color:#10244a!important;font-size:13px!important;font-weight:900!important;white-space:nowrap!important;box-shadow:0 5px 16px #031b4b44!important}
+#customerPanel .customer-overview .grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+#customerPanel .customer-overview .grid .stat{min-width:0!important;padding:14px!important;border:1px solid #e5edf7!important;border-radius:15px!important;background:linear-gradient(145deg,#fff,#f7faff)!important}
+#customerPanel .customer-overview .grid .stat small{font-size:11px!important;color:#71829b!important}
+#customerPanel .customer-overview .grid .stat b{font-size:22px!important;color:#102e5b!important;overflow-wrap:anywhere!important}
+#customerPanel .customer-overview .grid .stat span{font-size:10px!important;color:#8090a7!important}
+#customerPanel .customer-quick-panel,#customerPanel .customer-recent-panel{padding:18px!important;border:1px solid #e2eaf5!important;border-radius:21px!important;background:#fff!important;box-shadow:0 12px 32px #0b28500d!important}
+#customerPanel .customer-quick-panel .head{margin-bottom:15px!important}
+#customerPanel .customer-quick-panel .head h2,#customerPanel .customer-recent-panel .head h2{font-size:20px!important;color:#10275b!important}
+#customerPanel .customer-quick-panel .action-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important}
+#customerPanel .customer-quick-panel .action-card{
+ display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;
+ gap:10px!important;min-width:0!important;min-height:112px!important;padding:13px!important;border:1px solid #e4ebf6!important;
+ border-radius:17px!important;background:linear-gradient(145deg,#fff,#f6f9ff)!important;color:#10275b!important;
+ font-size:12px!important;font-weight:850!important;box-shadow:0 7px 20px #0b28500b!important
+}
+#customerPanel .customer-quick-panel .action-icon{width:42px!important;height:42px!important;flex:0 0 42px!important;display:grid!important;place-items:center!important;border-radius:14px!important;background:#e7f1ff!important;color:#1769ff!important;font-size:21px!important}
+#customerPanel .customer-quick-panel .action-card:nth-child(2) .action-icon{background:#f0eaff!important;color:#7650e8!important}
+#customerPanel .customer-quick-panel .action-card:nth-child(3) .action-icon{background:#e5f8f0!important;color:#0c9c68!important}
+#customerPanel .customer-quick-panel .action-card:nth-child(4) .action-icon{background:#fff1df!important;color:#e88b16!important}
+#customerPanel .customer-quick-panel .action-card:nth-child(5) .action-icon{background:#e3f7fc!important;color:#079bb0!important}
+#customerPanel .customer-quick-panel .action-card:nth-child(6) .action-icon{background:#f0eaff!important;color:#7650e8!important}
+#customerPanel .customer-quick-panel .action-card span:last-child{font-size:12px!important;line-height:1.25!important}
+#customerPanel .customer-quick-panel .action-card small{display:block!important;margin-top:3px!important;font-size:10px!important;color:#8291a8!important;font-weight:600!important}
+#customerPanel .customer-promo{min-height:160px!important;padding:20px!important;border:1px solid #164b91!important;border-radius:20px!important;background:linear-gradient(115deg,#061d55 0%,#0a4eb8 68%,#0788c9 100%)!important;box-shadow:0 14px 30px #0b285020!important}
+#customerPanel .customer-promo-eyebrow{color:#71e4e8!important}
+#customerPanel .customer-promo h3{color:#fff!important;font-size:21px!important}
+#customerPanel .customer-promo p{color:#dceaff!important;font-size:12px!important}
+#customerPanel .customer-promo button{background:#ffca28!important;color:#10244a!important;border-radius:12px!important;padding:11px 14px!important;font-size:12px!important}
+#customerPanel .customer-network-stamps span{width:38px!important;height:38px!important;border-radius:13px!important}
+#customerPanel #recentOrders{width:100%!important;max-width:100%!important;overflow-x:auto!important;border:1px solid #e8eef7!important;border-radius:14px!important;background:#f8faff!important}
+#customerPanel #recentOrders table{width:100%!important;min-width:0!important;table-layout:fixed!important}
+#customerPanel #recentOrders th,#customerPanel #recentOrders td{padding:10px 7px!important;font-size:10px!important;white-space:normal!important;overflow-wrap:anywhere!important}
+#customerPanel #recentOrders th{color:#71829b!important;background:#f4f7fc!important}
+@media(max-width:700px){
+ #customerPanel .customer-main{gap:14px!important;padding:13px 12px 24px!important}
+ #customerPanel .customer-welcome{min-height:158px!important;padding:22px 18px!important;border-radius:20px!important}
+ #customerPanel .customer-welcome h2{font-size:25px!important}
+ #customerPanel .customer-overview{padding:14px!important}
+ #customerPanel .customer-overview .wallet{display:flex!important;min-height:128px!important;padding:16px!important;gap:8px!important}
+ #customerPanel .customer-overview .wallet h2{font-size:29px!important}
+ #customerPanel .customer-overview .wallet p{max-width:190px!important;font-size:10px!important}
+ #customerPanel .customer-overview .wallet #topUpBtn{min-height:42px!important;padding:10px 12px!important;font-size:12px!important}
+ #customerPanel .customer-overview .grid .stat{padding:12px!important}
+ #customerPanel .customer-overview .grid .stat b{font-size:19px!important}
+ #customerPanel .customer-quick-panel,#customerPanel .customer-recent-panel{padding:15px!important}
+ #customerPanel .customer-quick-panel .action-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+ #customerPanel .customer-quick-panel .action-card{min-height:105px!important;padding:10px 8px!important;gap:8px!important;border-radius:15px!important}
+ #customerPanel .customer-quick-panel .action-icon{width:38px!important;height:38px!important;flex-basis:38px!important;font-size:19px!important}
+ #customerPanel .customer-quick-panel .action-card span:last-child{font-size:11px!important}
+ #customerPanel .customer-quick-panel .action-card small{font-size:9px!important}
+ #customerPanel .customer-promo{min-height:145px!important;padding:16px!important;gap:7px!important}
+ #customerPanel .customer-promo h3{font-size:17px!important}
+ #customerPanel .customer-promo p{font-size:10px!important;max-width:205px!important}
+ #customerPanel .customer-network-stamps{display:flex!important;gap:4px!important}
+ #customerPanel .customer-network-stamps span{width:27px!important;height:27px!important;font-size:8px!important}
+ #customerPanel #recentOrders{overflow-x:hidden!important}
+ #customerPanel #recentOrders th,#customerPanel #recentOrders td{padding:8px 5px!important;font-size:9px!important}
+ #customerPanel .customer-mobile-nav{z-index:1000!important}
+}
+@media(max-width:390px){
+ #customerPanel .customer-welcome h2{font-size:23px!important}
+ #customerPanel .customer-overview .wallet{padding:13px!important}
+ #customerPanel .customer-overview .wallet h2{font-size:26px!important}
+ #customerPanel .customer-overview .wallet #topUpBtn{padding:9px 10px!important;font-size:11px!important}
+ #customerPanel .customer-quick-panel .action-grid{gap:6px!important}
+ #customerPanel .customer-quick-panel .action-card{padding:9px 6px!important;min-height:100px!important}
+ #customerPanel .customer-quick-panel .action-card span:last-child{font-size:10px!important}
+ #customerPanel .customer-promo p{max-width:175px!important}
+}
+
 </style>
 <!-- Meta Pixel Code (NetVanta) -->
 <script>
