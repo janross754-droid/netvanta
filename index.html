@@ -1672,10 +1672,9 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
 </div>
 <div class="notice">Profit is added only after an order is confirmed completed and its actual supplier cost is recorded. Customer wallet balances and pending orders are never counted as profit. Withdrawal requests reserve available profit until paid or rejected.</div>
 <div class="notice" style="background:#eef5ff;border-color:#cfe0ff;color:#174b91">
- <strong>Xtopay test transfer only</strong><br>
- This controlled GH₵1 test uses Xtopay's documented failure-test number. It uses the test key only; no real money or customer wallet funds are involved.
+ <strong>Xtopay live withdrawal connection</strong><br>
+ Approved MTN MoMo profit withdrawals can be submitted through Xtopay. Live sending remains OFF in Xtopay until the account owner enables it. Every live payout requires a separate administrator confirmation here; pending transfers remain reserved until Xtopay confirms the final result.
 </div>
-<div class="row"><button id="xtopayTestTransferButton" class="btn soft" type="button">Run GH₵1 failure test</button><span id="xtopayTestTransferMsg" class="muted" role="status" aria-live="polite">No test transfer has been sent.</span></div>
 <h3 style="font-size:16px;margin-top:18px">Withdraw to MTN MoMo</h3>
 <div class="grid">
  <div class="field"><label>Amount to withdraw (GHS)</label><input id="profitWithdrawAmount" type="number" min="0.01" step="0.01" placeholder="e.g. 50.00"></div>
@@ -1687,9 +1686,9 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
 <div class="tablewrap"><table><thead><tr><th>Date</th><th>MTN MoMo number</th><th>Account name</th><th>Amount</th><th>Status</th><th>Transfer reference</th><th>Action</th></tr></thead><tbody id="profitWithdrawalRows"><tr><td colspan="7" class="empty">Loading withdrawals…</td></tr></tbody></table></div>
 <h3 style="font-size:16px;margin-top:22px">Profit ledger</h3>
 <div class="tablewrap"><table><thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Details</th></tr></thead><tbody id="profitLedgerRows"><tr><td colspan="4" class="empty">Loading profit records…</td></tr></tbody></table></div>
-<div class="notice">MTN MoMo payouts are manual for now: submit a request, send the money using your approved MTN MoMo business/merchant process, then record the transfer reference here. The dashboard will not claim money was sent automatically.</div>
+<div class="notice">Xtopay payout processing is connected. Pending withdrawals require an administrator to confirm the live transfer. NetVanta checks the provider reference and only marks a payout paid after Xtopay confirms success; failed or declined transfers release the reserved profit.</div>
 </div>
-<div class="panel" id="integrationReadinessPanel"><div class="head"><div><h2 style="font-size:18px">Integration Readiness</h2><div class="muted">Live customer payments and data delivery have been tested and are connected. Administrator MoMo profit withdrawals are not automated yet.</div></div></div><div class="notice">Xtopay: live hosted checkout and payment confirmation are working. Automatic payouts from NetVanta's business profit wallet to the administrator's MoMo wallet are the remaining payout task. KiNG FLEXY: live data delivery and automatic order-status checks are working. Confirmed supplier refunds now trigger an automatic customer wallet refund; continue monitoring order completion and profit settlement.</div></div>
+<div class="panel" id="integrationReadinessPanel"><div class="head"><div><h2 style="font-size:18px">Integration Readiness</h2><div class="muted">Live customer payments and data delivery have been tested and are connected. Administrator MTN MoMo profit withdrawals are connected to Xtopay's Transfers API.</div></div></div><div class="notice">Xtopay: live hosted checkout and payment confirmation are working. Xtopay live payouts are connected. Live sending remains OFF in Xtopay until the account owner enables it. KiNG FLEXY: live data delivery and automatic order-status checks are working. Confirmed supplier refunds now trigger an automatic customer wallet refund; continue monitoring order completion and profit settlement.</div></div>
 <div class="panel" id="pricingManagerPanel"><div class="head"><div><h2 style="font-size:18px">Product & Pricing Manager</h2><div class="muted">Add bundles and update your selling prices. Changes are saved in the database.</div></div><button id="checkKingFlexyWallet" class="btn soft">Check supplier API</button><button id="fetchLiveKingFlexy" class="btn primary">Fetch live packages</button><button id="syncKingFlexy" class="btn soft">Import sandbox packages</button><button id="refreshCatalog" class="btn soft">Refresh prices</button></div><div class="grid"><div class="field"><label>Network</label><select id="catalogNetwork"><option>MTN</option><option>Telecel</option><option>AirtelTigo</option><option>AT</option><option>MTN Fibre</option></select></div><div class="field"><label>Product type</label><select id="catalogType"><option value="data">Data</option><option value="airtime">Airtime</option></select></div><div class="field"><label>Bundle / product name</label><input id="catalogName" placeholder="e.g. 5GB Bundle"></div><div class="field"><label>Bundle size (GB, optional)</label><input id="catalogGb" type="number" min="0" step="0.01" placeholder="e.g. 5"></div><div class="field"><label>Supplier cost (GHS)</label><input id="catalogCost" type="number" min="0" step="0.01" placeholder="0.00"></div><div class="field"><label>Your selling price (GHS)</label><input id="catalogPrice" type="number" min="0.01" step="0.01" placeholder="0.00"></div></div><input id="catalogId" type="hidden"><div class="row"><button id="saveCatalog" class="btn primary">Save product / price</button><button id="clearCatalog" class="btn soft">Clear form</button></div><p id="catalogMsg" class="muted"></p><div class="tablewrap"><table><thead><tr><th>Network</th><th>Product</th><th>Supplier cost</th><th>Selling price</th><th>Margin</th><th>Status</th><th>Action</th></tr></thead><tbody id="catalogRows"><tr><td colspan="7" class="empty">Loading catalogue…</td></tr></tbody></table></div><div class="notice">The 40 approved customer prices are active in the catalogue. Live customer checkout is enabled. The approved customer prices are active; continue monitoring live orders and supplier delivery. Sandbox imports remain hidden drafts.</div><p id="kingFlexyStatus" class="muted" aria-live="polite">Supplier API status has not been checked yet.</p><div id="liveCatalogReview" class="panel" style="margin-top:16px;display:none"><div class="head"><div><h3 style="font-size:17px;margin:0">Live KiNG FLEXY package review</h3><div class="muted" id="liveCatalogMeta">Live supplier costs only. No prices have been changed.</div></div><button id="saveLiveDrafts" class="btn primary">Save priced packages as hidden drafts</button></div><p class="muted">Enter a different profit for each package. The selling price is calculated automatically. Only packages with a profit entered will be saved; all saved packages remain hidden until you activate them.</p><div class="tablewrap"><table><thead><tr><th>Network</th><th>Package</th><th>Supplier cost</th><th>Your profit</th><th>Proposed selling price</th></tr></thead><tbody id="liveCatalogRows"></tbody></table></div><p id="liveCatalogMsg" class="muted"></p></div></div><div class="panel" id="adminCustomersPanel"><div class="head"><div><h2 style="font-size:18px">Customer Management</h2><div class="muted">Search customers and inspect their account activity.</div></div><button id="refreshCustomers" class="btn soft">Refresh customers</button></div><div class="field"><label>Search by name, email or phone</label><input id="customerSearch" type="search" placeholder="Type a customer name, email or phone number"></div><div class="customer-management-layout"><div id="adminCustomerList" class="admin-customer-list"><div class="empty">Loading customers…</div></div><div class="admin-customer-detail-wrap"><div id="adminCustomerDetails" class="stat customer-detail-empty"><div class="muted">Select a customer to view their details, wallet, orders and transactions.</div></div></div></div></div><div class="panel" id="adminSupportInboxPanel"><div class="support-inbox-heading"><div><h2>Customer Support Inbox</h2><p>View and respond to customer enquiries.</p></div><span class="support-online"><i></i> Support inbox</span></div><div class="support-inbox-workspace"><aside class="support-thread-pane"><div class="support-thread-tools"><input id="adminConversationSearch" type="search" placeholder="Search customers or messages…" aria-label="Search support conversations"><select id="adminConversationFilter" aria-label="Filter conversations"><option value="all">All conversations</option><option value="open">Open</option><option value="replied">Replied</option><option value="waiting_agent">Waiting for Admin</option><option value="resolved">Resolved</option></select></div><div id="adminConversationList" class="support-thread-list"><div class="empty">No conversations yet.</div></div></aside><section class="support-chat-pane"><div class="support-chat-heading"><button type="button" id="adminSupportBack" class="support-back">← Conversations</button><div class="support-person-avatar" id="adminSupportAvatar">N</div><div class="support-person-copy"><h3 id="adminSupportTitle">Select a conversation</h3><p id="adminSupportMeta">Choose a customer conversation to view messages.</p></div><span class="support-chat-status" id="adminSupportStatus">Inbox</span></div><div id="adminSupportMessages" class="support-chat-messages"><div class="support-empty-state">Select a conversation to read and reply to messages.</div></div><div class="support-reply-area"><div class="support-reply-row"><input id="adminSupportInput" placeholder="Type your reply…" aria-label="Type your reply"><button id="sendAdminSupport" class="btn primary" type="button">Send Message</button></div><div class="support-chat-actions"><button id="resolveAdminSupport" class="btn soft" type="button">Mark resolved</button></div></div></section></div></div><div class="panel" id="manualRefundsPanel"><div class="head"><div><h2 style="font-size:18px">Manual Customer Refunds</h2><div class="muted">Orders awaiting a confirmed supplier refund appear here for review. When KiNG FLEXY reports the final refunded status, NetVanta automatically credits the customer wallet once.</div></div><span class="badge" id="manualRefundCount">0 failed orders</span></div><div class="tablewrap"><table><thead><tr><th>Customer</th><th>Phone</th><th>Product</th><th>Amount</th><th>Supplier refund</th><th>Customer refund</th></tr></thead><tbody id="adminRefundRows"><tr><td colspan="6" class="empty">No failed orders awaiting review.</td></tr></tbody></table></div><p class="muted" style="margin-top:10px">Pending and processing orders cannot be refunded. Do not confirm supplier refund until KiNG FLEXY has actually returned the funds.</p></div><div class="panel" id="adminOrdersPanel"><h2 style="font-size:18px">All Customer Orders</h2><div class="tablewrap"><table><thead><tr><th>Customer</th><th>Phone</th><th>Product</th><th>Network</th><th>Bundle</th><th>Amount</th><th>Status</th><th>Date</th><th>Refund control</th></tr></thead><tbody id="adminOrderRows"><tr><td colspan="9" class="empty">No orders yet.</td></tr></tbody></table></div></div><div class="panel" id="supplierAuditPanel"><div class="head"><div><h2 style="font-size:18px">Supplier Status Audit History</h2><div class="muted">A read-only record of KiNG FLEXY status checks and profit settlement results.</div></div><button id="refreshSupplierAudit" class="btn soft" type="button">Refresh audit</button></div><p id="supplierAuditStatus" class="muted" role="status" aria-live="polite">Loading supplier audit history…</p><div class="tablewrap"><table><thead><tr><th>Checked</th><th>Order</th><th>Supplier status</th><th>NetVanta status</th><th>API result</th><th>HTTP</th><th>Source</th><th>Profit settled</th><th>Error</th></tr></thead><tbody id="supplierAuditRows"><tr><td colspan="9" class="empty">Loading audit history…</td></tr></tbody></table></div></div></div></div></section>
 </main><footer class="foot">© 2026 NetVanta. All rights reserved.<br><span>Founded and operated by Cmg · Founder &amp; Administrator</span><br><a href="mailto:cmgnetvanta@gmail.com" style="color:inherit">cmgnetvanta@gmail.com</a><br><nav aria-label="Legal and support links" style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:12px"><a href="privacy.html" style="color:inherit">Privacy Policy</a><a href="terms.html" style="color:inherit">Terms and Conditions</a><a href="refund-policy.html" style="color:inherit">Refund Policy</a><a href="contact.html" style="color:inherit">Contact Us</a></nav></footer><button id="chatFab" class="chatFab hidden" aria-label="Contact support">☏</button>
 <script type="module">
@@ -1979,43 +1978,24 @@ async function loadProfitDashboard(){
   return false;
  }
  const walletRow=w.data||{available_balance:0,total_earned:0,total_withdrawn:0};
- const withdrawals=wr.data||[],ledger=l.data||[];
- const reserved=withdrawals.filter(x=>['pending','processing'].includes(x.status)).reduce((a,x)=>a+Number(x.amount||0),0);
+ const allWithdrawals=wr.data||[],allLedger=l.data||[];
+ const withdrawals=allWithdrawals.filter(x=>!String(x.admin_note||'').startsWith('Test-only withdrawal cleared:'));
+ const ledger=allLedger.filter(x=>!String(x.description||'').startsWith('Test-only withdrawal reservation released'));
+ const reserved=allWithdrawals.filter(x=>['pending','processing'].includes(x.status)).reduce((a,x)=>a+Number(x.amount||0),0);
  $('profitAvailable').textContent=money(walletRow.available_balance);
  $('profitEarned').textContent=money(walletRow.total_earned);
  $('profitWithdrawn').textContent=money(walletRow.total_withdrawn);
  $('profitReserved').textContent=money(reserved);
  $('profitWithdrawalRows').innerHTML=withdrawals.length?withdrawals.map(x=>{
-  const canProcess=x.status==='pending',canPay=x.status==='processing',canReject=['pending','processing'].includes(x.status);
-  const actions=(canProcess?'<button class="btn soft" data-profit-action="processing" data-profit-id="'+esc(x.id)+'">Mark processing</button> ':'')+
-   (canPay?'<button class="btn primary" data-profit-action="paid" data-profit-id="'+esc(x.id)+'">Mark paid</button> ':'')+
-   (canReject?'<button class="btn danger" data-profit-action="rejected" data-profit-id="'+esc(x.id)+'">Reject</button>':'');
+  const canSend=x.status==='pending',canCheck=x.status==='processing',canReject=x.status==='pending';
+  const transferAction=canSend?'<button class="btn primary" data-profit-action="send" data-profit-id="'+esc(x.id)+'">Send via Xtopay LIVE</button>':
+   (canCheck?'<button class="btn soft" data-profit-action="check" data-profit-id="'+esc(x.id)+'">'+(x.external_reference?'Check Xtopay status':'Recover Xtopay submission')+'</button>':'');
+  const rejectAction=canReject?'<button class="btn danger" data-profit-action="rejected" data-profit-id="'+esc(x.id)+'">Reject</button>':'';
+  const actions=[transferAction,rejectAction].filter(Boolean).join(' ');
   return '<tr><td>'+date(x.created_at)+'</td><td>'+esc(x.recipient_phone)+'</td><td>'+esc(x.recipient_name)+'</td><td>'+money(x.amount)+'</td><td>'+esc(x.status)+'</td><td>'+esc(x.external_reference||'—')+'</td><td>'+ (actions||'—')+'</td></tr>';
  }).join(''):'<tr><td colspan="7" class="empty">No withdrawal requests yet.</td></tr>';
  $('profitLedgerRows').innerHTML=ledger.length?ledger.map(x=>'<tr><td>'+date(x.created_at)+'</td><td>'+esc(x.entry_type.replace(/_/g,' '))+'</td><td>'+money(x.amount)+'</td><td>'+esc(x.description||'—')+'</td></tr>').join(''):'<tr><td colspan="4" class="empty">No settled profit recorded yet. Profit appears here after a completed order has its actual supplier cost confirmed.</td></tr>';
  return true;
-}
-async function runXtopayTestTransfer(){
- if(!user||!isAdmin){$('xtopayTestTransferMsg').textContent='Administrator sign-in required.';return}
- const button=$('xtopayTestTransferButton'),message=$('xtopayTestTransferMsg');
- if(button.disabled)return;
- if(!confirm('Send the GH₵1 Xtopay TEST transfer to 0245550999? This is the documented test-failure number. No real money will move.'))return;
- button.disabled=true;button.textContent='Submitting test…';
- message.textContent='Checking the Xtopay test account and submitting the test transfer…';
- try{
-  const {data,error}=await supabase.functions.invoke('xtopay-test-transfer',{body:{amount:1,phone:'0245550999',client_reference:'netvanta-test-fail-001'}});
-  if(error){
-   let detail=error.message||'The test request could not be completed.';
-   try{const body=await error.context.json();detail=body.error||body.message||detail}catch{}
-   throw new Error(detail);
-  }
-  if(!data?.success||data?.mode!=='test')throw new Error(data?.error||'Xtopay did not confirm a test-mode transfer.');
-  message.textContent='Xtopay accepted the TEST transfer · Status: '+(data.status||'processing')+' · Reference: '+(data.reference||'not returned')+'. No real money moved. Check Xtopay Test Transfers for the final failed/refunded status.';
- }catch(error){
-  message.textContent='Test transfer not confirmed: '+(error?.message||'Please review the Xtopay test dashboard before retrying.');
- }finally{
-  button.disabled=false;button.textContent='Run GH₵1 failure test';
- }
 }
 async function requestProfitWithdrawal(){
  const amount=Number($('profitWithdrawAmount').value),phone=$('profitMomoPhone').value.trim(),name=$('profitMomoName').value.trim();
@@ -2030,18 +2010,32 @@ async function requestProfitWithdrawal(){
  await loadProfitDashboard();
 }
 async function handleProfitWithdrawalAction(id,status){
- let reference=null;
- if(status==='paid'){
-  reference=prompt('Enter the MTN MoMo transfer reference after you have successfully sent the money:');
-  if(!reference||!reference.trim())return;
-  if(!confirm('Confirm that GHS shown on this withdrawal has actually been sent to the recipient by MTN MoMo?'))return;
- }else if(status==='rejected'&&!confirm('Reject this withdrawal and return the reserved amount to available profit?'))return;
+ if(status==='send'||status==='check'){
+  const row=await supabase.from('profit_withdrawals').select('amount,recipient_phone,recipient_name,status,external_reference').eq('id',id).maybeSingle();
+  if(row.error||!row.data){$('profitWithdrawalMsg').textContent='Could not load this withdrawal. Refresh and try again.';return}
+  const x=row.data;
+  if(status==='send'&&!confirm('LIVE XTOPAY PAYOUT: Send '+money(x.amount)+' to '+x.recipient_name+' at '+x.recipient_phone+'? Real money may move if Xtopay accepts. This cannot be undone. Continue only if these details are correct.'))return;
+  $('profitWithdrawalMsg').textContent=status==='send'?'Submitting the live payout to Xtopay…':'Checking the existing Xtopay transfer status…';
+  const {data,error}=await supabase.functions.invoke('xtopay-profit-withdrawal',{body:{withdrawal_id:id}});
+  if(error){
+   let detail=error.message||'Xtopay payout could not be processed.';
+   try{const body=await error.context.json();detail=body.error||body.message||detail}catch{}
+   $('profitWithdrawalMsg').textContent='Xtopay payout not confirmed: '+detail;
+   await loadProfitDashboard();
+   return;
+  }
+  if(!data?.success){$('profitWithdrawalMsg').textContent=data?.error||'Xtopay did not confirm the payout.';await loadProfitDashboard();return}
+  $('profitWithdrawalMsg').textContent=(data.note||'Xtopay transfer checked.')+' Reference: '+(data.reference||'—')+'. Provider status: '+(data.provider_status||'unknown')+'.';
+  await loadProfitDashboard();
+  return;
+ }
+ if(status==='rejected'&&!confirm('Reject this withdrawal and return its reserved amount to available profit?'))return;
  const {error}=await supabase.rpc('update_profit_withdrawal',{
-  p_withdrawal_id:id,p_status:status,p_external_reference:reference,
+  p_withdrawal_id:id,p_status:status,p_external_reference:null,
   p_admin_note:status==='rejected'?'Rejected by admin':null
  });
  if(error){$('profitWithdrawalMsg').textContent=error.message||'Could not update withdrawal.';return}
- $('profitWithdrawalMsg').textContent=status==='paid'?'Payout marked paid with transfer reference.':status==='processing'?'Withdrawal marked as processing.':'Withdrawal rejected; reserved profit returned.';
+ $('profitWithdrawalMsg').textContent='Withdrawal rejected; reserved profit returned.';
  await loadProfitDashboard();
 }
 async function loadSupplierStatusAudit(){
@@ -2243,7 +2237,7 @@ $('refreshCustomers').onclick=()=>runAdminRefresh($('refreshCustomers'),renderAd
 $('refreshSupplierAudit').onclick=()=>runAdminRefresh($('refreshSupplierAudit'),loadSupplierStatusAudit,'Refreshing…',null,'supplierAuditStatus');
 $('adminRefresh').onclick=()=>runAdminRefresh($('adminRefresh'),renderAdmin,'Refreshing…','Dashboard refreshed successfully.','adminRefreshStatus');
 $('refreshCatalog').onclick=()=>runAdminRefresh($('refreshCatalog'),loadCatalog,'Refreshing…',null,'catalogMsg');
-$('refreshProfit').onclick=()=>runAdminRefresh($('refreshProfit'),loadProfitDashboard,'Refreshing…',null,'profitWithdrawalMsg');$('xtopayTestTransferButton').onclick=runXtopayTestTransfer;$('requestProfitWithdrawal').onclick=requestProfitWithdrawal;$('profitWithdrawalRows').onclick=e=>{const b=e.target.closest('[data-profit-action]');if(b)handleProfitWithdrawalAction(b.dataset.profitId,b.dataset.profitAction)};$('aCheckSupplierWallet').onclick=()=> $('checkKingFlexyWallet').click();$('checkKingFlexyWallet').onclick=async()=>{const b=$('checkKingFlexyWallet'),m=$('kingFlexyStatus');b.disabled=true;b.textContent='Checking…';m.textContent='Checking KiNG FLEXY live API key and wallet. This does not place an order.';try{const {data,error}=await supabase.functions.invoke('kingflexy-live-catalog',{body:{action:'wallet_balance'}});if(error)throw error;if(!data?.success)throw new Error(data?.error||'Supplier check failed.');m.textContent='Live supplier API accepted · Wallet balance: '+money(data.balance)+' · Checked '+date(data.checked_at)+'. No order was placed.';$('aSupplierBalance').textContent=money(data.balance);}catch(e){m.textContent='Supplier API check failed: '+(e.message||'Please try again.');$('aSupplierBalance').textContent='Check failed';}finally{b.disabled=false;b.textContent='Check supplier API'}};$('adminLoadSupplierPackages').onclick=loadAdminSupplierPackages;$('adminSupplierNetwork').onchange=updateAdminSupplierBundleOptions;$('adminSupplierPackage').onchange=updateAdminSupplierPackagePreview;$('adminBuyDataButton').onclick=adminBuyData;$('adminCheckDataButton').onclick=adminCheckDataOrder;try{adminSupplierLastIdem=sessionStorage.getItem('netvanta-admin-supplier-purchase')||'';$('adminCheckDataButton').disabled=!adminSupplierLastIdem}catch{};$('fetchLiveKingFlexy').onclick=fetchLiveKingFlexyCatalog;$('saveLiveDrafts').onclick=saveLiveCatalogDrafts;$('syncKingFlexy').onclick=syncKingFlexyCatalog;$('saveCatalog').onclick=saveCatalog;$('clearCatalog').onclick=clearCatalogForm;
+$('refreshProfit').onclick=()=>runAdminRefresh($('refreshProfit'),loadProfitDashboard,'Refreshing…',null,'profitWithdrawalMsg');$('requestProfitWithdrawal').onclick=requestProfitWithdrawal;$('profitWithdrawalRows').onclick=e=>{const b=e.target.closest('[data-profit-action]');if(b)handleProfitWithdrawalAction(b.dataset.profitId,b.dataset.profitAction)};$('aCheckSupplierWallet').onclick=()=> $('checkKingFlexyWallet').click();$('checkKingFlexyWallet').onclick=async()=>{const b=$('checkKingFlexyWallet'),m=$('kingFlexyStatus');b.disabled=true;b.textContent='Checking…';m.textContent='Checking KiNG FLEXY live API key and wallet. This does not place an order.';try{const {data,error}=await supabase.functions.invoke('kingflexy-live-catalog',{body:{action:'wallet_balance'}});if(error)throw error;if(!data?.success)throw new Error(data?.error||'Supplier check failed.');m.textContent='Live supplier API accepted · Wallet balance: '+money(data.balance)+' · Checked '+date(data.checked_at)+'. No order was placed.';$('aSupplierBalance').textContent=money(data.balance);}catch(e){m.textContent='Supplier API check failed: '+(e.message||'Please try again.');$('aSupplierBalance').textContent='Check failed';}finally{b.disabled=false;b.textContent='Check supplier API'}};$('adminLoadSupplierPackages').onclick=loadAdminSupplierPackages;$('adminSupplierNetwork').onchange=updateAdminSupplierBundleOptions;$('adminSupplierPackage').onchange=updateAdminSupplierPackagePreview;$('adminBuyDataButton').onclick=adminBuyData;$('adminCheckDataButton').onclick=adminCheckDataOrder;try{adminSupplierLastIdem=sessionStorage.getItem('netvanta-admin-supplier-purchase')||'';$('adminCheckDataButton').disabled=!adminSupplierLastIdem}catch{};$('fetchLiveKingFlexy').onclick=fetchLiveKingFlexyCatalog;$('saveLiveDrafts').onclick=saveLiveCatalogDrafts;$('syncKingFlexy').onclick=syncKingFlexyCatalog;$('saveCatalog').onclick=saveCatalog;$('clearCatalog').onclick=clearCatalogForm;
 let authRestoreStarted=false;
 async function refreshOpenSupportChat(){
  if(!user||document.visibilityState!=='visible')return;
