@@ -1671,6 +1671,11 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  <div class="stat"><small>Currently reserved</small><b id="profitReserved">GHS 0.00</b></div>
 </div>
 <div class="notice">Profit is added only after an order is confirmed completed and its actual supplier cost is recorded. Customer wallet balances and pending orders are never counted as profit. Withdrawal requests reserve available profit until paid or rejected.</div>
+<div class="notice" style="background:#eef5ff;border-color:#cfe0ff;color:#174b91">
+ <strong>Xtopay test transfer only</strong><br>
+ This controlled GH₵1 test uses Xtopay's documented failure-test number. It uses the test key only; no real money or customer wallet funds are involved.
+</div>
+<div class="row"><button id="xtopayTestTransferButton" class="btn soft" type="button">Run GH₵1 failure test</button><span id="xtopayTestTransferMsg" class="muted" role="status" aria-live="polite">No test transfer has been sent.</span></div>
 <h3 style="font-size:16px;margin-top:18px">Withdraw to MTN MoMo</h3>
 <div class="grid">
  <div class="field"><label>Amount to withdraw (GHS)</label><input id="profitWithdrawAmount" type="number" min="0.01" step="0.01" placeholder="e.g. 50.00"></div>
@@ -1990,6 +1995,28 @@ async function loadProfitDashboard(){
  $('profitLedgerRows').innerHTML=ledger.length?ledger.map(x=>'<tr><td>'+date(x.created_at)+'</td><td>'+esc(x.entry_type.replace(/_/g,' '))+'</td><td>'+money(x.amount)+'</td><td>'+esc(x.description||'—')+'</td></tr>').join(''):'<tr><td colspan="4" class="empty">No settled profit recorded yet. Profit appears here after a completed order has its actual supplier cost confirmed.</td></tr>';
  return true;
 }
+async function runXtopayTestTransfer(){
+ if(!user||!isAdmin){$('xtopayTestTransferMsg').textContent='Administrator sign-in required.';return}
+ const button=$('xtopayTestTransferButton'),message=$('xtopayTestTransferMsg');
+ if(button.disabled)return;
+ if(!confirm('Send the GH₵1 Xtopay TEST transfer to 0245550999? This is the documented test-failure number. No real money will move.'))return;
+ button.disabled=true;button.textContent='Submitting test…';
+ message.textContent='Checking the Xtopay test account and submitting the test transfer…';
+ try{
+  const {data,error}=await supabase.functions.invoke('xtopay-test-transfer',{body:{amount:1,phone:'0245550999',client_reference:'netvanta-test-fail-001'}});
+  if(error){
+   let detail=error.message||'The test request could not be completed.';
+   try{const body=await error.context.json();detail=body.error||body.message||detail}catch{}
+   throw new Error(detail);
+  }
+  if(!data?.success||data?.mode!=='test')throw new Error(data?.error||'Xtopay did not confirm a test-mode transfer.');
+  message.textContent='Xtopay accepted the TEST transfer · Status: '+(data.status||'processing')+' · Reference: '+(data.reference||'not returned')+'. No real money moved. Check Xtopay Test Transfers for the final failed/refunded status.';
+ }catch(error){
+  message.textContent='Test transfer not confirmed: '+(error?.message||'Please review the Xtopay test dashboard before retrying.');
+ }finally{
+  button.disabled=false;button.textContent='Run GH₵1 failure test';
+ }
+}
 async function requestProfitWithdrawal(){
  const amount=Number($('profitWithdrawAmount').value),phone=$('profitMomoPhone').value.trim(),name=$('profitMomoName').value.trim();
  if(!Number.isFinite(amount)||amount<=0){$('profitWithdrawalMsg').textContent='Enter a valid withdrawal amount.';return}
@@ -2216,7 +2243,7 @@ $('refreshCustomers').onclick=()=>runAdminRefresh($('refreshCustomers'),renderAd
 $('refreshSupplierAudit').onclick=()=>runAdminRefresh($('refreshSupplierAudit'),loadSupplierStatusAudit,'Refreshing…',null,'supplierAuditStatus');
 $('adminRefresh').onclick=()=>runAdminRefresh($('adminRefresh'),renderAdmin,'Refreshing…','Dashboard refreshed successfully.','adminRefreshStatus');
 $('refreshCatalog').onclick=()=>runAdminRefresh($('refreshCatalog'),loadCatalog,'Refreshing…',null,'catalogMsg');
-$('refreshProfit').onclick=()=>runAdminRefresh($('refreshProfit'),loadProfitDashboard,'Refreshing…',null,'profitWithdrawalMsg');$('requestProfitWithdrawal').onclick=requestProfitWithdrawal;$('profitWithdrawalRows').onclick=e=>{const b=e.target.closest('[data-profit-action]');if(b)handleProfitWithdrawalAction(b.dataset.profitId,b.dataset.profitAction)};$('aCheckSupplierWallet').onclick=()=> $('checkKingFlexyWallet').click();$('checkKingFlexyWallet').onclick=async()=>{const b=$('checkKingFlexyWallet'),m=$('kingFlexyStatus');b.disabled=true;b.textContent='Checking…';m.textContent='Checking KiNG FLEXY live API key and wallet. This does not place an order.';try{const {data,error}=await supabase.functions.invoke('kingflexy-live-catalog',{body:{action:'wallet_balance'}});if(error)throw error;if(!data?.success)throw new Error(data?.error||'Supplier check failed.');m.textContent='Live supplier API accepted · Wallet balance: '+money(data.balance)+' · Checked '+date(data.checked_at)+'. No order was placed.';$('aSupplierBalance').textContent=money(data.balance);}catch(e){m.textContent='Supplier API check failed: '+(e.message||'Please try again.');$('aSupplierBalance').textContent='Check failed';}finally{b.disabled=false;b.textContent='Check supplier API'}};$('adminLoadSupplierPackages').onclick=loadAdminSupplierPackages;$('adminSupplierNetwork').onchange=updateAdminSupplierBundleOptions;$('adminSupplierPackage').onchange=updateAdminSupplierPackagePreview;$('adminBuyDataButton').onclick=adminBuyData;$('adminCheckDataButton').onclick=adminCheckDataOrder;try{adminSupplierLastIdem=sessionStorage.getItem('netvanta-admin-supplier-purchase')||'';$('adminCheckDataButton').disabled=!adminSupplierLastIdem}catch{};$('fetchLiveKingFlexy').onclick=fetchLiveKingFlexyCatalog;$('saveLiveDrafts').onclick=saveLiveCatalogDrafts;$('syncKingFlexy').onclick=syncKingFlexyCatalog;$('saveCatalog').onclick=saveCatalog;$('clearCatalog').onclick=clearCatalogForm;
+$('refreshProfit').onclick=()=>runAdminRefresh($('refreshProfit'),loadProfitDashboard,'Refreshing…',null,'profitWithdrawalMsg');$('xtopayTestTransferButton').onclick=runXtopayTestTransfer;$('requestProfitWithdrawal').onclick=requestProfitWithdrawal;$('profitWithdrawalRows').onclick=e=>{const b=e.target.closest('[data-profit-action]');if(b)handleProfitWithdrawalAction(b.dataset.profitId,b.dataset.profitAction)};$('aCheckSupplierWallet').onclick=()=> $('checkKingFlexyWallet').click();$('checkKingFlexyWallet').onclick=async()=>{const b=$('checkKingFlexyWallet'),m=$('kingFlexyStatus');b.disabled=true;b.textContent='Checking…';m.textContent='Checking KiNG FLEXY live API key and wallet. This does not place an order.';try{const {data,error}=await supabase.functions.invoke('kingflexy-live-catalog',{body:{action:'wallet_balance'}});if(error)throw error;if(!data?.success)throw new Error(data?.error||'Supplier check failed.');m.textContent='Live supplier API accepted · Wallet balance: '+money(data.balance)+' · Checked '+date(data.checked_at)+'. No order was placed.';$('aSupplierBalance').textContent=money(data.balance);}catch(e){m.textContent='Supplier API check failed: '+(e.message||'Please try again.');$('aSupplierBalance').textContent='Check failed';}finally{b.disabled=false;b.textContent='Check supplier API'}};$('adminLoadSupplierPackages').onclick=loadAdminSupplierPackages;$('adminSupplierNetwork').onchange=updateAdminSupplierBundleOptions;$('adminSupplierPackage').onchange=updateAdminSupplierPackagePreview;$('adminBuyDataButton').onclick=adminBuyData;$('adminCheckDataButton').onclick=adminCheckDataOrder;try{adminSupplierLastIdem=sessionStorage.getItem('netvanta-admin-supplier-purchase')||'';$('adminCheckDataButton').disabled=!adminSupplierLastIdem}catch{};$('fetchLiveKingFlexy').onclick=fetchLiveKingFlexyCatalog;$('saveLiveDrafts').onclick=saveLiveCatalogDrafts;$('syncKingFlexy').onclick=syncKingFlexyCatalog;$('saveCatalog').onclick=saveCatalog;$('clearCatalog').onclick=clearCatalogForm;
 let authRestoreStarted=false;
 async function refreshOpenSupportChat(){
  if(!user||document.visibilityState!=='visible')return;
