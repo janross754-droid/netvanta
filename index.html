@@ -1719,7 +1719,7 @@ function explainPendingVerification(){ $('pendingPaymentsNotice').textContent='T
 async function loadTransactions(){const r=await supabase.from('transactions').select('*').order('created_at',{ascending:false}).limit(500);if(r.error){console.error('Transactions could not be loaded:',r.error);$('transactionRows').innerHTML='<tr><td colspan="6" class="empty">Unable to load transactions. Please tap Refresh to try again.</td></tr>';$('transactionCount').textContent='Unavailable';$('pendingPaymentRows').innerHTML='<tr><td colspan="5" class="empty">Unable to load pending payments. Please refresh and try again.</td></tr>';$('pendingPaymentCount').textContent='Unavailable';$('pendingPaymentTotal').textContent='Balance unavailable';return false}transactions=r.data||[];renderTransactions();renderPendingPayments();return true}
 function atBundleGroup(network,name){const n=String(network||'').toLowerCase();if(n!=='at'&&!n.includes('airteltigo'))return null;const s=String(name||'').toLowerCase();if(s.includes('ishare'))return 'iShare';if(s.includes('bigtime'))return 'BigTime';return 'Other AT';}
 function atGroupHeading(group){return '<tr class="at-group-row"><td colspan="7" style="background:#fff4f1;color:#9f2630;font-weight:850;padding:12px"><span class="brand-mark brand-at" style="display:inline-grid;vertical-align:middle;margin-right:8px;width:27px;height:27px">AT</span> AT '+esc(group)+'</td></tr>'}
-async function loadCatalog(){const r=await supabase.from('product_catalog').select('*').order('network').order('product_type').order('bundle_name');if(r.error){$('catalogMsg').textContent='Could not load prices: '+r.error.message;return}const rows=r.data||[];const ordered=[...rows].sort((a,b)=>{const ga=atBundleGroup(a.network,a.bundle_name),gb=atBundleGroup(b.network,b.bundle_name);const rank=g=>g==='iShare'?0:g==='BigTime'?1:g==='Other AT'?2:3;return (ga&&gb?rank(ga)-rank(gb):ga?1:gb?-1:0)||String(a.network).localeCompare(String(b.network))||String(a.bundle_name).localeCompare(String(b.bundle_name))});let lastAtGroup=null;const html=ordered.map(x=>{const group=atBundleGroup(x.network,x.bundle_name);let heading='';if(group&&group!==lastAtGroup){heading=atGroupHeading(group);lastAtGroup=group}else if(!group)lastAtGroup=null;return heading+'<tr><td>'+esc(x.network)+'</td><td>'+esc(x.bundle_name)+(x.bundle_gb?' · '+esc(x.bundle_gb)+' GB':'')+'</td><td>'+money(x.supplier_cost)+'</td><td>'+money(x.selling_price)+'</td><td>'+money(Number(x.selling_price)-Number(x.supplier_cost))+'</td><td>'+(x.is_active?'Active':'Hidden')+'</td><td><button class="btn soft" data-edit-catalog="'+x.id+'">Edit</button> <button class="btn '+(x.is_active?'danger':'soft')+'" data-toggle-catalog="'+x.id+'">'+(x.is_active?'Hide':'Activate')+'</button></td></tr>'}).join('');$('catalogRows').innerHTML=rows.length?html:'<tr><td colspan="7" class="empty">No products yet. Add your first bundle above.</td></tr>';$('catalogRows').querySelectorAll('[data-edit-catalog]').forEach(b=>b.onclick=()=>{const x=rows.find(z=>z.id===b.dataset.editCatalog);if(!x)return;$('catalogId').value=x.id;$('catalogNetwork').value=x.network;$('catalogType').value=x.product_type;$('catalogName').value=x.bundle_name;$('catalogGb').value=x.bundle_gb??'';$('catalogCost').value=x.supplier_cost;$('catalogPrice').value=x.selling_price;$('catalogMsg').textContent='Editing '+x.bundle_name});$('catalogRows').querySelectorAll('[data-toggle-catalog]').forEach(b=>b.onclick=async()=>{const x=rows.find(z=>z.id===b.dataset.toggleCatalog);if(!x)return;const u=await supabase.from('product_catalog').update({is_active:!x.is_active,updated_at:new Date().toISOString()}).eq('id',x.id);if(u.error){$('catalogMsg').textContent=u.error.message;return}await loadCatalog()})}
+async function loadCatalog(){const r=await supabase.from('product_catalog').select('*').order('network').order('product_type').order('bundle_name');if(r.error){$('catalogMsg').textContent='Could not load prices: '+r.error.message;return false}const rows=r.data||[];const ordered=[...rows].sort((a,b)=>{const ga=atBundleGroup(a.network,a.bundle_name),gb=atBundleGroup(b.network,b.bundle_name);const rank=g=>g==='iShare'?0:g==='BigTime'?1:g==='Other AT'?2:3;return (ga&&gb?rank(ga)-rank(gb):ga?1:gb?-1:0)||String(a.network).localeCompare(String(b.network))||String(a.bundle_name).localeCompare(String(b.bundle_name))});let lastAtGroup=null;const html=ordered.map(x=>{const group=atBundleGroup(x.network,x.bundle_name);let heading='';if(group&&group!==lastAtGroup){heading=atGroupHeading(group);lastAtGroup=group}else if(!group)lastAtGroup=null;return heading+'<tr><td>'+esc(x.network)+'</td><td>'+esc(x.bundle_name)+(x.bundle_gb?' · '+esc(x.bundle_gb)+' GB':'')+'</td><td>'+money(x.supplier_cost)+'</td><td>'+money(x.selling_price)+'</td><td>'+money(Number(x.selling_price)-Number(x.supplier_cost))+'</td><td>'+(x.is_active?'Active':'Hidden')+'</td><td><button class="btn soft" data-edit-catalog="'+x.id+'">Edit</button> <button class="btn '+(x.is_active?'danger':'soft')+'" data-toggle-catalog="'+x.id+'">'+(x.is_active?'Hide':'Activate')+'</button></td></tr>'}).join('');$('catalogRows').innerHTML=rows.length?html:'<tr><td colspan="7" class="empty">No products yet. Add your first bundle above.</td></tr>';$('catalogRows').querySelectorAll('[data-edit-catalog]').forEach(b=>b.onclick=()=>{const x=rows.find(z=>z.id===b.dataset.editCatalog);if(!x)return;$('catalogId').value=x.id;$('catalogNetwork').value=x.network;$('catalogType').value=x.product_type;$('catalogName').value=x.bundle_name;$('catalogGb').value=x.bundle_gb??'';$('catalogCost').value=x.supplier_cost;$('catalogPrice').value=x.selling_price;$('catalogMsg').textContent='Editing '+x.bundle_name});$('catalogRows').querySelectorAll('[data-toggle-catalog]').forEach(b=>b.onclick=async()=>{const x=rows.find(z=>z.id===b.dataset.toggleCatalog);if(!x)return;const u=await supabase.from('product_catalog').update({is_active:!x.is_active,updated_at:new Date().toISOString()}).eq('id',x.id);if(u.error){$('catalogMsg').textContent=u.error.message;return}await loadCatalog()});return true}
 let adminSupplierPackages=[],adminSupplierLastIdem='';
 function updateAdminSupplierPackagePreview(){
  const n=$('adminSupplierNetwork').value,sel=$('adminSupplierPackage'),i=Number(sel.value);
@@ -1870,7 +1870,7 @@ async function loadProfitDashboard(){
   $('profitWithdrawalMsg').textContent='Profit records could not be loaded: '+err.message;
   $('profitWithdrawalRows').innerHTML='<tr><td colspan="7" class="empty">Could not load withdrawal history.</td></tr>';
   $('profitLedgerRows').innerHTML='<tr><td colspan="4" class="empty">Could not load profit ledger.</td></tr>';
-  return;
+  return false;
  }
  const walletRow=w.data||{available_balance:0,total_earned:0,total_withdrawn:0};
  const withdrawals=wr.data||[],ledger=l.data||[];
@@ -1887,6 +1887,7 @@ async function loadProfitDashboard(){
   return '<tr><td>'+date(x.created_at)+'</td><td>'+esc(x.recipient_phone)+'</td><td>'+esc(x.recipient_name)+'</td><td>'+money(x.amount)+'</td><td>'+esc(x.status)+'</td><td>'+esc(x.external_reference||'—')+'</td><td>'+ (actions||'—')+'</td></tr>';
  }).join(''):'<tr><td colspan="7" class="empty">No withdrawal requests yet.</td></tr>';
  $('profitLedgerRows').innerHTML=ledger.length?ledger.map(x=>'<tr><td>'+date(x.created_at)+'</td><td>'+esc(x.entry_type.replace(/_/g,' '))+'</td><td>'+money(x.amount)+'</td><td>'+esc(x.description||'—')+'</td></tr>').join(''):'<tr><td colspan="4" class="empty">No settled profit recorded yet. Profit appears here after a completed order has its actual supplier cost confirmed.</td></tr>';
+ return true;
 }
 async function requestProfitWithdrawal(){
  const amount=Number($('profitWithdrawAmount').value),phone=$('profitMomoPhone').value.trim(),name=$('profitMomoName').value.trim();
@@ -1916,7 +1917,7 @@ async function handleProfitWithdrawalAction(id,status){
  await loadProfitDashboard();
 }
 async function loadSupplierStatusAudit(){
- if(!isAdmin||!user)return;
+ if(!isAdmin||!user)return false;
  const status=$('supplierAuditStatus'),rows=$('supplierAuditRows');
  status.textContent='Loading the latest 100 supplier status checks…';
  rows.innerHTML='<tr><td colspan="9" class="empty">Loading audit history…</td></tr>';
@@ -1925,7 +1926,7 @@ async function loadSupplierStatusAudit(){
   console.error('Supplier status audit could not load:',r.error);
   status.textContent='Audit history could not be loaded: '+r.error.message;
   rows.innerHTML='<tr><td colspan="9" class="empty">The audit history is unavailable. Please refresh and try again.</td></tr>';
-  return;
+  return false;
  }
  const checks=r.data||[];
  status.textContent=checks.length?'Showing the latest '+checks.length+' supplier status check(s).':'No supplier status checks have been logged yet. A record will appear after the next supplier status check.';
@@ -1936,6 +1937,7 @@ async function loadSupplierStatusAudit(){
   const settled=x.profit_settled?'<span class="order-status status-completed">Yes</span>':'<span class="order-status status-pending">No</span>';
   return '<tr><td>'+date(x.checked_at)+'</td><td><span class="order-ref">'+esc(orderLabel||'—')+'</span></td><td>'+esc(x.supplier_status||'—')+'</td><td>'+esc(x.mapped_status||'—')+'</td><td>'+api+'</td><td>'+esc(x.response_http_status??'—')+'</td><td>'+esc(x.check_source||'—')+'</td><td>'+settled+'</td><td>'+esc(x.error_message||'—')+'</td></tr>';
  }).join(''):'<tr><td colspan="9" class="empty">No supplier status checks have been logged yet.</td></tr>';
+ return true;
 }
 async function renderAdmin(){
  const [p,o,w,t]=await Promise.all([
@@ -1944,10 +1946,7 @@ async function renderAdmin(){
   supabase.from('wallets').select('user_id,balance'),
   supabase.from('transactions').select('user_id,type,amount,status,reference,description,created_at').order('created_at',{ascending:false}).limit(100)
  ]);
- if(p.error){console.error(p.error);$('aCustomers').textContent='—'}
- if(o.error){console.error(o.error);alert('Could not load orders: '+o.error.message);return}
- if(w.error)console.error(w.error);
- if(t.error)console.error(t.error);
+ if(p.error||o.error||w.error||t.error){const err=p.error||o.error||w.error||t.error;console.error('Admin dashboard refresh failed:',err);$('adminRefreshStatus').textContent='Refresh failed: '+err.message;return false}
  adminCustomers=p.data||[];adminOrders=o.data||[];adminWalletMap=Object.fromEntries((w.data||[]).map(x=>[x.user_id,Number(x.balance||0)]));adminProfileMap=Object.fromEntries(adminCustomers.map(x=>[x.id,x]));
  $('aCustomers').textContent=(p.data||[]).length;
  const all=adminOrders,dataOrders=all.filter(x=>(x.product_type||'data')==='data'),airtimeOrders=all.filter(x=>x.product_type==='airtime');
@@ -1985,7 +1984,7 @@ async function renderAdmin(){
  $('manualRefundCount').textContent=failedOrders.filter(x=>!x.customer_refunded_at).length+' awaiting refund';
   $('adminRefundRows').innerHTML=failedOrders.length?failedOrders.map(x=>{const c=adminProfileMap[x.user_id]||{},name=[c.first_name,c.last_name].filter(Boolean).join(' ')||c.full_name||c.email||('Customer '+String(x.user_id).slice(0,8));let supplierState=x.supplier_refund_confirmed_at?'<span class="order-status status-completed">Confirmed</span>':'<span class="order-status status-pending">Awaiting admin check</span>';let customerAction=x.customer_refunded_at?'<span class="order-status status-completed">Refunded</span>':'<button class="btn primary" data-order-refund-action="refund" data-order-id="'+esc(x.id)+'">Refund customer '+money(x.amount)+'</button>';return '<tr><td>'+esc(name)+(c.email?'<div class="muted">'+esc(c.email)+'</div>':'')+'</td><td>'+esc(c.phone||'—')+'</td><td>'+esc((x.product_type||'data')+' · '+(x.network||'')+' · '+(x.bundle_name||x.bundle_gb||''))+'</td><td>'+money(x.amount)+'</td><td>'+supplierState+'</td><td>'+customerAction+'</td></tr>'}).join(''):'<tr><td colspan="6" class="empty">No failed orders awaiting review.</td></tr>';
  $('adminTransactionRows').innerHTML=(t.data||[]).length?(t.data||[]).map(x=>{const c=adminProfileMap[x.user_id]||{};const name=[c.first_name,c.last_name].filter(Boolean).join(' ')||c.email||('Customer '+String(x.user_id).slice(0,8));return '<tr><td>'+date(x.created_at)+'</td><td>'+esc(name)+'</td><td>'+esc(String(x.type||'').replace(/_/g,' '))+'</td><td>'+money(x.amount)+'</td><td>'+esc(x.status)+'</td><td>'+esc(x.reference||'—')+'</td></tr>'}).join(''):'<tr><td colspan="6" class="empty">No wallet transactions recorded yet.</td></tr>';
- renderAdminCustomers();await Promise.all([loadAdminConversations(),loadCatalog(),loadProfitDashboard(),loadSupplierStatusAudit()]);
+ renderAdminCustomers();const refreshResults=await Promise.all([loadAdminConversations(),loadCatalog(),loadProfitDashboard(),loadSupplierStatusAudit()]);return refreshResults.every(result=>result!==false);
 }
 let customerNotificationChannel=null,customerNotifications=[];
 function renderCustomerNotifications(){const list=$('customerNotificationsList'),badge=$('customerNotificationBadge'),unread=customerNotifications.filter(n=>!n.read_at).length;if(!list||!badge)return;badge.textContent=unread>99?'99+':String(unread);badge.classList.toggle('hidden',unread===0);$('customerNotificationSummary').textContent=unread?unread+' unread update'+(unread===1?'':'s'):'You are all caught up';if(!customerNotifications.length){list.innerHTML='<div class="customer-notifications-empty">No notifications yet. Wallet credits and completed data purchases will appear here.</div>';return}list.innerHTML=customerNotifications.map(n=>'<button type="button" class="customer-notification-item '+(n.read_at?'':'unread')+'" data-notification-id="'+esc(n.id)+'"><span class="customer-notification-icon">'+(n.type==='wallet_top_up'?'₵':'▤')+'</span><span class="customer-notification-copy"><strong>'+esc(n.title)+'</strong><span>'+esc(n.message)+'</span><time>'+esc(date(n.created_at))+'</time></span></button>').join('');list.querySelectorAll('[data-notification-id]').forEach(b=>b.addEventListener('click',()=>markCustomerNotificationRead(b.dataset.notificationId)))}
