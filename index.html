@@ -1675,6 +1675,19 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  <div class="stat"><small>Safe withdrawable estimate</small><b id="safeWithdrawable">GHS 0.00</b></div>
 </div>
 <div class="notice">Only cash movements entered as verified settlements count as business cash. Supplier wallet float is shown separately. Successful checkout/top-up records and pending payments are not treated as settled payout cash. The net project result subtracts recorded setup, testing and other non-order expenses from gross order profit; unrecorded fees may reduce it further.</div>
+<h3 style="font-size:16px;margin:18px 0 8px">Record a verified cash movement or expense</h3>
+<div class="notice">Use this only after checking the provider receipt or account statement. Do not enter a customer top-up as a settlement until the payout actually reaches your business account. References must be unique.</div>
+<div class="grid">
+ <div class="field"><label for="cashEntryAccount">Account</label><select id="cashEntryAccount"><option value="xtopay_settlement">Xtopay settled balance</option><option value="business_momo">Business MTN MoMo</option><option value="business_bank">Business bank</option><option value="kingflexy_supplier_wallet">KiNG FLEXY supplier wallet</option></select></div>
+ <div class="field"><label for="cashEntryDirection">Movement</label><select id="cashEntryDirection"><option value="credit">Money in / credit</option><option value="debit">Money out / debit</option></select></div>
+ <div class="field"><label for="cashEntryCategory">Category</label><select id="cashEntryCategory"><option value="payment_settlement">Xtopay settlement</option><option value="payment_fee">Payment fee</option><option value="customer_refund">Customer refund</option><option value="operating_expense">Operating expense</option><option value="business_withdrawal">Business withdrawal</option><option value="opening_balance">Verified opening balance</option><option value="supplier_wallet_funding">Supplier wallet funding</option><option value="customer_order_supplier_cost">Customer-order supplier cost</option><option value="supplier_test_purchase">Supplier test purchase</option><option value="api_activation_setup">API activation/setup</option><option value="adjustment">Correction/adjustment</option></select></div>
+ <div class="field"><label for="cashEntryAmount">Amount (GHS)</label><input id="cashEntryAmount" type="number" min="0.01" step="0.01" placeholder="0.00"></div>
+ <div class="field"><label for="cashEntryDate">Date and time</label><input id="cashEntryDate" type="datetime-local"></div>
+ <div class="field"><label for="cashEntryReference">Unique transaction reference</label><input id="cashEntryReference" type="text" maxlength="160" placeholder="Provider transaction ID"></div>
+ <div class="field"><label for="cashEntryDescription">Description</label><input id="cashEntryDescription" type="text" maxlength="240" placeholder="What happened?"></div>
+ <div class="field"><label for="cashEntryEvidence">Evidence note</label><input id="cashEntryEvidence" type="text" maxlength="500" placeholder="Dashboard receipt / statement checked"></div>
+</div>
+<div class="row"><button id="saveBusinessCashEntry" class="btn primary" type="button">Record verified entry</button><span id="businessCashEntryMsg" class="muted" aria-live="polite"></span></div>
 <h3 style="font-size:16px;margin:18px 0 8px">Recorded business expenses</h3>
 <div class="tablewrap"><table><thead><tr><th>Expense category</th><th>Total</th><th>Entries</th></tr></thead><tbody id="businessExpenseRows"><tr><td colspan="3" class="empty">Loading expenses…</td></tr></tbody></table></div>
 <h3 style="font-size:16px;margin:18px 0 8px">Business cash & supplier-wallet ledger</h3>
@@ -2026,6 +2039,24 @@ async function loadProfitDashboard(){
  $('profitLedgerRows').innerHTML=ledger.length?ledger.map(x=>'<tr><td>'+date(x.created_at)+'</td><td>'+esc(x.entry_type.replace(/_/g,' '))+'</td><td>'+money(x.amount)+'</td><td>'+esc(x.description||'—')+'</td></tr>').join(''):'<tr><td colspan="4" class="empty">No settled profit recorded yet. Profit appears here after a completed order has its actual supplier cost confirmed.</td></tr>';
  return true;
 }
+async function recordBusinessCashEntry(){
+ const account=$('cashEntryAccount').value,direction=$('cashEntryDirection').value,category=$('cashEntryCategory').value;
+ const amount=Number($('cashEntryAmount').value),reference=$('cashEntryReference').value.trim();
+ const description=$('cashEntryDescription').value.trim(),evidence=$('cashEntryEvidence').value.trim();
+ const occurred=$('cashEntryDate').value?new Date($('cashEntryDate').value).toISOString():new Date().toISOString();
+ if(!Number.isFinite(amount)||amount<=0||!reference||!description||!evidence){$('businessCashEntryMsg').textContent='Enter a valid amount, reference, description and evidence note.';return}
+ const button=$('saveBusinessCashEntry');button.disabled=true;$('businessCashEntryMsg').textContent='Saving verified entry…';
+ const {data,error}=await supabase.rpc('admin_record_business_cash_entry',{
+  p_account_code:account,p_direction:direction,p_amount:amount,p_entry_category:category,
+  p_description:description,p_source_reference:reference,p_occurred_at:occurred,p_evidence_note:evidence
+ });
+ button.disabled=false;
+ if(error){$('businessCashEntryMsg').textContent='Entry not saved: '+error.message;return}
+ if(!data?.success){$('businessCashEntryMsg').textContent=data?.message||'Entry was not saved.';return}
+ $('cashEntryAmount').value='';$('cashEntryReference').value='';$('cashEntryDescription').value='';$('cashEntryEvidence').value='';
+ $('businessCashEntryMsg').textContent='Verified entry recorded.';
+ await loadProfitDashboard();
+}
 async function requestProfitWithdrawal(){
  const amount=Number($('profitWithdrawAmount').value),phone=$('profitMomoPhone').value.trim(),name=$('profitMomoName').value.trim();
  if(!Number.isFinite(amount)||amount<=0){$('profitWithdrawalMsg').textContent='Enter a valid withdrawal amount.';return}
@@ -2266,7 +2297,7 @@ $('refreshCustomers').onclick=()=>runAdminRefresh($('refreshCustomers'),renderAd
 $('refreshSupplierAudit').onclick=()=>runAdminRefresh($('refreshSupplierAudit'),loadSupplierStatusAudit,'Refreshing…',null,'supplierAuditStatus');
 $('adminRefresh').onclick=()=>runAdminRefresh($('adminRefresh'),renderAdmin,'Refreshing…','Dashboard refreshed successfully.','adminRefreshStatus');
 $('refreshCatalog').onclick=()=>runAdminRefresh($('refreshCatalog'),loadCatalog,'Refreshing…',null,'catalogMsg');
-$('refreshProfit').onclick=()=>runAdminRefresh($('refreshProfit'),loadProfitDashboard,'Refreshing…',null,'profitWithdrawalMsg');$('requestProfitWithdrawal').onclick=requestProfitWithdrawal;$('profitWithdrawalRows').onclick=e=>{const b=e.target.closest('[data-profit-action]');if(b)handleProfitWithdrawalAction(b.dataset.profitId,b.dataset.profitAction)};$('aCheckSupplierWallet').onclick=()=> $('checkKingFlexyWallet').click();$('checkKingFlexyWallet').onclick=async()=>{const b=$('checkKingFlexyWallet'),m=$('kingFlexyStatus');b.disabled=true;b.textContent='Checking…';m.textContent='Checking KiNG FLEXY live API key and wallet. This does not place an order.';try{const {data,error}=await supabase.functions.invoke('kingflexy-live-catalog',{body:{action:'wallet_balance'}});if(error)throw error;if(!data?.success)throw new Error(data?.error||'Supplier check failed.');m.textContent='Live supplier API accepted · Wallet balance: '+money(data.balance)+' · Checked '+date(data.checked_at)+'. No order was placed.';$('aSupplierBalance').textContent=money(data.balance);}catch(e){m.textContent='Supplier API check failed: '+(e.message||'Please try again.');$('aSupplierBalance').textContent='Check failed';}finally{b.disabled=false;b.textContent='Check supplier API'}};$('adminLoadSupplierPackages').onclick=loadAdminSupplierPackages;$('adminSupplierNetwork').onchange=updateAdminSupplierBundleOptions;$('adminSupplierPackage').onchange=updateAdminSupplierPackagePreview;$('adminBuyDataButton').onclick=adminBuyData;$('adminCheckDataButton').onclick=adminCheckDataOrder;try{adminSupplierLastIdem=sessionStorage.getItem('netvanta-admin-supplier-purchase')||'';$('adminCheckDataButton').disabled=!adminSupplierLastIdem}catch{};$('fetchLiveKingFlexy').onclick=fetchLiveKingFlexyCatalog;$('saveLiveDrafts').onclick=saveLiveCatalogDrafts;$('syncKingFlexy').onclick=syncKingFlexyCatalog;$('saveCatalog').onclick=saveCatalog;$('clearCatalog').onclick=clearCatalogForm;
+$('refreshProfit').onclick=()=>runAdminRefresh($('refreshProfit'),loadProfitDashboard,'Refreshing…',null,'profitWithdrawalMsg');$('saveBusinessCashEntry').onclick=recordBusinessCashEntry;$('requestProfitWithdrawal').onclick=requestProfitWithdrawal;$('profitWithdrawalRows').onclick=e=>{const b=e.target.closest('[data-profit-action]');if(b)handleProfitWithdrawalAction(b.dataset.profitId,b.dataset.profitAction)};$('aCheckSupplierWallet').onclick=()=> $('checkKingFlexyWallet').click();$('checkKingFlexyWallet').onclick=async()=>{const b=$('checkKingFlexyWallet'),m=$('kingFlexyStatus');b.disabled=true;b.textContent='Checking…';m.textContent='Checking KiNG FLEXY live API key and wallet. This does not place an order.';try{const {data,error}=await supabase.functions.invoke('kingflexy-live-catalog',{body:{action:'wallet_balance'}});if(error)throw error;if(!data?.success)throw new Error(data?.error||'Supplier check failed.');m.textContent='Live supplier API accepted · Wallet balance: '+money(data.balance)+' · Checked '+date(data.checked_at)+'. No order was placed.';$('aSupplierBalance').textContent=money(data.balance);}catch(e){m.textContent='Supplier API check failed: '+(e.message||'Please try again.');$('aSupplierBalance').textContent='Check failed';}finally{b.disabled=false;b.textContent='Check supplier API'}};$('adminLoadSupplierPackages').onclick=loadAdminSupplierPackages;$('adminSupplierNetwork').onchange=updateAdminSupplierBundleOptions;$('adminSupplierPackage').onchange=updateAdminSupplierPackagePreview;$('adminBuyDataButton').onclick=adminBuyData;$('adminCheckDataButton').onclick=adminCheckDataOrder;try{adminSupplierLastIdem=sessionStorage.getItem('netvanta-admin-supplier-purchase')||'';$('adminCheckDataButton').disabled=!adminSupplierLastIdem}catch{};$('fetchLiveKingFlexy').onclick=fetchLiveKingFlexyCatalog;$('saveLiveDrafts').onclick=saveLiveCatalogDrafts;$('syncKingFlexy').onclick=syncKingFlexyCatalog;$('saveCatalog').onclick=saveCatalog;$('clearCatalog').onclick=clearCatalogForm;
 let authRestoreStarted=false;
 async function refreshOpenSupportChat(){
  if(!user||document.visibilityState!=='visible')return;
