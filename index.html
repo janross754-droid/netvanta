@@ -1675,6 +1675,10 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  <div class="stat"><small>Safe withdrawable estimate</small><b id="safeWithdrawable">GHS 0.00</b></div>
 </div>
 <div class="notice">Only cash movements entered as verified settlements count as business cash. Supplier wallet float is shown separately. Successful checkout/top-up records and pending payments are not treated as settled payout cash. The net project result subtracts recorded setup, testing and other non-order expenses from gross order profit; unrecorded fees may reduce it further.</div>
+<h3 style="font-size:16px;margin:18px 0 8px">Recorded business expenses</h3>
+<div class="tablewrap"><table><thead><tr><th>Expense category</th><th>Total</th><th>Entries</th></tr></thead><tbody id="businessExpenseRows"><tr><td colspan="3" class="empty">Loading expenses…</td></tr></tbody></table></div>
+<h3 style="font-size:16px;margin:18px 0 8px">Business cash & supplier-wallet ledger</h3>
+<div class="tablewrap"><table><thead><tr><th>Date</th><th>Account</th><th>Movement</th><th>Amount</th><th>Description</th><th>Reference</th></tr></thead><tbody id="businessCashRows"><tr><td colspan="6" class="empty">Loading cash entries…</td></tr></tbody></table></div>
 <div class="grid">
  <div class="stat"><small>Available to withdraw (profit wallet)</small><b id="profitAvailable">GHS 0.00</b></div>
  <div class="stat"><small>Total settled profit earned</small><b id="profitEarned">GHS 0.00</b></div>
@@ -1976,14 +1980,16 @@ async function saveCatalog(){const name=$('catalogName').value.trim(),cost=Numbe
 function renderAdminCustomers(){const q=($('customerSearch').value||'').trim().toLowerCase();const rows=adminCustomers.filter(c=>[c.first_name,c.last_name,c.full_name,c.email,c.phone].some(v=>String(v||'').toLowerCase().includes(q)));$('adminCustomerList').innerHTML=rows.length?rows.map(c=>{const name=[c.first_name,c.last_name].filter(Boolean).join(' ')||c.full_name||'Customer';const initials=name.split(/\\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()||'C';return '<button type="button" class="admin-customer-card" data-admin-customer="'+esc(c.id)+'" aria-label="View '+esc(name)+'"><span class="admin-customer-avatar">'+esc(initials)+'</span><span class="admin-customer-main"><b class="admin-customer-name">'+esc(name)+'</b><span class="admin-customer-email">'+esc(c.email||'No email')+'</span><span class="admin-customer-meta"><span>☎ '+esc(c.phone||'No phone')+'</span><span>▣ Wallet: '+money(adminWalletMap[c.id]||0)+'</span></span></span><span class="admin-customer-chevron" aria-hidden="true">›</span></button>'}).join(''):'<div class="empty">No matching customers found.</div>';document.querySelectorAll('[data-admin-customer]').forEach(b=>b.onclick=()=>selectAdminCustomer(b.dataset.adminCustomer))}
 async function selectAdminCustomer(id){const c=adminCustomers.find(x=>x.id===id);if(!c)return;document.querySelectorAll('[data-admin-customer]').forEach(b=>b.classList.toggle('is-selected',b.dataset.adminCustomer===id));const name=[c.first_name,c.last_name].filter(Boolean).join(' ')||c.full_name||'Customer';const customerOrders=adminOrders.filter(o=>o.user_id===id);const r=await supabase.from('transactions').select('type,amount,status,reference,description,created_at').eq('user_id',id).order('created_at',{ascending:false}).limit(50);if(r.error){$('adminCustomerDetails').innerHTML='<div class="notice">Could not load transactions: '+esc(r.error.message)+'</div>';return}const tx=r.data||[];const orderRows=customerOrders.length?customerOrders.map(o=>'<tr><td>'+esc(o.product_type||'data')+'</td><td>'+esc(o.network||'—')+'</td><td>'+esc(o.bundle_name||o.bundle_gb||'—')+'</td><td>'+money(o.amount)+'</td><td>'+esc(o.status)+'</td><td>'+date(o.created_at)+'</td></tr>').join(''):'<tr><td colspan="6" class="empty">No orders recorded.</td></tr>';const txRows=tx.length?tx.map(t=>'<tr><td>'+date(t.created_at)+'</td><td>'+esc(String(t.type||'').replace(/_/g,' '))+'</td><td>'+money(t.amount)+'</td><td>'+esc(t.status)+'</td><td>'+esc(t.reference||'—')+'</td></tr>').join(''):'<tr><td colspan="5" class="empty">No transactions recorded.</td></tr>';$('adminCustomerDetails').classList.remove('customer-detail-empty');$('adminCustomerDetails').innerHTML='<h3 style="margin:0 0 8px">'+esc(name)+'</h3><div class="muted">'+esc(c.email||'No email')+'</div><div class="muted">'+esc(c.phone||'No phone')+' · '+esc(c.country||'Country not set')+'</div><div class="muted">Customer since: '+date(c.created_at)+'</div><div class="grid" style="margin-top:12px"><div class="stat"><small>Wallet balance</small><b>'+money(adminWalletMap[id]||0)+'</b></div><div class="stat"><small>Total orders</small><b>'+customerOrders.length+'</b></div><div class="stat"><small>Completed spend</small><b>'+money(customerOrders.filter(o=>o.status==='completed').reduce((s,o)=>s+Number(o.amount||0),0))+'</b></div><div class="stat"><small>Transactions shown</small><b>'+tx.length+'</b></div></div><h4 style="margin:18px 0 8px">Order history</h4><div class="tablewrap"><table><thead><tr><th>Type</th><th>Network</th><th>Bundle</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody>'+orderRows+'</tbody></table></div><h4 style="margin:18px 0 8px">Recent transactions</h4><div class="tablewrap"><table><thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Status</th><th>Reference</th></tr></thead><tbody>'+txRows+'</tbody></table></div>';if(window.matchMedia('(max-width: 680px)').matches)$('adminCustomerDetails').scrollIntoView({behavior:'smooth',block:'start'})}
 async function loadProfitDashboard(){
- const [w,wr,l,fin]=await Promise.all([
+ const [w,wr,l,fin,cash,expenses]=await Promise.all([
   supabase.from('business_profit_wallet').select('available_balance,total_earned,total_withdrawn').eq('id',true).maybeSingle(),
   supabase.from('profit_withdrawals').select('*').order('created_at',{ascending:false}).limit(100),
   supabase.from('business_profit_ledger').select('*').order('created_at',{ascending:false}).limit(100),
-  supabase.from('business_financial_summary').select('*').maybeSingle()
+  supabase.from('business_financial_summary').select('*').maybeSingle(),
+  supabase.from('business_cash_ledger').select('occurred_at,account_code,direction,amount,description,source_reference,entry_category,verification_status').order('occurred_at',{ascending:false}).limit(100),
+  supabase.from('business_expense_summary').select('*').order('total_expense',{ascending:false})
  ]);
- if(w.error||wr.error||l.error||fin.error){
-  const err=w.error||wr.error||l.error||fin.error;
+ if(w.error||wr.error||l.error||fin.error||cash.error||expenses.error){
+  const err=w.error||wr.error||l.error||fin.error||cash.error||expenses.error;
   $('profitWithdrawalMsg').textContent='Profit records could not be loaded: '+err.message;
   $('profitWithdrawalRows').innerHTML='<tr><td colspan="7" class="empty">Could not load withdrawal history.</td></tr>';
   $('profitLedgerRows').innerHTML='<tr><td colspan="4" class="empty">Could not load profit ledger.</td></tr>';
@@ -1991,6 +1997,9 @@ async function loadProfitDashboard(){
  }
  const walletRow=w.data||{available_balance:0,total_earned:0,total_withdrawn:0};
  const financial=fin.data||{};
+ const cashRows=cash.data||[],expenseRows=expenses.data||[];
+ $('businessCashRows').innerHTML=cashRows.length?cashRows.map(x=>'<tr><td>'+date(x.occurred_at)+'</td><td>'+esc(String(x.account_code||'').replace(/_/g,' '))+'</td><td>'+esc(String(x.entry_category||'').replace(/_/g,' '))+' · '+esc(x.direction)+'</td><td>'+money(x.amount)+'</td><td>'+esc(x.description||'—')+'</td><td>'+esc(x.source_reference||'—')+'</td></tr>').join(''):'<tr><td colspan="6" class="empty">No cash movements recorded.</td></tr>';
+ $('businessExpenseRows').innerHTML=expenseRows.length?expenseRows.map(x=>'<tr><td>'+esc(String(x.entry_category||'').replace(/_/g,' '))+'</td><td>'+money(x.total_expense)+'</td><td>'+esc(x.entry_count)+'</td></tr>').join(''):'<tr><td colspan="3" class="empty">No expenses recorded.</td></tr>';
  $('cashVerified').textContent=money(financial.verified_liquid_cash||0);
  $('supplierFloat').textContent=money(financial.supplier_wallet_float||0);
  $('customerLiability').textContent=money(financial.customer_wallet_liability||0);
