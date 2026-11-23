@@ -1567,7 +1567,13 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
 })();
 </script>
 <!-- End Meta Pixel Code (NetVanta) -->
-</head><body class="session-pending">
+<style id="netvanta-delivery-monitor-theme">
+.nv-delivery-shell,.nv-delivery-shell *{box-sizing:border-box}
+.nv-delivery-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.nv-refresh-pill{border:1px solid rgba(100,116,139,.15);background:rgba(255,255,255,.55);color:#17345f;border-radius:999px;padding:12px 18px;font-size:15px;font-weight:750;white-space:nowrap}
+.nv-delivery-shell .empty{color:#475569!important}
+@media(max-width:520px){.nv-delivery-shell{padding:16px!important}.nv-delivery-heading{align-items:flex-start}.nv-refresh-pill{padding:10px 13px}.nv-delivery-shell select,.nv-delivery-shell input{font-size:12px}}
+</style></head><body class="session-pending">
 <header class="top"><div class="nav"><div class="brand"><span class="logo">N</span><span>NetVanta</span></div><div class="navright"><button type="button" id="menuOpen" class="iconbtn menu-trigger hidden" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button><button type="button" id="profileOpen" class="profileBtn hidden" aria-label="Open profile">◎</button><button type="button" id="navLogin" class="light">Log in</button><button type="button" id="navSignup" class="primary">Create account</button><button type="button" id="adminOpen" class="light hidden">Admin</button><button type="button" id="navLogout" class="outline hidden">Log out</button></div></div></header>
 <div id="drawerShade" class="drawerShade hidden"></div>
 <aside id="drawer" class="drawer hidden" aria-label="Main navigation" aria-hidden="true">
@@ -1639,8 +1645,8 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
     <button id="quickSupport" class="action-card" data-action="support"><span class="action-icon">?</span><span>Get Support<small>Chat with our team</small></span></button>
   </div></div>
   <div class="customer-promo"><div><span class="customer-promo-eyebrow">CONNECT MORE · DO MORE</span><h3>Your next connection starts here.</h3><p>Choose your network, find a bundle and stay connected with NetVanta.</p><button data-page="data">Explore Data Bundles →</button></div><div class="customer-network-stamps"><span class="stamp-mtn">MTN</span><span class="stamp-telecel">T</span><span class="stamp-at">AT</span></div></div>
-  <div class="panel customer-recent-panel" id="customerDeliveryMonitor" style="margin-bottom:16px"><div class="head"><div><h2>Delivery Status</h2><div class="muted">Live performance measured from NetVanta's completed supplier orders</div></div><button type="button" class="btn soft" id="customerDeliveryRefresh">↻ Refresh</button></div><div id="customerDeliveryMonitorRows"><div class="empty">Loading delivery performance…</div></div><div class="muted" style="font-size:11px;margin-top:8px">Based on NetVanta's own order records, not mobile signal strength. Figures are observed delivery times.</div></div>
-  <div class="panel customer-recent-panel"><div class="head"><div><h2>Recent Orders</h2><div class="muted">Your latest bundle and airtime activity.</div></div><button id="recentViewAll" class="btn soft">View all →</button></div><div id="recentOrders" class="empty"><div class="recent-empty-icon">▤</div><strong>No orders yet</strong><p>Your order history will appear here after your first purchase.</p></div></div>
+  <div class="panel customer-recent-panel nv-delivery-shell" id="customerDeliveryMonitor" style="margin-bottom:16px;background:linear-gradient(125deg,#f4eacb 0%,#dff0e8 48%,#c9e6e8 100%);border:1px solid rgba(255,255,255,.8);border-radius:28px;padding:20px;color:#101827;box-shadow:0 14px 34px rgba(20,45,80,.12)"><div class="nv-delivery-heading"><div><h2 style="color:#101827;margin:0 0 5px">Delivery Status</h2><div style="color:#64748b">Live network delivery performance</div></div><button type="button" id="customerDeliveryRefresh" class="nv-refresh-pill">⟳ <span>Refresh</span></button></div><div id="customerDeliveryMonitorRows"><div class="empty">Loading delivery performance…</div></div><div style="font-size:11px;color:#64748b;margin-top:12px">Status is based on NetVanta completed orders and admin updates.</div></div>
+ <div class="panel customer-recent-panel"><div class="head"><div><h2>Recent Orders</h2><div class="muted">Your latest bundle and airtime activity.</div></div><button id="recentViewAll" class="btn soft">View all →</button></div><div id="recentOrders" class="empty"><div class="recent-empty-icon">▤</div><strong>No orders yet</strong><p>Your order history will appear here after your first purchase.</p></div></div>
 </div>
 <nav class="customer-mobile-nav" aria-label="Main navigation">
   <button class="active" data-page="dashboard"><span>⌂</span>Home</button>
@@ -1665,10 +1671,10 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  <div id="adminNotificationEmailStatus" class="muted" style="font-size:12px;margin:8px 0">Email notifications are queued for delivery.</div>
  <div id="adminNotificationsList" aria-live="polite"><div class="empty">Loading notifications…</div></div>
 </div>
-<div class="panel" id="adminDeliveryMonitor" style="margin:14px 0;border:1px solid #dce5ef;background:#fbfdff">
- <div class="head" style="align-items:center"><div><h2 style="font-size:18px;margin:0">Live Delivery Monitor</h2><div class="muted">Network delivery performance from NetVanta's real supplier orders</div></div><button type="button" class="btn soft" id="adminDeliveryRefresh">↻ Refresh</button></div>
+<div class="panel nv-delivery-shell" id="adminDeliveryMonitor" style="margin:14px 0;background:linear-gradient(125deg,#f4eacb 0%,#dff0e8 48%,#c9e6e8 100%);border:1px solid rgba(255,255,255,.8);border-radius:28px;padding:20px;color:#101827;box-shadow:0 14px 34px rgba(20,45,80,.12)">
+ <div class="nv-delivery-heading"><div><h2 style="font-size:21px;color:#101827;margin:0 0 5px">Delivery Status</h2><div style="color:#64748b">Live network delivery performance · Admin controls</div></div><button type="button" class="nv-refresh-pill" id="adminDeliveryRefresh">⟳ <span>Refresh</span></button></div>
  <div id="adminDeliveryMonitorRows"><div class="empty">Loading delivery performance…</div></div>
- <div class="muted" style="font-size:11px;margin-top:8px">Observed delivery times are measured from order placement until NetVanta first confirms completion. This is not mobile signal strength or the supplier's private gateway telemetry.</div>
+ <div style="font-size:11px;color:#64748b;margin-top:12px">Choose Automatic to use measured NetVanta order performance, or manually set the status customers see.</div>
 </div>
 
 <div class="grid"><div class="stat"><small>Total customers</small><b id="aCustomers">0</b></div><div class="stat"><small>Total orders</small><b id="aOrders">0</b></div><div class="stat"><small>Sales revenue</small><b id="aSales">GHS 0.00</b></div><div class="stat"><small>Orders today</small><b id="aToday">0</b></div><div class="stat"><small>Data orders</small><b id="aDataOrders">0</b></div><div class="stat"><small>Airtime orders</small><b id="aAirtimeOrders">0</b></div><div class="stat"><small>MTN data</small><b id="aMtn">0</b></div><div class="stat"><small>Telecel data</small><b id="aTelecel">0</b></div><div class="stat"><small>AT data</small><b id="aAt">0</b></div><div class="stat"><small>MTN Fibre</small><b id="aFibre">0</b></div><div class="stat"><small>Open support chats</small><b id="aChats">0</b></div></div><div class="admin-overview-tools"><div class="admin-quick-actions"><div class="admin-subhead"><div><h3>Quick Actions</h3><p>Jump straight to the tools you use most</p></div></div><div class="admin-action-grid"><button type="button" class="admin-action" data-admin-jump="pricingManagerPanel"><span>＋</span><b>Manage pricing</b><small>Products and margins</small></button><button type="button" class="admin-action" data-admin-jump="profitManagementPanel"><span>↗</span><b>Withdraw profit</b><small>Business wallet</small></button><button type="button" class="admin-action" data-admin-jump="adminOrdersPanel"><span>▤</span><b>View orders</b><small>Customer purchases</small></button><button type="button" class="admin-action" data-admin-jump="adminSupportInboxPanel"><span>✉</span><b>Reply to support</b><small>Customer messages</small></button></div></div><div class="admin-sales-card"><div class="admin-subhead"><div><h3>Sales Overview</h3><p>Completed order revenue · last 7 days</p></div><span class="admin-chart-key"><i></i> Sales</span></div><div id="adminSalesTrend" class="admin-sales-trend" aria-label="Completed sales trend for the last seven days"><div class="muted">Sales trend will appear after dashboard data loads.</div></div></div></div><div class="admin-recent-card"><div class="admin-subhead"><div><h3>Recent Orders</h3><p>Latest customer activity</p></div><button type="button" class="admin-text-action" data-admin-jump="adminOrdersPanel">View all orders →</button></div><div class="tablewrap"><table class="admin-recent-table"><thead><tr><th>Customer</th><th>Product</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody id="adminRecentOrders"><tr><td colspan="5" class="empty">Loading recent orders…</td></tr></tbody></table></div></div><div class="row" style="align-items:center;margin-top:14px"><button id="adminRefresh" class="btn soft" type="button">Refresh dashboard</button><span id="adminRefreshStatus" class="muted" role="status" aria-live="polite"></span></div></div>
@@ -1875,29 +1881,40 @@ function deliveryDuration(seconds){
  if(m)return m+' min '+r+' sec';
  return r+' sec';
 }
-function renderDeliveryMonitorRows(target,rows){
+function renderDeliveryMonitorRows(target,rows,adminView=false){
  const el=$(target);if(!el)return;
- if(!rows||!rows.length){el.innerHTML='<div class="empty">No delivery performance data yet.</div>';return}
- el.innerHTML=rows.map(n=>{
-  const labels={excellent:'Excellent',good:'Good',delayed:'Experiencing delays',collecting_data:'Collecting data'};
-  const colors={excellent:'#16a34a',good:'#b7791f',delayed:'#dc2626',collecting_data:'#64748b'};
-  const color=colors[n.health_status]||'#64748b',label=labels[n.health_status]||'Collecting data';
+ if(!rows||!rows.length){el.innerHTML='<div style="padding:18px;color:#475569">No delivery data yet.</div>';return}
+ const labels={excellent:'Excellent',good:'Good',delayed:'Experiencing delays',maintenance:'Maintenance',offline:'Offline',collecting_data:'Collecting data'};
+ const colors={excellent:'#58bf69',good:'#e5a83c',delayed:'#ed4545',maintenance:'#3988d8',offline:'#ed4545',collecting_data:'#94a3b8'};
+ const icons={MTN:'M',Telecel:'t','AT-iShare':'aT','AT-BigTime':'aT'};
+ el.innerHTML='<div style="font-weight:750;font-size:17px;color:#101827;margin:20px 4px 10px">Gateway Strength</div>'+rows.map(n=>{
+  const status=n.health_status||'collecting_data',color=colors[status]||colors.collecting_data,label=labels[status]||'Collecting data';
   const enough=Number(n.sample_count)>=3;
   const last=n.last_delivery_seconds==null?'Waiting for completed orders':deliveryDuration(n.last_delivery_seconds);
   const avg=enough?deliveryDuration(n.average_delivery_seconds):'Need '+(3-Number(n.sample_count))+' more completed order(s)';
+  const barWidth=status==='excellent'?'100%':status==='good'?'72%':status==='delayed'?'8%':status==='maintenance'?'35%':status==='offline'?'0%':'12%';
+  const networkColor=n.network==='MTN'?'#f4c542':n.network==='Telecel'?'#ed332d':'#ffffff';
+  const message=n.admin_message?'<div style="font-size:12px;color:#475569;margin-top:7px">'+esc(n.admin_message)+'</div>':'';
+  const admin=adminView?'<div style="margin-top:12px;padding:12px;background:rgba(255,255,255,.72);border:1px solid rgba(100,116,139,.18);border-radius:14px"><div style="font-size:12px;font-weight:700;color:#334155;margin-bottom:8px">Control customer status</div><div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:8px"><select id="nvDeliveryStatus_'+esc(n.network)+'" style="min-width:0;width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;color:#172033"><option value="automatic" '+(n.status_override==='automatic'?'selected':'')+'>Automatic</option><option value="excellent" '+(n.status_override==='excellent'?'selected':'')+'>Excellent</option><option value="good" '+(n.status_override==='good'?'selected':'')+'>Good</option><option value="delayed" '+(n.status_override==='delayed'?'selected':'')+'>Experiencing delays</option><option value="maintenance" '+(n.status_override==='maintenance'?'selected':'')+'>Maintenance</option><option value="offline" '+(n.status_override==='offline'?'selected':'')+'>Offline</option></select><input id="nvDeliveryMessage_'+esc(n.network)+'" maxlength="160" placeholder="Optional customer message" value="'+esc(n.admin_message||'')+'" style="min-width:0;width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;color:#172033"></div><button type="button" class="nv-save-status" data-network="'+esc(n.network)+'" style="margin-top:8px;border:0;border-radius:10px;padding:10px 14px;background:#18345e;color:white;font-weight:700;width:100%">Save '+esc(n.network)+' status</button></div>':'';
   const activity=Number(n.active_orders)>0?Number(n.active_orders)+' order(s) processing':'No active orders';
-  return '<div style="padding:12px 4px;border-bottom:1px solid #e7edf4"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><b>'+esc(n.network)+'</b><span style="font-size:12px;font-weight:700;color:'+color+'">'+label+'</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px"><div><div class="muted" style="font-size:11px">Last observed delivery</div><b>'+esc(last)+'</b></div><div><div class="muted" style="font-size:11px">30-day average</div><b>'+esc(avg)+'</b></div></div><div class="muted" style="font-size:11px;margin-top:6px">'+Number(n.sample_count||0)+' completed order(s) measured · '+esc(activity)+'</div></div>';
+  return '<div style="padding:15px 5px;border-bottom:1px solid rgba(100,116,139,.16);color:#101827"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><div style="display:flex;align-items:center;gap:10px"><span style="width:48px;height:48px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:'+networkColor+';color:'+(n.network==='MTN'?'#173b61':'#1e293b')+';font-weight:900;font-size:17px;box-shadow:0 2px 7px #00000012">'+icons[n.network]+'</span><b style="font-size:16px">'+esc(n.network)+'</b></div><span style="font-size:13px;font-weight:750;color:'+color+';text-align:right">'+label+'</span></div><div style="display:flex;justify-content:space-between;gap:12px;margin:12px 0 8px;color:#64748b;font-size:12px"><span>Last delivery took <b style="display:block;color:#334155;font-size:14px;margin-top:3px">'+esc(last)+'</b></span><span style="text-align:right">30-day average <b style="display:block;color:#334155;font-size:14px;margin-top:3px">'+esc(avg)+'</b></span></div><div style="height:14px;background:#f1f5f9;border-radius:20px;overflow:hidden"><div style="width:'+barWidth+';height:100%;background:'+color+';border-radius:20px"></div></div><div style="font-size:13px;font-weight:650;color:'+color+';margin-top:8px">'+label+'</div><div style="font-size:11px;color:#64748b;margin-top:7px">'+Number(n.sample_count||0)+' completed order(s) measured · '+esc(activity)+'</div>'+message+admin+'</div>';
  }).join('');
+ if(adminView)el.querySelectorAll('.nv-save-status').forEach(btn=>btn.addEventListener('click',async()=>{
+  const network=btn.dataset.network,select=$('nvDeliveryStatus_'+network),input=$('nvDeliveryMessage_'+network);
+  btn.disabled=true;btn.textContent='Saving…';
+  try{const {data,error}=await supabase.rpc('admin_set_delivery_monitor_status',{p_network:network,p_status:select.value,p_message:input.value||''});if(error)throw error;if(!data?.success)throw new Error('Status was not saved');deliveryMonitorLastLoaded=0;await loadDeliveryMonitor(true);alert(network+' delivery status updated.');}
+  catch(error){console.error(error);alert(error.message||'Could not save delivery status.');btn.disabled=false;btn.textContent='Save '+network+' status';}
+ }));
 }
 async function loadDeliveryMonitor(force=false){
  if(!user||deliveryMonitorLoading)return false;
  if(!force&&Date.now()-deliveryMonitorLastLoaded<25000)return true;
  deliveryMonitorLoading=true;
  try{
-  const {data,error}=await supabase.rpc('get_netvanta_delivery_monitor');
+  const {data,error}=await supabase.rpc('get_netvanta_delivery_monitor_v2');
   if(error)throw error;
-  renderDeliveryMonitorRows('customerDeliveryMonitorRows',data||[]);
-  renderDeliveryMonitorRows('adminDeliveryMonitorRows',data||[]);
+  renderDeliveryMonitorRows('customerDeliveryMonitorRows',data||[],false);
+  renderDeliveryMonitorRows('adminDeliveryMonitorRows',data||[],true);
   deliveryMonitorLastLoaded=Date.now();return true;
  }catch(error){
   console.error('Delivery monitor could not load:',error);
