@@ -1573,6 +1573,78 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
 .nv-refresh-pill{border:1px solid rgba(100,116,139,.15);background:rgba(255,255,255,.55);color:#17345f;border-radius:999px;padding:12px 18px;font-size:15px;font-weight:750;white-space:nowrap}
 .nv-delivery-shell .empty{color:#475569!important}
 @media(max-width:520px){.nv-delivery-shell{padding:16px!important}.nv-delivery-heading{align-items:flex-start}.nv-refresh-pill{padding:10px 13px}.nv-delivery-shell select,.nv-delivery-shell input{font-size:12px}}
+
+/* NetVanta admin dashboard: dark violet visual refresh */
+main:has(#adminPanel:not(.hidden)){background:radial-gradient(ellipse at 12% 0%,#21104a 0%,#0b0820 48%,#080717 100%);color:#f4f0ff}
+#adminPanel{color:#f4f0ff}
+#adminPanel .admin-layout{gap:18px}
+#adminPanel .admin-sidebar{background:linear-gradient(180deg,#1b1040 0%,#100b2b 100%);border:1px solid #49308a;box-shadow:0 18px 44px #05031380}
+#adminPanel .admin-brand{border-color:#ffffff20}
+#adminPanel .admin-brand-mark{background:linear-gradient(135deg,#c084fc,#7028e8);color:#fff;box-shadow:0 5px 18px #8b35ed55}
+#adminPanel .admin-brand small{color:#c9b8f4}
+#adminPanel .admin-nav-label{color:#a994d8}
+#adminPanel .admin-nav-item{color:#e9e1ff}
+#adminPanel .admin-nav-item span{color:#c084fc}
+#adminPanel .admin-nav-item:hover,#adminPanel .admin-nav-item.active{background:linear-gradient(90deg,#8b35ed38,#8b35ed12);color:#fff}
+#adminPanel .admin-nav-item.active{box-shadow:inset 3px 0 #c084fc}
+#adminPanel .admin-sidebar-foot{border-color:#ffffff20;color:#c9b8f4}
+#adminPanel .admin-live-dot{background:#39dfa0;box-shadow:0 0 0 4px #39dfa020}
+#adminPanel .admin-content>.panel{background:linear-gradient(145deg,#17132f 0%,#100d25 100%);border:1px solid #34265d;box-shadow:0 12px 34px #03020d70;color:#eee9ff}
+#adminPanel .admin-content>#adminOverviewPanel{background:radial-gradient(circle at 85% 12%,#6826b9 0%,transparent 35%),linear-gradient(125deg,#1d1042 0%,#32116b 52%,#171039 100%);border:1px solid #6938ad}
+#adminPanel #adminOverviewPanel .muted{color:#d4c5f4}
+#adminPanel #adminOverviewPanel .pill{background:#ffffff14;color:#e7c8ff!important;border:1px solid #ffffff2b!important}
+#adminPanel #adminOverviewPanel .stat{background:linear-gradient(145deg,#ffffff18,#ffffff09);border:1px solid #ffffff24}
+#adminPanel #adminOverviewPanel .stat small{color:#d7c8f5}
+#adminPanel #adminOverviewPanel .stat b{color:#fff}
+#adminPanel #adminOverviewPanel #adminRefresh{background:linear-gradient(110deg,#c084fc,#7c3aed);color:#fff;border:1px solid #c084fc;box-shadow:0 5px 18px #9333ea55}
+#adminPanel .admin-content>.panel h2,#adminPanel .admin-content>.panel:not(#adminOverviewPanel) h2,#adminPanel .admin-content>.panel h3{color:#f2eaff}
+#adminPanel .admin-content>.panel:not(#adminOverviewPanel)>.head{border-color:#38295e}
+#adminPanel .admin-content .stat{background:linear-gradient(145deg,#211a3e,#17132f);border:1px solid #3b2b64;color:#f5efff}
+#adminPanel .admin-content .stat small{color:#bcaedc}
+#adminPanel .admin-content .stat b{color:#fff}
+#adminPanel .admin-content .btn.primary{background:linear-gradient(120deg,#a855f7,#6d28d9);color:#fff;border:1px solid #b77af7;box-shadow:0 5px 15px #7e22ce35}
+#adminPanel .admin-content .btn.soft{background:#241b43;border:1px solid #49366f;color:#e6d9ff}
+#adminPanel .admin-content .notice{background:#21183d;border:1px solid #4b3474;color:#d9ccef}
+#adminPanel .admin-content .field label,#adminPanel .admin-content label{color:#cbbce8}
+#adminPanel .admin-content .field input,#adminPanel .admin-content .field select,#adminPanel .admin-content input,#adminPanel .admin-content select,#adminPanel .admin-content textarea{background:#100d25!important;border:1px solid #49366f!important;color:#f7f1ff!important}
+#adminPanel .admin-content input::placeholder,#adminPanel .admin-content textarea::placeholder{color:#9585b8}
+#adminPanel .admin-content .tablewrap{background:#100d25;border:1px solid #3b2b64}
+#adminPanel .admin-content table{color:#eee9ff}
+#adminPanel .admin-content th{background:#241b43;color:#cdbcf0}
+#adminPanel .admin-content td{color:#e5ddf5}
+#adminPanel .admin-content tr+tr td{border-color:#30234f}
+#adminPanel .admin-content .empty{color:#a99ac9}
+#adminPanel .admin-quick-actions,#adminPanel .admin-sales-card{background:#ffffff0b;border-color:#ffffff24}
+#adminPanel .admin-action{background:#ffffff0b;border-color:#ffffff20;color:#fff}
+#adminPanel .admin-action:hover{background:#ffffff18;border-color:#c084fc}
+#adminPanel .admin-action>span{background:linear-gradient(135deg,#c084fc,#7c3aed);color:#fff}
+#adminPanel .admin-chart-key i,#adminPanel .admin-trend-bar{background:linear-gradient(180deg,#d8b4fe,#9333ea)}
+#adminPanel .admin-recent-card{background:#17132f;border-color:#3b2b64}
+#adminPanel .admin-recent-card .admin-subhead h3{color:#f2eaff}
+#adminPanel .admin-recent-card .admin-subhead p{color:#bcaedc}
+#adminPanel .admin-text-action{color:#d8b4fe}
+#adminPanel .admin-recent-table .admin-customer-name{color:#f5efff}
+#adminPanel .admin-recent-table .admin-product-name{color:#bcaedc}
+#adminPanel .admin-customer-card{background:#17132f;border-color:#3b2b64;color:#f5efff}
+#adminPanel .admin-customer-card:hover,#adminPanel .admin-customer-card.is-selected{background:#24183f;border-color:#b779f7;box-shadow:0 5px 18px #7e22ce25}
+#adminPanel .admin-customer-avatar{background:linear-gradient(145deg,#a855f7,#4c1d95)}
+#adminPanel .admin-customer-name{color:#f5efff}
+#adminPanel .admin-customer-email,#adminPanel .admin-customer-meta{color:#bcaedc}
+#adminPanel .admin-customer-meta{border-color:#3b2b64}
+#adminPanel .admin-customer-chevron{color:#d8b4fe}
+#adminPanel #adminCustomerDetails{background:#100d25;border-color:#3b2b64;color:#eee9ff}
+#adminPanel #adminSupportInboxPanel{background:#17132f}
+#adminPanel .support-inbox-heading{border-color:#38295e}
+#adminPanel .support-inbox-heading h2{color:#f2eaff}
+#adminPanel .support-inbox-heading p{color:#bcaedc}
+#adminPanel .support-online{background:#173b35;color:#9cf0ce}
+#adminPanel .support-thread-pane{background:#100d25;border-color:#38295e}
+#adminPanel [data-admin-customer],#adminPanel [data-conversation]{background:#17132f;border-color:#3b2b64;color:#eee9ff}
+#adminPanel [data-admin-customer]:focus-visible,#adminPanel [data-conversation]:focus-visible{outline-color:#c084fc}
+#adminPanel #adminSupportMessages{background:#100d25;border-color:#3b2b64;color:#eee9ff}
+#adminPanel #adminSupportInput{background:#100d25;color:#fff;border-color:#49366f}
+@media(max-width:680px){#adminPanel .admin-sidebar{background:linear-gradient(100deg,#211044,#120b2d);border:1px solid #49308a}}
+
 </style></head><body class="session-pending">
 <header class="top"><div class="nav"><div class="brand"><span class="logo">N</span><span>NetVanta</span></div><div class="navright"><button type="button" id="menuOpen" class="iconbtn menu-trigger hidden" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button><button type="button" id="profileOpen" class="profileBtn hidden" aria-label="Open profile">◎</button><button type="button" id="navLogin" class="light">Log in</button><button type="button" id="navSignup" class="primary">Create account</button><button type="button" id="adminOpen" class="light hidden">Admin</button><button type="button" id="navLogout" class="outline hidden">Log out</button></div></div></header>
 <div id="drawerShade" class="drawerShade hidden"></div>
