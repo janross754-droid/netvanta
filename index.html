@@ -1638,166 +1638,8 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
 .nv-delivery-shell .empty{color:#475569!important}
 @media(max-width:520px){.nv-delivery-shell{padding:16px!important}.nv-delivery-heading{align-items:flex-start}.nv-refresh-pill{padding:10px 13px}.nv-delivery-shell select,.nv-delivery-shell input{font-size:12px}}
 
-/* NetVanta admin dashboard: Royal Purple theme and approved admin layout */
-body:has(#adminPanel:not(.hidden)){
- background:
-  radial-gradient(ellipse at 8% 0%,rgba(124,58,237,.16),transparent 36rem),
-  radial-gradient(ellipse at 96% 24%,rgba(168,85,247,.09),transparent 30rem),
-  #080611!important;
- color:#f4efff;
-}
-main:has(#adminPanel:not(.hidden)){background:transparent!important;color:#f4efff}
-#adminPanel{color:#f4efff}
-#adminPanel .admin-layout{gap:18px;grid-template-columns:238px minmax(0,1fr)}
-#adminPanel .admin-sidebar{
- background:linear-gradient(180deg,#171025 0%,#0e0a18 100%);
- border:1px solid #382653;box-shadow:0 18px 44px rgba(0,0,0,.42);
-}
-#adminPanel .admin-brand{border-color:#ffffff18}
-#adminPanel .admin-brand-mark{
- background:linear-gradient(135deg,#c4a7ff,#7c3aed);color:#180b2d;
- box-shadow:0 5px 18px rgba(139,92,246,.24)
-}
-#adminPanel .admin-brand small{color:#b9a9d3}
-#adminPanel .admin-nav-label{color:#9c8bb7}
-#adminPanel .admin-nav-item{color:#e4dcef}
-#adminPanel .admin-nav-item span{color:#b69aff}
-#adminPanel .admin-nav-item:hover,#adminPanel .admin-nav-item.active{
- background:linear-gradient(90deg,rgba(139,92,246,.24),rgba(139,92,246,.07));color:#fff
-}
-#adminPanel .admin-nav-item.active{box-shadow:inset 3px 0 #a78bfa}
-#adminPanel .admin-sidebar-foot{border-color:#ffffff18;color:#b9accb}
-#adminPanel .admin-live-dot{background:#a78bfa;box-shadow:0 0 0 4px rgba(167,139,250,.16)}
-#adminPanel .admin-content{gap:16px}
-#adminPanel .admin-content>.panel{
- background:linear-gradient(145deg,#171222 0%,#100c19 100%);
- border:1px solid #342545;box-shadow:0 12px 34px rgba(0,0,0,.3);color:#f2ecfa
-}
-#adminPanel .admin-content>#adminOverviewPanel{
- display:grid;grid-template-columns:minmax(0,1fr);gap:15px;
- background:
-  radial-gradient(circle at 88% 8%,rgba(139,92,246,.19),transparent 34%),
-  radial-gradient(circle at 100% 100%,rgba(91,33,182,.12),transparent 38%),
-  linear-gradient(125deg,#100b19 0%,#1b1230 58%,#100b19 100%);
- border:1px solid #4b3470;position:relative;overflow:hidden
-}
-#adminPanel #adminOverviewPanel:after{
- border-color:rgba(255,255,255,.09);
- box-shadow:0 0 0 28px rgba(167,139,250,.045),0 0 0 58px rgba(255,255,255,.018)
-}
-#adminPanel #adminOverviewPanel>.head{position:relative;z-index:1;margin:0 0 2px}
-#adminPanel #adminOverviewPanel .muted{color:#c4b6d8}
-#adminPanel #adminOverviewPanel .pill{
- background:rgba(139,92,246,.16);color:#d9c8ff!important;border:1px solid rgba(167,139,250,.34)!important
-}
-/* Four primary KPI cards lead the dashboard, with the remaining live metrics retained below. */
-#adminPanel #adminOverviewPanel>.grid{
- display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;position:relative;z-index:1
-}
-#adminPanel #adminOverviewPanel>.grid .stat{
- min-height:92px;background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.025));
- border:1px solid rgba(196,167,255,.2);border-radius:14px;color:#fff;padding:15px
-}
-#adminPanel #adminOverviewPanel>.grid .stat small{color:#c6b8da}
-#adminPanel #adminOverviewPanel>.grid .stat b{color:#fff;font-size:clamp(18px,2vw,25px)}
-#adminPanel #adminOverviewPanel>.grid .stat:nth-child(n+5){background:rgba(255,255,255,.035);min-height:72px}
-#adminPanel #adminOverviewPanel #adminRefresh{
- background:linear-gradient(110deg,#a78bfa,#7c3aed);color:#170c2b;border:1px solid #c4a7ff;
- box-shadow:0 5px 18px rgba(139,92,246,.2)
-}
-/* Match the approved composition: wide sales feature on the left, quick actions on the right. */
-#adminPanel .admin-overview-tools{
- display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:14px;margin:0;align-items:stretch
-}
-#adminPanel .admin-sales-card{order:0;min-height:170px;display:flex;flex-direction:column;justify-content:space-between}
-#adminPanel .admin-quick-actions{order:1}
-#adminPanel .admin-quick-actions,#adminPanel .admin-sales-card,#adminPanel .admin-recent-card{
- background:rgba(255,255,255,.045);border:1px solid rgba(196,167,255,.19);border-radius:16px
-}
-#adminPanel .admin-subhead h3{color:#f4efff}
-#adminPanel .admin-subhead p{color:#c4b6d8}
-#adminPanel .admin-action-grid{grid-template-columns:1fr}
-#adminPanel .admin-action{
- background:rgba(255,255,255,.045);border:1px solid rgba(196,167,255,.16);color:#f5efff;min-height:62px
-}
-#adminPanel .admin-action:hover{background:rgba(139,92,246,.13);border-color:rgba(196,167,255,.48)}
-#adminPanel .admin-action>span{background:linear-gradient(135deg,#c4a7ff,#7c3aed);color:#170c2b}
-#adminPanel .admin-chart-key i,#adminPanel .admin-trend-bar{background:linear-gradient(180deg,#c4a7ff,#7c3aed)}
-#adminPanel .admin-recent-card{background:rgba(255,255,255,.04);border-color:rgba(196,167,255,.19)}
-#adminPanel .admin-recent-card .admin-subhead h3{color:#f4efff}
-#adminPanel .admin-recent-card .admin-subhead p{color:#c4b6d8}
-#adminPanel .admin-text-action{color:#c4a7ff}
-#adminPanel .admin-recent-table .admin-customer-name{color:#f4efff}
-#adminPanel .admin-recent-table .admin-product-name{color:#c4b6d8}
-#adminPanel #adminNotificationsPanel,#adminPanel #adminDeliveryMonitor{
- background:linear-gradient(145deg,#1b1427,#120d1c)!important;border:1px solid #493461!important;
- color:#f4efff!important;border-radius:16px!important
-}
-#adminPanel #adminNotificationsPanel .muted,
-#adminPanel #adminDeliveryMonitor .muted{color:#c4b6d8}
-#adminPanel #adminDeliveryMonitor h2{color:#f4efff!important}
-#adminPanel #adminDeliveryMonitor [style*="color:#64748b"]{color:#c4b6d8!important}
-#adminPanel .admin-content>.panel h2,
-#adminPanel .admin-content>.panel:not(#adminOverviewPanel) h2,
-#adminPanel .admin-content>.panel h3{color:#f2ecfa}
-#adminPanel .admin-content>.panel:not(#adminOverviewPanel)>.head{border-color:#342545}
-#adminPanel .admin-content .stat{
- background:linear-gradient(145deg,#211a2d,#171120);border:1px solid #3b2d4d;color:#f4efff
-}
-#adminPanel .admin-content .stat small{color:#bbaecb}
-#adminPanel .admin-content .stat b{color:#fff}
-#adminPanel .admin-content .btn.primary{
- background:linear-gradient(120deg,#a78bfa,#7c3aed);color:#170c2b;border:1px solid #c4a7ff;
- box-shadow:0 5px 15px rgba(139,92,246,.16)
-}
-#adminPanel .admin-content .btn.soft{background:#211a2d;border:1px solid #49365f;color:#e3d5f7}
-#adminPanel .admin-content .notice{background:#21182e;border:1px solid #493461;color:#dfd2ee}
-#adminPanel .admin-content .field label,#adminPanel .admin-content label{color:#cbbddd}
-#adminPanel .admin-content .field input,#adminPanel .admin-content .field select,
-#adminPanel .admin-content input,#adminPanel .admin-content select,#adminPanel .admin-content textarea{
- background:#100c18!important;border:1px solid #49365f!important;color:#f7f2fc!important
-}
-#adminPanel .admin-content input::placeholder,#adminPanel .admin-content textarea::placeholder{color:#9d8eaf}
-#adminPanel .admin-content .tablewrap{background:#100c18;border:1px solid #3b2d4d}
-#adminPanel .admin-content table{color:#f2ecfa}
-#adminPanel .admin-content th{background:#21182e;color:#cbbddd}
-#adminPanel .admin-content td{color:#e3d8ee}
-#adminPanel .admin-content tr+tr td{border-color:#342545}
-#adminPanel .admin-content .empty{color:#a99ab9}
-#adminPanel .admin-customer-card{background:#1b1427;border-color:#3b2d4d;color:#f4efff}
-#adminPanel .admin-customer-card:hover,#adminPanel .admin-customer-card.is-selected{
- background:#291b3d;border-color:#a78bfa;box-shadow:0 5px 18px rgba(139,92,246,.12)
-}
-#adminPanel .admin-customer-avatar{background:linear-gradient(145deg,#8b5cf6,#5b21b6)}
-#adminPanel .admin-customer-name{color:#f4efff}
-#adminPanel .admin-customer-email,#adminPanel .admin-customer-meta{color:#bbaecb}
-#adminPanel .admin-customer-meta{border-color:#3b2d4d}
-#adminPanel .admin-customer-chevron{color:#c4a7ff}
-#adminPanel #adminCustomerDetails{background:#100c18;border-color:#3b2d4d;color:#f2ecfa}
-#adminPanel #adminSupportInboxPanel{background:#171222}
-#adminPanel .support-inbox-heading{border-color:#342545}
-#adminPanel .support-inbox-heading h2{color:#f4efff}
-#adminPanel .support-inbox-heading p{color:#bbaecb}
-#adminPanel .support-online{background:#2c1e42;color:#d9c8ff}
-#adminPanel .support-thread-pane{background:#100c18;border-color:#342545}
-#adminPanel [data-admin-customer],#adminPanel [data-conversation]{
- background:#171222;border-color:#3b2d4d;color:#f2ecfa
-}
-#adminPanel [data-admin-customer]:focus-visible,#adminPanel [data-conversation]:focus-visible{outline-color:#c4a7ff}
-#adminPanel #adminSupportMessages{background:#100c18;border-color:#3b2d4d;color:#f2ecfa}
-#adminPanel #adminSupportInput{background:#100c18;color:#fff;border-color:#49365f}
-#adminPanel .support-thread-card{background:#171222;border-color:#3b2d4d;color:#f2ecfa}
-#adminPanel .support-thread-card.active{background:#291b3d;border-color:#a78bfa}
-#adminPanel .support-thread-copy b,#adminPanel .support-person-copy h3{color:#f4efff}
-#adminPanel .support-thread-copy small,#adminPanel .support-thread-preview,#adminPanel .support-person-copy p{color:#bbaecb}
-#adminPanel .support-chat-pane,#adminPanel .support-reply-area{background:#171222}
-#adminPanel .support-chat-heading{border-color:#342545}
-#adminPanel .support-chat-messages{background:#100c18}
-#adminPanel .support-chat-bubble{background:#21182e;border-color:#493461;color:#f2ecfa}
-#adminPanel .support-chat-bubble.admin{background:linear-gradient(135deg,#673ab7,#4c1d95);border-color:#8b5cf6;color:#fff}
-#adminPanel .support-chat-bubble.ai{background:#241b30;border-color:#49365f}
-#adminPanel .support-reply-row input{background:#100c18;color:#f7f2fc;border-color:#49365f}
-#adminPanel .support-back{background:#241b30;color:#e3d5f7}
+
+/* Admin layout behavior retained; the Royal Purple color overrides have been removed. */
 @media(max-width:900px){
  #adminPanel .admin-layout{grid-template-columns:190px minmax(0,1fr);gap:14px}
  #adminPanel .admin-overview-tools{grid-template-columns:minmax(0,1fr) 220px}
@@ -1805,7 +1647,7 @@ main:has(#adminPanel:not(.hidden)){background:transparent!important;color:#f4eff
 }
 @media(max-width:680px){
  #adminPanel .admin-layout{display:flex;flex-direction:column;gap:12px}
- #adminPanel .admin-sidebar{background:linear-gradient(100deg,#211632,#100b19);border:1px solid #49365f}
+ #adminPanel .admin-sidebar{display:none}
  #adminPanel .admin-content{width:100%;gap:12px}
  #adminPanel .admin-content>.panel{padding:14px;border-radius:15px}
  #adminPanel #adminOverviewPanel>.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -1822,6 +1664,57 @@ main:has(#adminPanel:not(.hidden)){background:transparent!important;color:#f4eff
 }
 @media(prefers-reduced-motion:reduce){#adminPanel *,#adminPanel *:before,#adminPanel *:after{animation:none!important;transition:none!important}}
 
+/* Admin-wide light theme: all admin content surfaces, tables, forms and support panels */
+#adminPanel{background:#f4f7fc!important;color:#172b4d!important}
+#adminPanel .admin-content>.panel{background:#fff!important;color:#172b4d!important;border:1px solid #e3eaf5!important;box-shadow:0 8px 26px rgba(23,43,77,.07)!important}
+#adminPanel .admin-content>.panel h2,#adminPanel .admin-content>.panel h3{color:#17365d!important}
+#adminPanel .admin-content>.panel .muted{color:#64748b!important}
+#adminPanel .admin-content>.panel .stat{background:#f8faff!important;color:#17365d!important;border:1px solid #e3eaf5!important}
+#adminPanel .admin-content>.panel .stat small{color:#64748b!important}
+#adminPanel .admin-content>.panel .stat b{color:#17365d!important}
+#adminPanel .admin-content>.panel .notice{background:#f2f7fd!important;border:1px solid #dce8f6!important;color:#425873!important}
+#adminPanel .admin-content>.panel label{color:#425873!important}
+#adminPanel .admin-content>.panel input,
+#adminPanel .admin-content>.panel select,
+#adminPanel .admin-content>.panel textarea{background:#fff!important;color:#17365d!important;border:1px solid #dbe4ef!important}
+#adminPanel .admin-content>.panel input::placeholder,
+#adminPanel .admin-content>.panel textarea::placeholder{color:#8493a8!important}
+#adminPanel .admin-content>.panel .btn.soft{background:#f3f6fb!important;color:#23486f!important;border:1px solid #dce5ef!important}
+#adminPanel .admin-content>.panel .btn.primary{background:linear-gradient(110deg,#1769ff,#1455bd)!important;color:#fff!important;border:1px solid #1455bd!important}
+#adminPanel .admin-content>.panel .tablewrap{background:#fff!important;border:1px solid #e2e9f1!important}
+#adminPanel .admin-content>.panel table{background:#fff!important;color:#314760!important}
+#adminPanel .admin-content>.panel th{background:#f3f6fa!important;color:#52657e!important;border-color:#e5ebf3!important}
+#adminPanel .admin-content>.panel td{background:#fff!important;color:#314760!important;border-color:#edf1f6!important}
+#adminPanel .admin-content>.panel .empty{background:transparent!important;color:#8190a3!important}
+#adminPanel #adminSupportInboxPanel{background:#fff!important;color:#17365d!important}
+#adminPanel .support-inbox-heading{background:#fff!important;border-color:#e5ebf3!important}
+#adminPanel .support-inbox-heading h2{color:#142b50!important}
+#adminPanel .support-inbox-heading p{color:#718198!important}
+#adminPanel .support-online{background:#eaf3ff!important;color:#17447f!important}
+#adminPanel .support-thread-pane{background:#fbfcff!important;border-color:#e5ebf3!important}
+#adminPanel .support-thread-card,#adminPanel [data-conversation]{background:#fff!important;color:#172b4d!important;border-color:#e3eaf4!important}
+#adminPanel .support-thread-card.active{background:#eaf2ff!important;border-color:#9bb9e7!important}
+#adminPanel .support-thread-copy b,#adminPanel .support-person-copy h3{color:#142b50!important}
+#adminPanel .support-thread-copy small,#adminPanel .support-thread-preview,#adminPanel .support-person-copy p{color:#718198!important}
+#adminPanel .support-chat-pane,#adminPanel .support-chat-heading,#adminPanel .support-reply-area{background:#fff!important;color:#203755!important;border-color:#e5ebf3!important}
+#adminPanel .support-chat-messages{background:#f7f9fd!important;color:#203755!important}
+#adminPanel .support-chat-bubble{background:#fff!important;border:1px solid #e4eaf3!important;color:#203755!important}
+#adminPanel .support-chat-bubble.admin{background:#eaf2ff!important;border-color:#cfe0ff!important;color:#174b91!important}
+#adminPanel .support-chat-bubble.ai{background:#f1f5fb!important;border-color:#e1e8f1!important;color:#203755!important}
+#adminPanel .support-chat-bubble small,#adminPanel .support-chat-bubble.admin small{color:#718198!important}
+#adminPanel .support-reply-row input,#adminPanel #adminSupportInput{background:#fff!important;color:#17365d!important;border-color:#dce5f2!important}
+#adminPanel .support-back{background:#edf3fc!important;color:#17447f!important}
+#adminPanel .admin-sidebar{background:linear-gradient(180deg,#fff 0%,#f4f8ff 100%)!important;color:#102b4b!important;border:1px solid #d8e6fa!important;box-shadow:0 10px 28px rgba(23,105,255,.08)!important}
+#adminPanel .admin-brand,#adminPanel .admin-sidebar-foot{color:#294766!important;border-color:#e3ecf8!important}
+#adminPanel .admin-brand small,#adminPanel .admin-nav-label{color:#7186a3!important}
+#adminPanel .admin-nav-item{background:transparent!important;color:#294766!important}
+#adminPanel .admin-nav-item span{color:#1769ff!important}
+#adminPanel .admin-nav-item:hover,#adminPanel .admin-nav-item.active{background:#eaf2ff!important;color:#124fae!important}
+#adminPanel .admin-nav-item.active{box-shadow:inset 3px 0 #1769ff!important}
+#adminPanel .admin-mobile-nav{background:#fff!important;border:1px solid #e2e9f4!important;box-shadow:0 8px 28px #10234424!important}
+#adminPanel .admin-mobile-nav .admin-nav-item{color:#19345f!important}
+#adminPanel .admin-mobile-nav .admin-nav-item span{color:#1769f5!important}
+#adminPanel .admin-mobile-nav .admin-nav-item.active{background:#edf4ff!important;box-shadow:inset 0 -2px #1769f5!important}
 /* NetVanta dashboard refresh: clean white workspace and clear card hierarchy */
 #adminPanel{background:#f4f7fc!important;color:#172b4d!important}
 #adminPanel .admin-layout{grid-template-columns:238px minmax(0,1fr)!important;gap:18px!important;align-items:stretch!important}
