@@ -1575,6 +1575,27 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  #adminPanel .admin-content{gap:12px}
 }
 
+/* Reorder the actual dashboard contents, not only the admin navigation */
+#adminPanel #adminOverviewPanel{display:flex!important;flex-direction:column;gap:16px}
+#adminPanel #adminOverviewPanel>.head{order:0}
+#adminPanel #adminOverviewPanel>.grid{order:1}
+#adminPanel #adminOverviewPanel>#adminNotificationsPanel{order:2;margin:0!important}
+#adminPanel #adminOverviewPanel>.admin-overview-tools{order:3}
+#adminPanel #adminOverviewPanel>#adminDeliveryMonitor{order:4;margin:0!important}
+#adminPanel #adminOverviewPanel>.admin-recent-card{order:5}
+#adminPanel #adminOverviewPanel>.row{order:6}
+#adminPanel #adminOverviewPanel>.grid{width:100%}
+#adminPanel #adminOverviewPanel>.admin-overview-tools{width:100%}
+@media(max-width:680px){
+ #adminPanel #adminOverviewPanel{gap:12px}
+ #adminPanel #adminOverviewPanel>.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #adminPanel #adminOverviewPanel>.admin-overview-tools{display:flex;flex-direction:column}
+ #adminPanel #adminOverviewPanel .admin-quick-actions,
+ #adminPanel #adminOverviewPanel .admin-sales-card{width:100%;min-width:0}
+ #adminPanel #adminOverviewPanel>#adminDeliveryMonitor{padding:15px!important;border-radius:17px!important}
+ #adminPanel #adminOverviewPanel>.admin-recent-card{overflow-x:auto}
+}
+
 </style>
 <!-- Meta Pixel Code (NetVanta) -->
 <script>
