@@ -1596,6 +1596,23 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  #adminPanel #adminOverviewPanel>.admin-recent-card{overflow-x:auto}
 }
 
+
+/* Responsive admin shell correction: mobile uses the bottom nav, not the desktop sidebar */
+@media (min-width:681px) and (max-width:900px){
+ #adminPanel .admin-layout{display:grid!important;grid-template-columns:176px minmax(0,1fr)!important;gap:14px!important;width:100%;min-width:0}
+ #adminPanel .admin-sidebar{min-height:0!important;max-height:calc(100vh - 24px);overflow-y:auto;position:sticky;top:12px}
+ #adminPanel .admin-content{min-width:0;width:100%}
+}
+@media (max-width:680px){
+ #adminPanel{width:100%;max-width:100%;padding:0 0 calc(100px + env(safe-area-inset-bottom))!important;overflow-x:clip}
+ #adminPanel .admin-layout{display:flex!important;flex-direction:column!important;grid-template-columns:minmax(0,1fr)!important;gap:12px!important;width:100%;min-width:0}
+ #adminPanel .admin-sidebar{display:none!important;position:static!important;min-height:0!important;height:auto!important;width:100%!important;max-height:none!important;overflow:visible!important}
+ #adminPanel .admin-content{display:flex!important;flex-direction:column!important;width:100%!important;max-width:100%;min-width:0!important;gap:12px!important}
+ #adminPanel .admin-content>.panel{width:100%;min-width:0;max-width:100%}
+ #adminPanel .admin-mobile-nav{display:grid!important;position:fixed!important;z-index:1000!important;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));}
+ #adminPanel #adminOverviewPanel>.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #adminPanel .admin-overview-tools{display:grid!important;grid-template-columns:minmax(0,1fr)!important}
+}
 </style>
 <!-- Meta Pixel Code (NetVanta) -->
 <script>
