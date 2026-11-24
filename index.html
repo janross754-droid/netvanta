@@ -2654,7 +2654,7 @@ $('loadTechlinkTestCatalog').onclick=async()=>{
  const button=$('loadTechlinkTestCatalog'),status=$('techlinkCatalogStatus'),results=$('techlinkCatalogResults');
  if(!isAdmin||!user){status.textContent='Administrator sign-in required. Please sign in again.';return}
  const phone=$('techlinkCatalogPhone').value.trim(),network=$('techlinkCatalogNetwork').value;
- if(!/^0\\d{9}$/.test(phone)){status.textContent='Enter a valid 10-digit Ghana phone number.';return}
+ if(!/^0\d{9}$/.test(phone)){status.textContent='Enter a valid 10-digit Ghana phone number.';return}
  button.disabled=true;button.textContent='Fetching TEST packages…';
  status.textContent='Reading Techlink TEST catalogue. No purchase will be made.';
  results.innerHTML='';
@@ -2668,7 +2668,7 @@ $('loadTechlinkTestCatalog').onclick=async()=>{
   if(!data?.success||data.environment!=='test'||!Array.isArray(data.bundles))throw new Error(data?.error||'Techlink did not confirm a test catalogue response.');
   status.textContent='TEST catalogue loaded · '+data.count+' packages · Provider: '+(data.provider||'not specified')+'. Read-only; no funds charged.';
   if(!data.bundles.length){results.innerHTML='<div class="empty">Techlink returned no packages for this network.</div>';return}
-  const rows=data.bundles.map(item=>'<tr><td>'+escapeHtml(item.name)+'</td><td>'+(item.size===null?'—':escapeHtml(String(item.size))+' GB')+'</td><td>'+money(item.price)+'</td><td>'+escapeHtml(item.validity||'—')+'</td><td><code>'+escapeHtml(item.id)+'</code></td></tr>').join('');
+  const rows=data.bundles.map(item=>'<tr><td>'+esc(item.name)+'</td><td>'+(item.size===null?'—':esc(String(item.size))+' GB')+'</td><td>'+money(item.price)+'</td><td>'+esc(item.validity||'—')+'</td><td><code>'+esc(item.id)+'</code></td></tr>').join('');
   results.innerHTML='<table style="min-width:650px"><thead><tr><th>Bundle</th><th>Size</th><th>Supplier cost</th><th>Validity</th><th>Techlink bundle ID</th></tr></thead><tbody>'+rows+'</tbody></table>';
  }catch(error){
   console.error('Techlink test catalogue failed:',error);
