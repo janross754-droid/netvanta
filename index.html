@@ -2410,6 +2410,68 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  }
 }
 
+
+/* NetVanta admin welcome banner — selected blue-gradient direction */
+#adminPanel #adminDashboardWelcome{
+ position:relative!important;isolation:isolate;overflow:hidden!important;
+ display:flex!important;align-items:center!important;gap:14px!important;
+ min-height:142px!important;padding:25px 26px!important;margin:0 0 18px!important;
+ border:1px solid #2378ef!important;border-radius:22px!important;
+ color:#fff!important;
+ background:linear-gradient(118deg,#082f91 0%,#0755d9 52%,#087ff0 100%)!important;
+ box-shadow:0 15px 34px rgba(13,83,190,.22)!important;
+}
+#adminPanel #adminDashboardWelcome:after{
+ content:"";position:absolute;z-index:-1;width:310px;height:310px;right:-92px;top:-188px;
+ border:1px solid rgba(255,255,255,.2);border-radius:50%;
+ box-shadow:0 0 0 25px rgba(255,255,255,.055),0 0 0 52px rgba(255,255,255,.035);
+ pointer-events:none;
+}
+#adminPanel #adminDashboardWelcome>div:first-of-type{position:relative;z-index:1;min-width:0}
+#adminPanel #adminDashboardWelcome .admin-welcome-kicker{
+ color:#bfe5ff!important;font-size:10px!important;font-weight:900!important;
+ letter-spacing:1.8px!important;margin-bottom:8px!important;
+}
+#adminPanel #adminDashboardWelcome h1{
+ color:#fff!important;font-size:clamp(23px,3vw,32px)!important;
+ line-height:1.14!important;font-weight:900!important;letter-spacing:-1px!important;
+ margin:0!important;
+}
+#adminPanel #adminDashboardWelcome h1 span{white-space:nowrap}
+#adminPanel #adminDashboardWelcome p{
+ color:#e0efff!important;font-size:14px!important;font-weight:550!important;
+ line-height:1.5!important;margin:8px 0 0!important;
+}
+#adminPanel #adminDashboardWelcome .admin-hamburger{
+ position:relative;z-index:2;flex:0 0 44px!important;width:44px!important;height:44px!important;
+ margin:0 3px 0 0!important;border:1px solid rgba(255,255,255,.38)!important;
+ border-radius:13px!important;background:rgba(255,255,255,.14)!important;
+ box-shadow:0 4px 14px rgba(0,20,80,.16)!important;backdrop-filter:blur(8px);
+}
+#adminPanel #adminDashboardWelcome .admin-hamburger span{background:#fff!important}
+#adminPanel #adminDashboardWelcome .admin-system-status{
+ display:inline-flex!important;align-items:center;gap:8px;flex:0 0 auto;
+ margin-left:auto;padding:9px 12px;border:1px solid rgba(255,255,255,.2);
+ border-radius:99px;background:rgba(255,255,255,.12);
+ color:#eaf4ff!important;font-size:10px!important;font-weight:750!important;
+}
+#adminPanel #adminDashboardWelcome .admin-system-status i{
+ width:7px;height:7px;border-radius:50%;background:#51e3a4;
+ box-shadow:0 0 0 4px rgba(81,227,164,.17);
+}
+@media(max-width:700px){
+ #adminPanel #adminDashboardWelcome{
+  min-height:128px!important;padding:20px 16px!important;gap:10px!important;
+  margin-bottom:14px!important;border-radius:18px!important;
+ }
+ #adminPanel #adminDashboardWelcome h1{font-size:23px!important;letter-spacing:-.7px!important}
+ #adminPanel #adminDashboardWelcome p{font-size:12px!important;margin-top:6px!important}
+ #adminPanel #adminDashboardWelcome .admin-hamburger{
+  width:40px!important;height:40px!important;flex-basis:40px!important;margin-right:1px!important;
+ }
+ #adminPanel #adminDashboardWelcome .admin-system-status{display:none!important}
+}
+
 </style>
 
 </head><body class="session-pending">
