@@ -1711,6 +1711,18 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
 
 /* NetVanta iPhone-first admin dashboard refresh — isolated to admin workspace */
 
+#adminPanel #adminOverviewPanel>.admin-dashboard-welcome{order:0!important}
+#adminPanel #adminOverviewPanel>.grid.admin-headline-stats{order:1!important}
+#adminPanel #adminOverviewPanel>.admin-sales-card{order:2!important}
+#adminPanel #adminOverviewPanel>.admin-quick-actions{order:3!important}
+#adminPanel #adminOverviewPanel>#adminNotificationsPanel{order:4!important}
+#adminPanel #adminOverviewPanel>.admin-recent-card{order:5!important}
+#adminPanel #adminOverviewPanel>#adminDeliveryMonitor{order:6!important}
+#adminPanel #adminOverviewPanel>.admin-top-products-card{order:7!important}
+#adminPanel #adminOverviewPanel>.admin-financial-summary{order:8!important}
+#adminPanel #adminOverviewPanel>.row{order:9!important}
+
+
 #adminPanel #adminOverviewPanel>.grid.admin-headline-stats>.stat:before{position:absolute;z-index:1;right:15px;top:12px;color:#ffffffd9;font-size:19px;font-weight:900;line-height:1}
 #adminPanel #adminOverviewPanel>.grid.admin-headline-stats>.stat:nth-child(1):before{content:"▤"}
 #adminPanel #adminOverviewPanel>.grid.admin-headline-stats>.stat:nth-child(2):before{content:"♙"}
