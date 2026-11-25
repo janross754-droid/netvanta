@@ -2323,6 +2323,51 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  #adminPanel .admin-menu-shade{position:fixed!important;inset:0!important}
 }
 </style>
+
+<style id="customer-iphone-fullscreen-layout">
+/* Full-screen customer workspace on iPhone; desktop and public landing pages remain unchanged. */
+@media(max-width:700px){
+ body:has(#customerPanel:not(.hidden)){overflow-x:hidden}
+ body:has(#customerPanel:not(.hidden)) main{
+  width:100%;max-width:none;margin:0;
+  padding:0 0 calc(88px + env(safe-area-inset-bottom))!important;
+ }
+ body:has(#customerPanel:not(.hidden)) #customerPanel{
+  display:block;width:100%;max-width:none;margin:0;
+  padding:0 0 calc(88px + env(safe-area-inset-bottom))!important;
+  overflow-x:clip;
+ }
+ #customerPanel .customer-layout{width:100%;max-width:none;margin:0;gap:0}
+ #customerPanel .customer-main{width:100%;max-width:none;min-width:0;gap:12px}
+ #customerPanel .customer-mobile-header{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+ #customerPanel .customer-welcome,
+ #customerPanel #customerMtnOutageNotice{margin-left:12px;margin-right:12px}
+ #customerPanel .customer-overview,
+ #customerPanel .customer-quick-panel,
+ #customerPanel .customer-recent-panel,
+ #customerPanel .customer-promo{width:100%;max-width:none;margin-left:0;margin-right:0}
+ #customerPanel .customer-overview,
+ #customerPanel .customer-quick-panel,
+ #customerPanel .customer-recent-panel{border-radius:14px}
+ #customerPanel .customer-mobile-nav{
+  position:fixed;left:0;right:0;bottom:0;width:100%;
+  padding-left:max(5px,env(safe-area-inset-left));
+  padding-right:max(5px,env(safe-area-inset-right));
+  padding-bottom:calc(7px + env(safe-area-inset-bottom));
+  z-index:50;box-sizing:border-box
+ }
+ #customerPanel .customer-mobile-nav button{min-width:0;white-space:nowrap}
+ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(78px + env(safe-area-inset-bottom))}
+ #customerPanel .tablewrap,#customerPanel #recentOrders{max-width:100%;min-width:0;overflow-x:auto}
+ #customerPanel *{min-width:0}
+}
+@media(max-width:380px){
+ #customerPanel .customer-mobile-nav button{font-size:8px}
+ #customerPanel .customer-welcome,
+ #customerPanel #customerMtnOutageNotice{margin-left:10px;margin-right:10px}
+}
+</style>
+
 </head><body class="session-pending">
 <header class="top"><div class="nav"><div class="brand"><span class="logo">N</span><span>NetVanta</span></div><div class="navright"><button type="button" id="menuOpen" class="iconbtn menu-trigger hidden" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button><button type="button" id="profileOpen" class="profileBtn hidden" aria-label="Open profile">◎</button><button type="button" id="navLogin" class="light">Log in</button><button type="button" id="navSignup" class="primary">Create account</button><button type="button" id="adminOpen" class="light hidden">Admin</button><button type="button" id="navLogout" class="outline hidden">Log out</button></div></div></header>
 <div id="drawerShade" class="drawerShade hidden"></div>
