@@ -2366,6 +2366,50 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  #customerPanel .customer-welcome,
  #customerPanel #customerMtnOutageNotice{margin-left:10px;margin-right:10px}
 }
+
+/* Focused iPhone fix: make only the open admin hamburger drawer genuinely scrollable */
+@media(max-width:680px){
+ #adminPanel .admin-sidebar.admin-menu-open{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+  min-height:0!important;
+  height:100vh!important;
+  height:100dvh!important;
+  max-height:100vh!important;
+  max-height:100dvh!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior-y:contain;
+  touch-action:pan-y;
+  scrollbar-width:thin;
+  flex-wrap:nowrap!important;
+  gap:5px!important;
+ }
+ #adminPanel .admin-sidebar.admin-menu-open>.admin-brand,
+ #adminPanel .admin-sidebar.admin-menu-open>.admin-nav-label,
+ #adminPanel .admin-sidebar.admin-menu-open>.admin-nav-item,
+ #adminPanel .admin-sidebar.admin-menu-open>.admin-options-menu,
+ #adminPanel .admin-sidebar.admin-menu-open>.admin-sidebar-foot{
+  flex:0 0 auto!important;
+  min-height:max-content;
+ }
+ #adminPanel .admin-sidebar.admin-menu-open>.admin-nav-item{
+  width:100%!important;
+  white-space:normal!important;
+ }
+ #adminPanel .admin-sidebar.admin-menu-open>.admin-options-menu{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  align-content:start!important;
+ }
+ #adminPanel .admin-sidebar.admin-menu-open>.admin-sidebar-foot{
+  margin-top:8px!important;
+ }
+}
+
 </style>
 
 </head><body class="session-pending">
