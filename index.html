@@ -940,7 +940,7 @@ body.session-pending #heroSection,body.session-pending #welcomePanel{display:non
 @media(max-width:900px){#adminPanel .admin-layout{grid-template-columns:190px minmax(0,1fr);gap:14px}#adminPanel .admin-sidebar{padding:15px 9px}#adminPanel .admin-nav-item{padding:10px 8px;font-size:11px}}
 @media(max-width:680px){
  #adminPanel .admin-layout{display:flex;flex-direction:column;gap:12px}
- #adminPanel .admin-sidebar{position:sticky;top:5px;z-index:20;min-height:0;width:100%;padding:9px;background:#142747;border-radius:14px;display:block;box-shadow:0 8px 20px #10234420}
+ #adminPanel .admin-sidebar{position:sticky;top:5px;z-index:20;min-height:0;width:100%;padding:9px;background:#fff;border-radius:14px;display:block;box-shadow:0 8px 20px #10234420}
  #adminPanel .admin-brand,#adminPanel .admin-nav-label,#adminPanel .admin-sidebar-foot{display:none}
  #adminPanel .admin-sidebar{display:flex;flex-direction:row;gap:6px;overflow-x:auto;scrollbar-width:none}
  #adminPanel .admin-sidebar::-webkit-scrollbar{display:none}
@@ -1614,12 +1614,12 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
 
 /* Approved NetVanta admin workspace: dedicated page views and responsive navigation */
 #adminPanel .admin-layout{align-items:start!important}
-#adminPanel .admin-sidebar{background:linear-gradient(180deg,#071b43 0%,#102b5c 100%)!important;border:1px solid #1a3765!important;color:#fff!important;box-shadow:0 12px 30px rgba(7,27,67,.18)!important}
+#adminPanel .admin-sidebar{background:#fff;border:1px solid #1a3765!important;color:#fff!important;box-shadow:0 12px 30px rgba(7,27,67,.18)!important}
 #adminPanel .admin-brand,#adminPanel .admin-sidebar-foot{color:#e8efff!important;border-color:#ffffff20!important}
 #adminPanel .admin-brand small,#adminPanel .admin-nav-label{color:#b9c9e8!important}
 #adminPanel .admin-nav-item{color:#e8efff!important;background:transparent!important;border-radius:10px!important}
 #adminPanel .admin-nav-item span{color:#d9e5ff!important}
-#adminPanel .admin-nav-item:hover{background:#173b70!important;color:#fff!important}
+#adminPanel .admin-nav-item:hover{background:#fff;color:#fff!important}
 #adminPanel .admin-nav-item.active{background:linear-gradient(100deg,#d9ad49,#f0d58b)!important;color:#172b4d!important;box-shadow:inset 3px 0 #fff!important;font-weight:800!important}
 #adminPanel .admin-nav-item.active span{color:#172b4d!important}
 #adminPanel .admin-nav-item small{font-size:inherit;font-weight:inherit}
@@ -1637,20 +1637,20 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
 #adminPanel .admin-overview-extra-grid span{font-size:11px;color:#a47718;font-weight:800}
 #adminPanel .admin-secondary-stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:12px}
 #adminPanel .admin-profile-summary{display:flex;align-items:center;gap:14px;padding:16px;margin:14px 0;background:#f8faff;border:1px solid #e3eaf5;border-radius:14px}
-#adminPanel .admin-profile-avatar{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#102b5c;color:#f0d58b;font-weight:900;font-size:22px}
+#adminPanel .admin-profile-avatar{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#fff;color:#f0d58b;font-weight:900;font-size:22px}
 #adminPanel .admin-placeholder-view{min-height:260px}
 @media(max-width:680px){
  #adminPanel{padding-bottom:100px!important}
  #adminPanel .admin-layout{display:block!important}
  #adminPanel .admin-sidebar{display:none!important}
  #adminPanel .admin-content>.panel{margin-bottom:12px!important}
- #adminPanel .admin-mobile-nav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed!important;z-index:1000!important;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));gap:4px;padding:7px;background:#071b43!important;border:1px solid #29436c!important;border-radius:16px;box-shadow:0 12px 32px #071a3540!important}
+ #adminPanel .admin-mobile-nav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed!important;z-index:1000!important;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));gap:4px;padding:7px;background:#fff;border:1px solid #29436c!important;border-radius:16px;box-shadow:0 12px 32px #071a3540!important}
  #adminPanel .admin-mobile-nav .admin-nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;width:100%;padding:7px 2px;color:#e8efff!important;font-size:10px;white-space:nowrap}
  #adminPanel .admin-mobile-nav .admin-nav-item span{color:#d9e5ff!important;font-size:16px;line-height:1}
  #adminPanel .admin-mobile-nav .admin-nav-item.active{background:#f0d58b!important;color:#172b4d!important;box-shadow:none!important}
  #adminPanel .admin-mobile-nav .admin-nav-item.active span{color:#172b4d!important}
- #adminPanel .admin-more-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;position:fixed;z-index:999;left:10px;right:10px;bottom:calc(82px + env(safe-area-inset-bottom));max-height:55vh;overflow:auto;padding:12px;background:#102b5c;border:1px solid #29436c;border-radius:16px;box-shadow:0 14px 38px #071a3560}
- #adminPanel .admin-more-menu .admin-nav-item{display:flex;align-items:center;gap:8px;padding:11px 9px;background:#173b70!important;color:#fff!important;border:1px solid #ffffff18;border-radius:10px;text-align:left;font-size:11px}
+ #adminPanel .admin-more-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;position:fixed;z-index:999;left:10px;right:10px;bottom:calc(82px + env(safe-area-inset-bottom));max-height:55vh;overflow:auto;padding:12px;background:#fff;border:1px solid #29436c;border-radius:16px;box-shadow:0 14px 38px #071a3560}
+ #adminPanel .admin-more-menu .admin-nav-item{display:flex;align-items:center;gap:8px;padding:11px 9px;background:#fff;color:#fff!important;border:1px solid #ffffff18;border-radius:10px;text-align:left;font-size:11px}
  #adminPanel .admin-more-menu .admin-nav-item span{color:#f0d58b!important}
  #adminPanel .admin-overview-extra-grid{grid-template-columns:1fr}
  #adminPanel .admin-secondary-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -1760,7 +1760,7 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
 /* NetVanta dashboard refresh: clean white workspace and clear card hierarchy */
 #adminPanel{background:#f4f7fc!important;color:#172b4d!important}
 #adminPanel .admin-layout{grid-template-columns:238px minmax(0,1fr)!important;gap:18px!important;align-items:stretch!important}
-#adminPanel .admin-sidebar{border-radius:18px!important;background:linear-gradient(180deg,#071b43 0%,#102b5c 100%)!important;min-height:calc(100vh - 24px)!important;box-shadow:0 12px 30px #10234420!important}
+#adminPanel .admin-sidebar{border-radius:18px!important;background:#fff;min-height:calc(100vh - 24px)!important;box-shadow:0 12px 30px #10234420!important}
 #adminPanel .admin-brand-mark{background:linear-gradient(135deg,#1477ff,#0751c8)!important;color:#fff!important;border-radius:50%!important}
 #adminPanel .admin-nav-item span{color:#d9e8ff!important}
 #adminPanel .admin-nav-item.active{background:#1767e9!important;box-shadow:none!important}
