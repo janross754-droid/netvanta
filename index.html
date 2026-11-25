@@ -2989,9 +2989,17 @@ function initAdminWorkspace(){
  const welcomeNode=$('adminDashboardWelcome');if(welcomeNode)welcomeNode.insertBefore(hamburger,welcomeNode.firstChild);
  const closeMenus=()=>{moreMenu.hidden=true;optionsMenu.hidden=true;menuShade.hidden=true;sidebar.classList.remove('admin-menu-open');hamburger.setAttribute('aria-expanded','false')};
  const updateAlertBadges=()=>{
-  const list=$('adminNotificationsList');const count=list?list.querySelectorAll(':scope > *').length:0;
-  root.querySelectorAll('.admin-alert-count').forEach(n=>n.remove());
-  if(count>0){const badge=document.createElement('b');badge.className='admin-alert-count';badge.textContent=count>99?'99+':String(count);badge.setAttribute('aria-label',count+' notifications');const bell=document.createElement('span');bell.className='admin-alert-bell';bell.textContent='🔔';bell.appendChild(badge);const heading=$('adminNotificationsPanel')?.querySelector('.head');if(heading&&!heading.querySelector('.admin-alert-bell'))heading.appendChild(bell)}
+  const unreadNode=$('adminNotificationUnread');
+  const count=unreadNode?Number.parseInt(unreadNode.textContent,10)||0:0;
+  const heading=$('adminNotificationsPanel')?.querySelector('.head');
+  if(!heading)return;
+  let bell=heading.querySelector('.admin-alert-bell');
+  if(count<=0){if(bell)bell.remove();return}
+  if(!bell){bell=document.createElement('span');bell.className='admin-alert-bell';bell.textContent='🔔';heading.appendChild(bell)}
+  let badge=bell.querySelector('.admin-alert-count');
+  if(!badge){badge=document.createElement('b');badge.className='admin-alert-count';bell.appendChild(badge)}
+  badge.textContent=count>99?'99+':String(count);
+  badge.setAttribute('aria-label',count+' unread notifications');
  };
  updateAlertBadges();
  if($('adminNotificationsList'))new MutationObserver(updateAlertBadges).observe($('adminNotificationsList'),{childList:true,subtree:true});
