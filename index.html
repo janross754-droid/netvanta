@@ -1823,6 +1823,139 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  #adminPanel .admin-mobile-nav{z-index:1101!important}
 }
 
+
+/* Admin full-workspace dark mode coverage */
+body.admin-dark-mode,
+body.admin-dark-mode main:has(#adminPanel:not(.hidden)){
+ background:#071321!important;
+ color:#e8f1fc!important;
+ color-scheme:dark;
+}
+body.admin-dark-mode #adminPanel{
+ background:#071321!important;
+ color:#e8f1fc!important;
+}
+body.admin-dark-mode #adminPanel .admin-content>.panel,
+body.admin-dark-mode #adminPanel .admin-sidebar,
+body.admin-dark-mode #adminPanel .admin-mobile-nav,
+body.admin-dark-mode #adminPanel .admin-more-menu,
+body.admin-dark-mode #adminPanel .admin-options-menu,
+body.admin-dark-mode #adminPanel .admin-settings-card,
+body.admin-dark-mode #adminPanel .admin-settings-intro,
+body.admin-dark-mode #adminPanel .admin-settings-security-note,
+body.admin-dark-mode #adminPanel .admin-profile-summary,
+body.admin-dark-mode #adminPanel .admin-customer-card,
+body.admin-dark-mode #adminPanel .admin-customer-details,
+body.admin-dark-mode #adminPanel .admin-overview-tools,
+body.admin-dark-mode #adminPanel .admin-secondary-stats,
+body.admin-dark-mode #adminPanel .admin-subhead,
+body.admin-dark-mode #adminPanel .admin-table-shell,
+body.admin-dark-mode #adminPanel .admin-list-shell,
+body.admin-dark-mode #adminPanel .admin-sales-chart,
+body.admin-dark-mode #adminPanel .admin-placeholder-view,
+body.admin-dark-mode #adminPanel .admin-support-shell,
+body.admin-dark-mode #adminPanel .admin-conversation-card,
+body.admin-dark-mode #adminPanel .admin-notification-row,
+body.admin-dark-mode #adminPanel .admin-delivery-card,
+body.admin-dark-mode #adminPanel .admin-audit-card{
+ background:#0d1d30!important;
+ color:#e8f1fc!important;
+ border-color:#29415b!important;
+ box-shadow:0 10px 28px rgba(0,0,0,.2)!important;
+}
+body.admin-dark-mode #adminPanel .admin-sidebar{
+ background:linear-gradient(180deg,#0d1d30 0%,#10243a 100%)!important;
+}
+body.admin-dark-mode #adminPanel .admin-mobile-nav,
+body.admin-dark-mode #adminPanel .admin-more-menu,
+body.admin-dark-mode #adminPanel .admin-options-menu{
+ background:#0d1d30!important;
+ border-color:#29415b!important;
+}
+body.admin-dark-mode #adminPanel .admin-content,
+body.admin-dark-mode #adminPanel .admin-content>section,
+body.admin-dark-mode #adminPanel .admin-content>div{
+ color:#e8f1fc!important;
+}
+body.admin-dark-mode #adminPanel h1,
+body.admin-dark-mode #adminPanel h2,
+body.admin-dark-mode #adminPanel h3,
+body.admin-dark-mode #adminPanel h4,
+body.admin-dark-mode #adminPanel h5,
+body.admin-dark-mode #adminPanel b,
+body.admin-dark-mode #adminPanel strong,
+body.admin-dark-mode #adminPanel label,
+body.admin-dark-mode #adminPanel dt,
+body.admin-dark-mode #adminPanel dd,
+body.admin-dark-mode #adminPanel .admin-nav-item,
+body.admin-dark-mode #adminPanel .admin-customer-name,
+body.admin-dark-mode #adminPanel .admin-customer-meta{
+ color:#e8f1fc!important;
+}
+body.admin-dark-mode #adminPanel p,
+body.admin-dark-mode #adminPanel small,
+body.admin-dark-mode #adminPanel .muted,
+body.admin-dark-mode #adminPanel .admin-customer-email,
+body.admin-dark-mode #adminPanel .admin-nav-label,
+body.admin-dark-mode #adminPanel .admin-settings-card dt,
+body.admin-dark-mode #adminPanel .admin-settings-card p{
+ color:#9aacc2!important;
+}
+body.admin-dark-mode #adminPanel .admin-nav-item:hover,
+body.admin-dark-mode #adminPanel .admin-nav-item.active{
+ background:#173657!important;
+ color:#fff!important;
+}
+body.admin-dark-mode #adminPanel .admin-nav-item span{color:#9fc9f5!important}
+body.admin-dark-mode #adminPanel .admin-content input,
+body.admin-dark-mode #adminPanel .admin-content select,
+body.admin-dark-mode #adminPanel .admin-content textarea,
+body.admin-dark-mode #adminPanel .admin-content [contenteditable="true"]{
+ background:#091829!important;
+ color:#e8f1fc!important;
+ border-color:#2a4059!important;
+}
+body.admin-dark-mode #adminPanel .admin-content input::placeholder,
+body.admin-dark-mode #adminPanel .admin-content textarea::placeholder{color:#8094ad!important}
+body.admin-dark-mode #adminPanel .admin-content .tablewrap,
+body.admin-dark-mode #adminPanel .admin-content table,
+body.admin-dark-mode #adminPanel .admin-content thead,
+body.admin-dark-mode #adminPanel .admin-content tbody,
+body.admin-dark-mode #adminPanel .admin-content tr,
+body.admin-dark-mode #adminPanel .admin-content th,
+body.admin-dark-mode #adminPanel .admin-content td{
+ background:#0d1d30!important;
+ color:#dbe8f6!important;
+ border-color:#29415b!important;
+}
+body.admin-dark-mode #adminPanel .admin-content th{background:#132941!important;color:#a9bfd8!important}
+body.admin-dark-mode #adminPanel .admin-content .notice,
+body.admin-dark-mode #adminPanel .admin-content .empty{
+ background:#172b3d!important;
+ color:#d8e8f8!important;
+ border-color:#34516a!important;
+}
+body.admin-dark-mode #adminPanel .admin-content .btn.soft,
+body.admin-dark-mode #adminPanel .admin-content .btn.light{
+ background:#17314b!important;color:#d8e8f8!important;border-color:#34516a!important;
+}
+body.admin-dark-mode #adminPanel .admin-menu-shade{background:rgba(0,0,0,.66)!important}
+body.admin-dark-mode #adminPanel .admin-hamburger{background:#10243a!important;border-color:#34516a!important}
+body.admin-dark-mode #adminPanel .admin-hamburger span{background:#e8f1fc!important}
+body.admin-dark-mode #adminPanel .admin-dashboard-welcome{
+ background:linear-gradient(120deg,#0d1d30,#10243a)!important;
+ border-color:#29415b!important;
+ color:#e8f1fc!important;
+}
+body.admin-dark-mode #adminPanel .admin-dashboard-welcome h1,
+body.admin-dark-mode #adminPanel .admin-dashboard-welcome p{color:#e8f1fc!important}
+body.admin-dark-mode #adminPanel .admin-settings-access{
+ background:#172d45!important;color:#b9d9fa!important;border-color:#34516a!important;
+}
+body.admin-dark-mode #adminPanel .admin-notification-row[style*="background"]{background:#132941!important}
+body.admin-dark-mode #adminPanel .admin-sales-svg text{fill:#9aacc2!important}
+body.admin-dark-mode #adminPanel .admin-sales-svg path[stroke="#e9eef6"]{stroke:#29415b!important}
+
 </style>
 <!-- Meta Pixel Code (NetVanta) -->
 <script>
