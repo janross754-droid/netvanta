@@ -3183,7 +3183,6 @@ function initAdminWorkspace(){
   if(id==='adminSupportInboxPanel') target.classList.remove('chat-open');
   if(id==='adminProfilePlaceholder' && user){const el=$('adminProfileEmail');if(el)el.textContent=user.email||user.user_metadata?.full_name||'Administrator account'}
   target.scrollIntoView({behavior:'auto',block:'start'});
-  window.scrollTo({top:0,behavior:'auto'});
  }
  root.addEventListener('click',e=>{
   const logoutButton=e.target.closest('[data-admin-logout]');if(logoutButton){leaveApp();return}
