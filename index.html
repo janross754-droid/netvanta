@@ -2569,6 +2569,77 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  #adminPanel #adminDashboardWelcome .admin-system-status{display:none!important}
 }
 
+
+
+/* Blue Modern final overrides: load after all legacy admin styles */
+#adminPanel .admin-sidebar{
+ background:linear-gradient(180deg,#082b60 0%,#104b99 58%,#1769e8 100%)!important;
+ border-color:#174f99!important;color:#f4f8ff!important;
+}
+#adminPanel .admin-sidebar .admin-brand,
+#adminPanel .admin-sidebar .admin-sidebar-foot{color:#f4f8ff!important;border-color:rgba(255,255,255,.2)!important}
+#adminPanel .admin-sidebar .admin-brand small,
+#adminPanel .admin-sidebar .admin-nav-label{color:#bcd7ff!important}
+#adminPanel .admin-sidebar .admin-nav-item{color:#eaf3ff!important}
+#adminPanel .admin-sidebar .admin-nav-item span{color:#9fc7ff!important}
+#adminPanel .admin-sidebar .admin-nav-item.active{background:#fff!important;color:#104b99!important;box-shadow:inset 3px 0 #45a0ff!important}
+#adminPanel .admin-sidebar .admin-nav-item.active span{color:#1769e8!important}
+#adminPanel .admin-dashboard-welcome,
+#adminPanel #adminDashboardWelcome{
+ background:linear-gradient(112deg,#082b60 0%,#1054b5 56%,#2588f0 100%)!important;
+ border:1px solid #2d82e8!important;border-radius:20px!important;
+ box-shadow:0 14px 32px rgba(23,105,232,.2)!important;
+ color:#fff!important;
+}
+#adminPanel .admin-dashboard-welcome h1,
+#adminPanel #adminDashboardWelcome h1{color:#fff!important}
+#adminPanel .admin-dashboard-welcome p,
+#adminPanel #adminDashboardWelcome p{color:#e2efff!important}
+#adminPanel .admin-dashboard-welcome .admin-welcome-kicker,
+#adminPanel #adminDashboardWelcome .admin-welcome-kicker{color:#b9dcff!important}
+#adminPanel .admin-dashboard-welcome .admin-hamburger,
+#adminPanel #adminDashboardWelcome .admin-hamburger{
+ background:rgba(255,255,255,.15)!important;border:1px solid rgba(255,255,255,.3)!important;
+}
+#adminPanel .admin-dashboard-welcome .admin-hamburger span,
+#adminPanel #adminDashboardWelcome .admin-hamburger span{background:#fff!important}
+#adminPanel .admin-content>.panel,
+#adminPanel .admin-content>.admin-quick-actions,
+#adminPanel .admin-content>.admin-sales-card,
+#adminPanel .admin-content>.admin-recent-card,
+#adminPanel .admin-content>.admin-data-card,
+#adminPanel .admin-overview-extras,
+#adminPanel .admin-secondary-stats{border-color:#d7e7fb!important}
+#adminPanel .admin-content .stat{
+ border-color:#d8e8fb!important;background:linear-gradient(145deg,#fff 0%,#f4f8ff 100%)!important;
+}
+#adminPanel .admin-content .stat b,
+#adminPanel .admin-content .stat strong{color:#0b2e62!important}
+#adminPanel .admin-content .btn.primary,
+#adminPanel .admin-content button.primary{background:linear-gradient(110deg,#1769e8,#2788f5)!important;color:#fff!important}
+#adminPanel .admin-content .tab.active{background:#eaf3ff!important;border-color:#9fc5fa!important;color:#1458b5!important}
+#adminPanel .admin-mobile-nav{
+ background:rgba(255,255,255,.97)!important;border:1px solid #d8e7fa!important;
+ box-shadow:0 10px 30px rgba(8,43,96,.16)!important;
+}
+#adminPanel .admin-mobile-nav .admin-nav-item{color:#526b8e!important}
+#adminPanel .admin-mobile-nav .admin-nav-item span{color:#7798c6!important}
+#adminPanel .admin-mobile-nav .admin-nav-item.active{background:#1769e8!important;color:#fff!important;box-shadow:inset 0 -2px #0b3c91!important}
+#adminPanel .admin-mobile-nav .admin-nav-item.active span,
+#adminPanel .admin-mobile-nav .admin-nav-item.active small{color:#fff!important}
+#adminPanel .admin-more-menu{border-color:#d8e7fa!important}
+#adminPanel .admin-more-menu .admin-nav-item{color:#23466f!important}
+#adminPanel .admin-more-menu .admin-nav-item span{color:#1769e8!important}
+@media(max-width:680px){
+ #adminPanel .admin-sidebar.admin-menu-open{
+  background:linear-gradient(180deg,#082b60 0%,#104b99 58%,#1769e8 100%)!important;
+ }
+ #adminPanel .admin-sidebar.admin-menu-open .admin-nav-item{color:#eaf3ff!important}
+ #adminPanel .admin-sidebar.admin-menu-open .admin-nav-item span{color:#b9dcff!important}
+ #adminPanel .admin-sidebar.admin-menu-open .admin-nav-item.active{background:#fff!important;color:#1458b5!important}
+ #adminPanel .admin-sidebar.admin-menu-open .admin-nav-item.active span{color:#1769e8!important}
+}
+
 </style>
 
 </head><body class="session-pending">
