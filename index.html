@@ -2580,13 +2580,17 @@ const supabase=createClient('https://fanpdxgbmzlsvkxgogfo.supabase.co','sb_publi
 const AUTH_STORAGE_KEY='sb-fanpdxgbmzlsvkxgogfo-auth-token';
 function authStorageStatus(){try{return localStorage.getItem(AUTH_STORAGE_KEY)?'saved':'missing'}catch(e){return 'blocked'}}
 const ADMIN='princeafful079@gmail.com', $=id=>document.getElementById(id);
-let currentTheme=document.documentElement.dataset.theme==='dark'?'dark':'light';
+let currentTheme='light';
+try{currentTheme=localStorage.getItem('netvanta-admin-theme')==='dark'?'dark':'light'}catch(e){}
 function applyTheme(theme,adminView=!!(isAdmin&&$('adminPanel')&&!$('adminPanel').classList.contains('hidden'))){
- currentTheme=theme==='dark'?'dark':'light';
- document.documentElement.dataset.theme=currentTheme;
- try{localStorage.setItem('netvanta-theme',currentTheme)}catch(e){}
- document.body.classList.toggle('admin-light-mode',!!(adminView&&currentTheme==='light'));
- document.body.classList.toggle('admin-dark-mode',!!(adminView&&currentTheme==='dark'));
+ const nextTheme=theme==='dark'?'dark':'light';
+ const isAdminWorkspace=!!(adminView&&isAdmin);
+ if(isAdminWorkspace){
+  currentTheme=nextTheme;
+  try{localStorage.setItem('netvanta-admin-theme',currentTheme)}catch(e){}
+ }
+ document.body.classList.toggle('admin-light-mode',!!(isAdminWorkspace&&nextTheme==='light'));
+ document.body.classList.toggle('admin-dark-mode',!!(isAdminWorkspace&&nextTheme==='dark'));
  const button=$('adminThemeToggle');
  if(button){const dark=currentTheme==='dark';button.textContent=dark?'☀ Light mode':'☾ Dark mode';button.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');button.title=dark?'Switch to light mode':'Switch to dark mode'}
 }
