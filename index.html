@@ -2042,11 +2042,11 @@ body.admin-light-mode{background:#f6f8fc!important;color:#17243b!important;color
 #adminPanel #adminOverviewPanel>.head,
 #adminPanel #adminOverviewPanel>.grid,
 #adminPanel #adminOverviewPanel>.admin-secondary-stats,
-#adminPanel #adminOverviewPanel>.admin-financial-summary,
-#adminPanel #adminOverviewPanel>#adminDeliveryMonitor,
 #adminPanel #adminOverviewPanel>.row{grid-column:1/-1!important;width:100%;min-width:0}
 #adminPanel #adminOverviewPanel>#adminNotificationsPanel,
 #adminPanel #adminOverviewPanel>.admin-quick-actions,
+#adminPanel #adminOverviewPanel>.admin-financial-summary,
+#adminPanel #adminOverviewPanel>#adminDeliveryMonitor,
 #adminPanel #adminOverviewPanel>.admin-sales-card,
 #adminPanel #adminOverviewPanel>.admin-recent-card{grid-column:span 1!important;min-width:0;width:100%;margin:0!important}
 #adminPanel #adminOverviewPanel>.admin-secondary-stats{margin:0!important}
@@ -2064,6 +2064,8 @@ body.admin-light-mode{background:#f6f8fc!important;color:#17243b!important;color
  background:#fff!important;box-shadow:0 8px 24px rgba(16,24,40,.055)!important;
  padding:18px!important;min-width:0;overflow:hidden;
 }
+#adminPanel #adminOverviewPanel #adminNotificationsPanel{max-height:410px;display:flex;flex-direction:column}
+#adminPanel #adminOverviewPanel #adminNotificationsList{min-height:0;overflow:auto;overscroll-behavior:contain}
 #adminPanel #adminOverviewPanel .admin-alert-bell{flex:0 0 38px}
 #adminPanel #adminOverviewPanel .admin-alert-count{display:grid!important}
 @media(max-width:680px){
