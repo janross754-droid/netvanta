@@ -2991,6 +2991,13 @@ function initAdminWorkspace(){
  placeholder('adminProfilePlaceholder','Administrator Profile','Your signed-in administrator identity and safe session actions.');
  const profilePanel=$('adminProfilePlaceholder');
  profilePanel.querySelector('.notice').insertAdjacentHTML('beforebegin','<div class="admin-profile-summary"><div class="admin-profile-avatar">N</div><div><b id="adminProfileEmail">Administrator account</b><div class="muted">Authenticated NetVanta administrator</div></div></div><button type="button" class="btn soft" data-admin-logout>Sign out</button>');
+ // Preserve the approved welcome header while removing only the redundant extra dashboard cards.
+ const overview=$('adminOverviewPanel');
+ if(overview && !$('adminDashboardWelcome')){
+  const welcome=document.createElement('div');welcome.id='adminDashboardWelcome';welcome.className='admin-dashboard-welcome';
+  welcome.innerHTML='<div><div class="admin-welcome-kicker">NETVANTA ADMIN</div><h1>Welcome back, Admin <span>👋</span></h1><p>Here’s what’s happening with NetVanta today.</p></div><div class="admin-system-status"><i></i><span>System status · Admin access active</span></div>';
+  overview.insertBefore(welcome,overview.firstChild);
+ }
  // Keep all operational metrics, but separate the four headline cards from the secondary counters.
  const stats=overview?.querySelector(':scope > .grid');
  if(stats && !stats.dataset.organized){
