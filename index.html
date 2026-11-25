@@ -1657,6 +1657,57 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  #adminPanel #adminOverviewPanel>.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
  #adminPanel .admin-recent-card .tablewrap{overflow-x:auto}
 }
+
+/* Approved dashboard reference layout: hamburger, Options drawer, strong black hierarchy */
+#adminPanel{background:#f5f8fd!important;color:#101827!important}
+#adminPanel .admin-layout{grid-template-columns:250px minmax(0,1fr)!important;gap:20px!important;transition:grid-template-columns .2s ease}
+#adminPanel .admin-sidebar{background:#fff!important;color:#111827!important;border:1px solid #e5ebf4!important;box-shadow:0 8px 28px rgba(16,24,40,.06)!important;border-radius:20px!important}
+#adminPanel .admin-brand b,#adminPanel .admin-nav-item,#adminPanel .admin-content h1,#adminPanel .admin-content h2,#adminPanel .admin-content h3,#adminPanel .admin-content strong{color:#101827!important}
+#adminPanel .admin-nav-item{font-weight:750!important;color:#172033!important}
+#adminPanel .admin-nav-item small{font-weight:750!important}
+#adminPanel .admin-nav-item.active{background:#1769ff!important;color:#fff!important;box-shadow:none!important}
+#adminPanel .admin-nav-item.active span,#adminPanel .admin-nav-item.active small{color:#fff!important}
+#adminPanel .admin-hamburger{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;flex:0 0 42px;border:1px solid #e1e8f2;border-radius:12px;background:#fff;box-shadow:0 3px 10px #1018270d;cursor:pointer;padding:10px;margin-right:12px}
+#adminPanel .admin-hamburger span{display:block;width:20px;height:2.5px;border-radius:3px;background:#101827}
+#adminPanel .admin-dashboard-welcome{display:flex!important;align-items:center;gap:12px}
+#adminPanel .admin-dashboard-welcome>div:first-of-type{flex:1}
+#adminPanel .admin-dashboard-welcome h1{color:#101827!important;font-weight:900!important;letter-spacing:-.045em}
+#adminPanel .admin-dashboard-welcome p{color:#4b5563!important;font-weight:550}
+#adminPanel .admin-content>.panel,#adminPanel .admin-quick-actions,#adminPanel .admin-sales-card,#adminPanel .admin-recent-card,#adminPanel .admin-data-card{background:#fff!important;border:1px solid #e6ebf2!important;box-shadow:0 8px 24px rgba(16,24,40,.045)!important;border-radius:18px!important}
+#adminPanel .admin-content .stat b,#adminPanel .admin-content .stat strong{color:#080d18!important;font-weight:900!important}
+#adminPanel .admin-content .stat small,#adminPanel .admin-content .muted{color:#4b5563!important}
+#adminPanel .admin-subhead h3,#adminPanel .admin-content .head h2{color:#101827!important;font-weight:850!important}
+#adminPanel .admin-options-toggle{margin-top:8px}
+#adminPanel .admin-options-chevron{margin-left:auto;font-size:15px;color:#64748b}
+#adminPanel .admin-options-menu{display:grid;gap:3px;padding:7px 0 7px 12px;margin:0 0 8px 10px;border-left:2px solid #e7edf6}
+#adminPanel .admin-options-menu[hidden],#adminPanel .admin-more-menu[hidden],#adminPanel .admin-menu-shade[hidden]{display:none!important}
+#adminPanel .admin-options-menu .admin-nav-item{font-size:11px!important;padding:9px 10px!important}
+#adminPanel .admin-alert-bell{position:relative;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;margin-left:auto;border-radius:12px;background:#fff0f0;font-size:18px}
+#adminPanel .admin-alert-count{position:absolute;right:-5px;top:-6px;min-width:20px;height:20px;padding:0 5px;display:grid;place-items:center;border-radius:99px;background:#e11d48;color:#fff!important;font-size:11px;font-weight:900;border:2px solid #fff}
+#adminPanel .admin-menu-shade{display:none}
+#adminPanel.admin-sidebar-collapsed .admin-layout{grid-template-columns:minmax(0,1fr)!important;gap:0!important}
+#adminPanel.admin-sidebar-collapsed .admin-sidebar{display:none!important}
+#adminPanel .admin-mobile-nav{display:none!important}
+@media(max-width:680px){
+ #adminPanel .admin-layout{display:block!important}
+ #adminPanel .admin-sidebar{display:none!important}
+ #adminPanel .admin-hamburger{position:relative;z-index:2}
+ #adminPanel .admin-menu-shade{display:block;position:fixed;inset:0;background:rgba(8,18,35,.42);z-index:1001}
+ #adminPanel .admin-sidebar.admin-menu-open{display:flex!important;position:fixed!important;z-index:1002!important;left:0!important;top:0!important;bottom:0!important;width:min(310px,86vw)!important;max-height:none!important;height:100dvh!important;min-height:100dvh!important;overflow:auto!important;border-radius:0 20px 20px 0!important;padding:18px 13px!important;box-shadow:16px 0 45px #071a3540!important}
+ #adminPanel .admin-sidebar.admin-menu-open .admin-brand,#adminPanel .admin-sidebar.admin-menu-open .admin-nav-label,#adminPanel .admin-sidebar.admin-menu-open .admin-sidebar-foot{display:flex!important}
+ #adminPanel .admin-sidebar.admin-menu-open .admin-brand{align-items:center}
+ #adminPanel .admin-sidebar.admin-menu-open .admin-nav-item{display:flex!important;width:100%!important;white-space:normal!important}
+ #adminPanel .admin-sidebar.admin-menu-open .admin-options-menu{display:grid!important}
+ #adminPanel .admin-mobile-nav{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important}
+ #adminPanel .admin-more-menu{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;z-index:1003!important;background:#fff!important;border:1px solid #e3eaf4!important}
+ #adminPanel .admin-more-menu .admin-nav-item{color:#101827!important;border:1px solid #e7edf5!important;background:#f8faff!important}
+ #adminPanel .admin-more-menu .admin-nav-item span{color:#1769ff!important}
+ #adminPanel .admin-mobile-nav .admin-nav-item{color:#263449!important}
+ #adminPanel .admin-mobile-nav .admin-nav-item.active{background:#1769ff!important;color:#fff!important}
+ #adminPanel .admin-mobile-nav .admin-nav-item.active span,#adminPanel .admin-mobile-nav .admin-nav-item.active small{color:#fff!important}
+ #adminPanel .admin-dashboard-welcome{align-items:flex-start}
+ #adminPanel .admin-dashboard-welcome h1{font-size:clamp(25px,7vw,34px)!important}
+}
 </style>
 <!-- Meta Pixel Code (NetVanta) -->
 <script>
@@ -2916,14 +2967,42 @@ function initAdminWorkspace(){
    cards.slice(4).forEach(node=>grid.appendChild(node));secondary.appendChild(grid);stats.insertAdjacentElement('afterend',secondary);
   }
  }
+ const primaryIds=['adminOverviewPanel','adminOrdersPanel','financialOverviewPanel'];
+ const optionItems=navItems.filter(([id])=>!primaryIds.includes(id));
+ const optionsMenu=document.createElement('div');optionsMenu.className='admin-options-menu';optionsMenu.id='adminOptionsMenu';optionsMenu.hidden=true;
+ optionItems.forEach(([id,ic,label])=>optionsMenu.appendChild(navButton(id,ic,label)));
+ const optionsToggle=document.createElement('button');optionsToggle.type='button';optionsToggle.className='admin-nav-item admin-options-toggle';optionsToggle.dataset.adminOptions='1';optionsToggle.innerHTML='<span>☷</span><small>Options</small><b class="admin-options-chevron">⌄</b>';
+ const footNode=sidebar.querySelector('.admin-sidebar-foot');
+ optionItems.forEach(([id])=>{const oldButton=sidebar.querySelector('[data-admin-jump="'+id+'"]');if(oldButton)oldButton.remove()});
+ if(footNode)sidebar.insertBefore(optionsToggle,footNode);else sidebar.appendChild(optionsToggle);
+ if(footNode)sidebar.insertBefore(optionsMenu,footNode);else sidebar.appendChild(optionsMenu);
  const mobile=document.createElement('nav');mobile.className='admin-mobile-nav';mobile.setAttribute('aria-label','Admin quick navigation');
  [['adminOverviewPanel','⌂','Home'],['adminOrdersPanel','▤','Orders'],['financialOverviewPanel','◈','Finance']].forEach(([id,ic,label])=>mobile.appendChild(navButton(id,ic,label)));
- const more=navButton('adminMoreMenu','⋯','More');more.dataset.adminMore='1';mobile.appendChild(more);
+ const more=navButton('adminOptionsMenu','☷','Options');more.dataset.adminMore='1';mobile.appendChild(more);
  root.querySelector('.admin-layout').appendChild(mobile);
  const moreMenu=document.createElement('div');moreMenu.className='admin-more-menu';moreMenu.id='adminMoreMenu';moreMenu.hidden=true;
- navItems.filter(([id])=>!['adminOverviewPanel','adminOrdersPanel','financialOverviewPanel'].includes(id)).forEach(([id,ic,label])=>moreMenu.appendChild(navButton(id,ic,label)));
+ optionItems.forEach(([id,ic,label])=>moreMenu.appendChild(navButton(id,ic,label)));
  moreMenu.appendChild(navButton('adminLogout','↪','Logout'));
  root.querySelector('.admin-layout').appendChild(moreMenu);
+ const menuShade=document.createElement('div');menuShade.className='admin-menu-shade';menuShade.hidden=true;root.appendChild(menuShade);
+ const hamburger=document.createElement('button');hamburger.type='button';hamburger.className='admin-hamburger';hamburger.setAttribute('aria-label','Open admin menu');hamburger.setAttribute('aria-expanded','false');hamburger.innerHTML='<span></span><span></span><span></span>';
+ const welcomeNode=$('adminDashboardWelcome');if(welcomeNode)welcomeNode.insertBefore(hamburger,welcomeNode.firstChild);
+ const closeMenus=()=>{moreMenu.hidden=true;optionsMenu.hidden=true;menuShade.hidden=true;sidebar.classList.remove('admin-menu-open');hamburger.setAttribute('aria-expanded','false')};
+ const updateAlertBadges=()=>{
+  const unreadNode=$('adminNotificationUnread');
+  const count=unreadNode?Number.parseInt(unreadNode.textContent,10)||0:0;
+  const heading=$('adminNotificationsPanel')?.querySelector('.head');
+  if(!heading)return;
+  let bell=heading.querySelector('.admin-alert-bell');
+  if(count<=0){if(bell)bell.remove();return}
+  if(!bell){bell=document.createElement('span');bell.className='admin-alert-bell';bell.textContent='🔔';heading.appendChild(bell)}
+  let badge=bell.querySelector('.admin-alert-count');
+  if(!badge){badge=document.createElement('b');badge.className='admin-alert-count';bell.appendChild(badge)}
+  badge.textContent=count>99?'99+':String(count);
+  badge.setAttribute('aria-label',count+' unread notifications');
+ };
+ updateAlertBadges();
+ if($('adminNotificationsList'))new MutationObserver(updateAlertBadges).observe($('adminNotificationsList'),{childList:true,subtree:true});
  function showView(id){
   if(id==='adminLogout'){leaveApp();return}
   const target=$(id); if(!target || !content.contains(target))return;
@@ -2937,12 +3016,15 @@ function initAdminWorkspace(){
  }
  root.addEventListener('click',e=>{
   const logoutButton=e.target.closest('[data-admin-logout]');if(logoutButton){leaveApp();return}
-  const moreButton=e.target.closest('[data-admin-more]');if(moreButton){moreMenu.hidden=!moreMenu.hidden;return}
+  const moreButton=e.target.closest('[data-admin-more]');if(moreButton){moreMenu.hidden=!moreMenu.hidden;optionsMenu.hidden=true;return}
+  const optionsButton=e.target.closest('[data-admin-options]');if(optionsButton){optionsMenu.hidden=!optionsMenu.hidden;moreMenu.hidden=true;optionsButton.setAttribute('aria-expanded',String(!optionsMenu.hidden));return}
+  const hamburgerButton=e.target.closest('.admin-hamburger');if(hamburgerButton){if(window.matchMedia('(max-width: 680px)').matches){const open=!sidebar.classList.contains('admin-menu-open');sidebar.classList.toggle('admin-menu-open',open);menuShade.hidden=!open;hamburgerButton.setAttribute('aria-expanded',String(open));}else{const collapsed=!root.classList.contains('admin-sidebar-collapsed');root.classList.toggle('admin-sidebar-collapsed',collapsed);hamburgerButton.setAttribute('aria-expanded',String(!collapsed));}return}
+  if(e.target.closest('.admin-menu-shade')){closeMenus();return}
   const b=e.target.closest('[data-admin-jump]');if(!b)return;
-  showView(b.dataset.adminJump);
+  showView(b.dataset.adminJump);closeMenus();
  });
- document.addEventListener('click',e=>{if(!moreMenu.hidden&&!e.target.closest('#adminMoreMenu')&&!e.target.closest('[data-admin-more]'))moreMenu.hidden=true});
- document.addEventListener('keydown',e=>{if(e.key==='Escape')moreMenu.hidden=true});
+ document.addEventListener('click',e=>{if(!moreMenu.hidden&&!e.target.closest('#adminMoreMenu')&&!e.target.closest('[data-admin-more]'))moreMenu.hidden=true;if(!optionsMenu.hidden&&!e.target.closest('#adminOptionsMenu')&&!e.target.closest('[data-admin-options]'))optionsMenu.hidden=true});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenus()});
  showView('adminOverviewPanel');
 }
 
