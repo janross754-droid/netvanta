@@ -940,7 +940,7 @@ body.session-pending #heroSection,body.session-pending #welcomePanel{display:non
 @media(max-width:900px){#adminPanel .admin-layout{grid-template-columns:190px minmax(0,1fr);gap:14px}#adminPanel .admin-sidebar{padding:15px 9px}#adminPanel .admin-nav-item{padding:10px 8px;font-size:11px}}
 @media(max-width:680px){
  #adminPanel .admin-layout{display:flex;flex-direction:column;gap:12px}
- #adminPanel .admin-sidebar{position:sticky;top:5px;z-index:20;min-height:0;width:100%;padding:9px;background:#142747;border-radius:14px;display:block;box-shadow:0 8px 20px #10234420}
+ #adminPanel .admin-sidebar{position:sticky;top:5px;z-index:20;min-height:0;width:100%;padding:9px;background:#fff;border-radius:14px;display:block;box-shadow:0 8px 20px #10234420}
  #adminPanel .admin-brand,#adminPanel .admin-nav-label,#adminPanel .admin-sidebar-foot{display:none}
  #adminPanel .admin-sidebar{display:flex;flex-direction:row;gap:6px;overflow-x:auto;scrollbar-width:none}
  #adminPanel .admin-sidebar::-webkit-scrollbar{display:none}
@@ -1611,6 +1611,52 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  #adminPanel #adminOverviewPanel>.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
  #adminPanel .admin-overview-tools{display:grid!important;grid-template-columns:minmax(0,1fr)!important}
 }
+
+/* Approved NetVanta admin workspace: dedicated page views and responsive navigation */
+#adminPanel .admin-layout{align-items:start!important}
+#adminPanel .admin-sidebar{background:#fff;border:1px solid #1a3765!important;color:#fff!important;box-shadow:0 12px 30px rgba(7,27,67,.18)!important}
+#adminPanel .admin-brand,#adminPanel .admin-sidebar-foot{color:#e8efff!important;border-color:#ffffff20!important}
+#adminPanel .admin-brand small,#adminPanel .admin-nav-label{color:#b9c9e8!important}
+#adminPanel .admin-nav-item{color:#e8efff!important;background:transparent!important;border-radius:10px!important}
+#adminPanel .admin-nav-item span{color:#d9e5ff!important}
+#adminPanel .admin-nav-item:hover{background:#fff;color:#fff!important}
+#adminPanel .admin-nav-item.active{background:linear-gradient(100deg,#d9ad49,#f0d58b)!important;color:#172b4d!important;box-shadow:inset 3px 0 #fff!important;font-weight:800!important}
+#adminPanel .admin-nav-item.active span{color:#172b4d!important}
+#adminPanel .admin-nav-item small{font-size:inherit;font-weight:inherit}
+#adminPanel .admin-content{display:block!important;min-width:0}
+#adminPanel .admin-content>.panel{margin:0 0 16px!important}
+#adminPanel .admin-content>.panel[hidden]{display:none!important}
+#adminPanel .admin-content>#adminOverviewPanel{display:block}
+#adminPanel .admin-mobile-nav{display:none!important}
+#adminPanel .admin-more-menu[hidden]{display:none!important}
+#adminPanel .admin-overview-extras,#adminPanel .admin-secondary-stats{margin-top:16px;padding:16px;background:#fff;border:1px solid #e4eaf4;border-radius:15px;box-shadow:0 4px 16px #172b4d08}
+#adminPanel .admin-overview-extra-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+#adminPanel .admin-overview-extra-grid>button,#adminPanel .admin-readiness-note{display:flex;flex-direction:column;gap:7px;text-align:left;padding:14px;border:1px solid #e3eaf5;border-radius:12px;background:#f8faff;color:#17365d;min-width:0}
+#adminPanel .admin-overview-extra-grid>button{cursor:pointer;font:inherit}
+#adminPanel .admin-overview-extra-grid small,#adminPanel .admin-readiness-note small{font-size:12px;color:#64748b;line-height:1.45}
+#adminPanel .admin-overview-extra-grid span{font-size:11px;color:#a47718;font-weight:800}
+#adminPanel .admin-secondary-stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:12px}
+#adminPanel .admin-profile-summary{display:flex;align-items:center;gap:14px;padding:16px;margin:14px 0;background:#f8faff;border:1px solid #e3eaf5;border-radius:14px}
+#adminPanel .admin-profile-avatar{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#fff;color:#f0d58b;font-weight:900;font-size:22px}
+#adminPanel .admin-placeholder-view{min-height:260px}
+@media(max-width:680px){
+ #adminPanel{padding-bottom:100px!important}
+ #adminPanel .admin-layout{display:block!important}
+ #adminPanel .admin-sidebar{display:none!important}
+ #adminPanel .admin-content>.panel{margin-bottom:12px!important}
+ #adminPanel .admin-mobile-nav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed!important;z-index:1000!important;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));gap:4px;padding:7px;background:#fff;border:1px solid #29436c!important;border-radius:16px;box-shadow:0 12px 32px #071a3540!important}
+ #adminPanel .admin-mobile-nav .admin-nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;width:100%;padding:7px 2px;color:#e8efff!important;font-size:10px;white-space:nowrap}
+ #adminPanel .admin-mobile-nav .admin-nav-item span{color:#d9e5ff!important;font-size:16px;line-height:1}
+ #adminPanel .admin-mobile-nav .admin-nav-item.active{background:#f0d58b!important;color:#172b4d!important;box-shadow:none!important}
+ #adminPanel .admin-mobile-nav .admin-nav-item.active span{color:#172b4d!important}
+ #adminPanel .admin-more-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;position:fixed;z-index:999;left:10px;right:10px;bottom:calc(82px + env(safe-area-inset-bottom));max-height:55vh;overflow:auto;padding:12px;background:#fff;border:1px solid #29436c;border-radius:16px;box-shadow:0 14px 38px #071a3560}
+ #adminPanel .admin-more-menu .admin-nav-item{display:flex;align-items:center;gap:8px;padding:11px 9px;background:#fff;color:#fff!important;border:1px solid #ffffff18;border-radius:10px;text-align:left;font-size:11px}
+ #adminPanel .admin-more-menu .admin-nav-item span{color:#f0d58b!important}
+ #adminPanel .admin-overview-extra-grid{grid-template-columns:1fr}
+ #adminPanel .admin-secondary-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #adminPanel #adminOverviewPanel>.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #adminPanel .admin-recent-card .tablewrap{overflow-x:auto}
+}
 </style>
 <!-- Meta Pixel Code (NetVanta) -->
 <script>
@@ -1714,7 +1760,7 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
 /* NetVanta dashboard refresh: clean white workspace and clear card hierarchy */
 #adminPanel{background:#f4f7fc!important;color:#172b4d!important}
 #adminPanel .admin-layout{grid-template-columns:238px minmax(0,1fr)!important;gap:18px!important;align-items:stretch!important}
-#adminPanel .admin-sidebar{border-radius:18px!important;background:linear-gradient(180deg,#071b43 0%,#102b5c 100%)!important;min-height:calc(100vh - 24px)!important;box-shadow:0 12px 30px #10234420!important}
+#adminPanel .admin-sidebar{border-radius:18px!important;background:#fff;min-height:calc(100vh - 24px)!important;box-shadow:0 12px 30px #10234420!important}
 #adminPanel .admin-brand-mark{background:linear-gradient(135deg,#1477ff,#0751c8)!important;color:#fff!important;border-radius:50%!important}
 #adminPanel .admin-nav-item span{color:#d9e8ff!important}
 #adminPanel .admin-nav-item.active{background:#1767e9!important;box-shadow:none!important}
@@ -1778,6 +1824,161 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
  #adminPanel #adminDeliveryMonitor{padding:14px!important}
 }
 
+
+/* NetVanta Admin — premium iOS-inspired LIGHT theme */
+#adminPanel{display:block!important;max-width:100%;padding:0 0 calc(96px + env(safe-area-inset-bottom))!important;color:#17243b!important;background:#f6f8fc!important}
+#adminPanel .admin-layout{display:grid;grid-template-columns:238px minmax(0,1fr);gap:22px;align-items:start;width:100%}
+#adminPanel .admin-sidebar{position:sticky;top:14px;align-self:start;min-height:calc(100vh - 28px);padding:18px 12px;background:#fff!important;border:1px solid #e5eaf2!important;border-radius:22px;color:#17243b!important;box-shadow:0 8px 28px rgba(20,42,78,.06)!important;display:flex;flex-direction:column;gap:5px}
+#adminPanel .admin-brand{display:flex;align-items:center;gap:11px;padding:4px 8px 20px;border-bottom:1px solid #edf0f5;margin-bottom:10px;color:#14233d!important}
+#adminPanel .admin-brand-mark{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(145deg,#2d86ff,#1769e8)!important;color:#fff!important;font-size:23px;font-weight:900}
+#adminPanel .admin-brand b{display:block;font-size:17px;letter-spacing:-.03em}
+#adminPanel .admin-brand small{display:block;margin-top:3px;color:#8390a3!important;font-size:9px;letter-spacing:.16em}
+#adminPanel .admin-nav-label{padding:9px 10px 6px;color:#9aa5b5!important;font-size:9px;font-weight:800;letter-spacing:.15em}
+#adminPanel .admin-nav-item{display:flex;align-items:center;gap:11px;width:100%;padding:11px 12px;border:0!important;border-radius:12px;background:transparent!important;color:#536176!important;text-align:left;font:inherit;font-size:12px;font-weight:650;cursor:pointer;transition:background .18s ease,color .18s ease,transform .18s ease}
+#adminPanel .admin-nav-item span{color:#8492a6!important;font-size:17px;line-height:1}
+#adminPanel .admin-nav-item:hover{background:#f3f7ff!important;color:#1769e8!important}
+#adminPanel .admin-nav-item.active{background:#eaf2ff!important;color:#1769e8!important;box-shadow:inset 3px 0 #1769e8!important;font-weight:800!important}
+#adminPanel .admin-nav-item.active span{color:#1769e8!important}
+#adminPanel .admin-sidebar-foot{margin-top:auto;padding:14px 9px 4px;border-top:1px solid #edf0f5;color:#718096!important;font-size:11px}
+#adminPanel .admin-live-dot,#adminPanel .admin-system-status i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#16a36a;box-shadow:0 0 0 4px #e8f8f0;margin-right:8px}
+#adminPanel .admin-content{display:block!important;min-width:0}
+#adminPanel .admin-content>.panel{margin:0 0 16px!important;padding:clamp(16px,2.2vw,23px)!important;background:#fff!important;color:#17243b!important;border:1px solid #e8edf4!important;border-radius:20px!important;box-shadow:0 8px 28px rgba(20,42,78,.045)!important}
+#adminPanel .admin-content>.panel[hidden]{display:none!important}
+#adminPanel .admin-content>.panel h2,#adminPanel .admin-content>.panel h3,#adminPanel .admin-content>.panel h4{color:#17243b!important}
+#adminPanel .muted,#adminPanel .admin-subhead p{color:#7b8799!important}
+#adminPanel .admin-dashboard-welcome{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;padding:8px 2px 12px;margin-bottom:12px}
+#adminPanel .admin-welcome-kicker{font-size:10px;font-weight:850;letter-spacing:.15em;color:#1769e8;margin-bottom:7px}
+#adminPanel .admin-dashboard-welcome h1{margin:0;color:#14233d;font-size:clamp(23px,3vw,31px);letter-spacing:-.045em;line-height:1.12}
+#adminPanel .admin-dashboard-welcome h1 span{font-size:.8em}
+#adminPanel .admin-dashboard-welcome p{margin:7px 0 0;color:#7a8799;font-size:13px}
+#adminPanel .admin-system-status{display:flex;align-items:center;white-space:nowrap;padding:9px 12px;border:1px solid #e7edf4;border-radius:999px;background:#fff;color:#68768b;font-size:11px;font-weight:700}
+#adminPanel .admin-system-status i{margin:0 8px 0 0}
+#adminPanel .admin-content #adminOverviewPanel{display:block}
+#adminPanel #adminOverviewPanel>.head{display:none}
+#adminPanel #adminOverviewPanel>.grid.admin-headline-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 16px}
+#adminPanel #adminOverviewPanel>.grid.admin-headline-stats>.stat{min-width:0;min-height:116px;padding:17px!important;border:1px solid #e8edf4!important;border-radius:17px!important;background:#fff!important;box-shadow:0 5px 18px rgba(20,42,78,.035)!important}
+#adminPanel #adminOverviewPanel>.grid.admin-headline-stats>.stat small{font-size:11px;color:#8490a1!important;font-weight:700}
+#adminPanel #adminOverviewPanel>.grid.admin-headline-stats>.stat b{font-size:clamp(19px,2vw,25px);color:#17243b!important;letter-spacing:-.04em}
+#adminPanel #adminOverviewPanel>.grid.admin-headline-stats>.stat span{display:block;margin-top:5px;color:#9aa5b4;font-size:10px}
+#adminPanel .admin-secondary-stats{margin:12px 0;padding:14px;background:#fff;border:1px solid #e8edf4;border-radius:17px}
+#adminPanel .admin-secondary-stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:10px}
+#adminPanel .admin-secondary-stat-grid .stat{min-width:0;padding:12px;border:1px solid #edf0f5;border-radius:13px;background:#fbfcfe!important}
+#adminPanel .admin-overview-tools{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:14px!important;margin:0!important}
+#adminPanel .admin-quick-actions,#adminPanel .admin-sales-card,#adminPanel .admin-recent-card,#adminPanel .admin-financial-summary,#adminPanel .admin-data-card{background:#fff!important;color:#17243b!important;border:1px solid #e8edf4!important;border-radius:17px!important;box-shadow:0 5px 18px rgba(20,42,78,.035)!important;padding:16px!important}
+#adminPanel .admin-subhead h3{color:#17243b!important;font-size:15px!important}
+#adminPanel .admin-subhead p{color:#8792a2!important;font-size:11px!important}
+#adminPanel .admin-action{background:#f3f7ff!important;color:#1859b6!important;border:1px solid #e1ebfb!important;border-radius:14px!important}
+#adminPanel .admin-action:nth-child(2){background:#effaf4!important;color:#087f5b!important;border-color:#d9f2e4!important}
+#adminPanel .admin-action:nth-child(3){background:#f4f0ff!important;color:#6847b8!important;border-color:#e9e2ff!important}
+#adminPanel .admin-action:nth-child(4){background:#fff6eb!important;color:#b76a13!important;border-color:#ffebd2!important}
+#adminPanel .admin-action>span{background:#e4efff!important;color:#1769e8!important}
+#adminPanel .admin-action small{color:inherit!important;opacity:.78}
+#adminPanel .admin-chart-key,#adminPanel .admin-trend-value,#adminPanel .admin-trend-label{color:#718096!important}
+#adminPanel .admin-chart-key i{background:#1769e8!important}
+#adminPanel .admin-trend-track{background:#edf2f8!important}
+#adminPanel .admin-trend-bar{background:linear-gradient(180deg,#63a5ff,#1769e8)!important;border-radius:7px 7px 0 0!important}
+#adminPanel #adminDeliveryMonitor{background:#f2f8ff!important;border:1px solid #e1ebf8!important;border-radius:18px!important;box-shadow:none!important;padding:17px!important;color:#17243b!important}
+#adminPanel #adminDeliveryMonitor h2{color:#17243b!important}
+#adminPanel #adminDeliveryMonitor .empty{color:#7b8799!important}
+#adminPanel #adminNotificationsPanel{background:#fbfcff!important;border:1px solid #e8edf4!important;border-radius:16px!important}
+#adminPanel #adminNotificationsPanel .admin-notification-row{background:transparent!important;border-color:#edf0f5!important}
+#adminPanel .admin-financial-summary{margin:14px 0;padding:16px!important}
+#adminPanel .admin-financial-items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+#adminPanel .admin-financial-items>div{display:grid;grid-template-columns:36px 1fr;align-items:center;column-gap:10px;padding:12px;border:1px solid #edf0f5;border-radius:14px;background:#fbfcfe}
+#adminPanel .admin-financial-items small{font-size:10px;color:#8792a2}
+#adminPanel .admin-financial-items b{grid-column:2;color:#17243b;font-size:16px;overflow-wrap:anywhere}
+#adminPanel .admin-finance-icon{grid-row:1/3;width:34px;height:34px;display:grid;place-items:center;border-radius:11px;font-size:16px;font-weight:800}
+#adminPanel .admin-finance-icon.blue{background:#eaf2ff;color:#1769e8}
+#adminPanel .admin-finance-icon.green{background:#e9f8f0;color:#13865c}
+#adminPanel .admin-finance-icon.orange{background:#fff4e5;color:#c27a17}
+#adminPanel .admin-dashboard-bottom-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+#adminPanel .admin-dashboard-list{margin-top:8px}
+#adminPanel .admin-product-rank{padding:11px 0;border-bottom:1px solid #edf0f5}
+#adminPanel .admin-product-rank:last-child{border-bottom:0}
+#adminPanel .admin-product-rank-top{display:flex;justify-content:space-between;gap:10px;font-size:12px}
+#adminPanel .admin-product-rank-top span{display:flex;align-items:center;gap:8px;min-width:0}
+#adminPanel .admin-product-rank-top b{overflow-wrap:anywhere}
+#adminPanel .admin-product-rank-top strong{color:#1769e8}
+#adminPanel .admin-product-dot{width:9px;height:9px;border-radius:50%;background:#1769e8;flex:0 0 9px}
+#adminPanel .admin-product-dot.dot-1{background:#e34d65}
+#adminPanel .admin-product-dot.dot-2{background:#8b6be8}
+#adminPanel .admin-product-track{height:6px;margin:8px 0 4px;background:#edf2f8;border-radius:99px;overflow:hidden}
+#adminPanel .admin-product-track i{display:block;height:100%;background:linear-gradient(90deg,#62a5ff,#1769e8);border-radius:99px}
+#adminPanel .admin-product-rank small{color:#8792a2;font-size:10px}
+#adminPanel .admin-activity-row{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #edf0f5}
+#adminPanel .admin-activity-row:last-child{border-bottom:0}
+#adminPanel .admin-activity-icon{width:31px;height:31px;flex:0 0 31px;display:grid;place-items:center;border-radius:10px;background:#eaf2ff;color:#1769e8;font-weight:800}
+#adminPanel .admin-activity-row b{font-size:11px;color:#17243b}
+#adminPanel .admin-activity-row p{margin:3px 0;color:#718096;font-size:10px;line-height:1.45}
+#adminPanel .admin-activity-row small{color:#9aa5b4;font-size:9px}
+#adminPanel .admin-overview-extras{margin-top:14px;padding:14px;background:#fff;border:1px solid #e8edf4;border-radius:17px}
+#adminPanel .admin-overview-extra-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+#adminPanel .admin-overview-extra-grid>button,#adminPanel .admin-readiness-note{display:flex;flex-direction:column;gap:7px;text-align:left;padding:13px;border:1px solid #e8edf4;border-radius:13px;background:#fbfcfe!important;color:#17243b!important;min-width:0}
+#adminPanel .admin-overview-extra-grid>button{cursor:pointer;font:inherit}
+#adminPanel .admin-overview-extra-grid small,#adminPanel .admin-readiness-note small{font-size:11px;color:#718096!important;line-height:1.45}
+#adminPanel .admin-overview-extra-grid span{font-size:10px;color:#1769e8;font-weight:800}
+#adminPanel .admin-content .panel .stat{background:#fff!important;color:#17243b!important;border-color:#e8edf4!important}
+#adminPanel .admin-content .notice{background:#fff8eb!important;border:1px solid #f6e6c8!important;color:#875b16!important}
+#adminPanel .admin-content input,#adminPanel .admin-content select,#adminPanel .admin-content textarea{background:#fff!important;color:#17243b!important;border-color:#dfe6ef!important}
+#adminPanel .admin-content th{background:#f6f8fb!important;color:#718096!important}
+#adminPanel .admin-content td{color:#344256}
+#adminPanel .admin-content .tablewrap{border-color:#e8edf4!important}
+#adminPanel .admin-content .btn.primary{background:#1769e8!important;color:#fff!important;border-color:#1769e8!important}
+#adminPanel .admin-content .btn.soft{background:#edf4ff!important;color:#1762ca!important;border-color:#dce9ff!important}
+#adminPanel .admin-content .btn.danger{background:#fff0f0!important;color:#b42318!important;border-color:#f5d2d2!important}
+#adminPanel .admin-profile-summary{display:flex;align-items:center;gap:14px;padding:16px;margin:14px 0;background:#f8faff;border:1px solid #e8edf4;border-radius:14px}
+#adminPanel .admin-profile-avatar{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#eaf2ff;color:#1769e8;font-weight:900;font-size:22px}
+#adminPanel .admin-placeholder-view{min-height:260px}
+#adminPanel .admin-mobile-nav{display:none!important}
+#adminPanel .admin-more-menu[hidden]{display:none!important}
+#adminPanel .admin-more-menu{background:#fff!important;border:1px solid #e6ebf2!important;box-shadow:0 14px 38px rgba(20,42,78,.16)!important;border-radius:18px!important}
+#adminPanel .admin-more-menu .admin-nav-item{background:#f7f9fc!important;color:#536176!important;border:1px solid #edf0f5!important}
+#adminPanel .admin-more-menu .admin-nav-item span{color:#1769e8!important}
+#adminPanel .admin-mobile-nav{display:none!important}
+#adminPanel .admin-mobile-nav .admin-nav-item{color:#7a8799!important}
+#adminPanel .admin-mobile-nav .admin-nav-item span{color:#7a8799!important}
+#adminPanel .admin-mobile-nav .admin-nav-item.active{background:#edf4ff!important;color:#1769e8!important;box-shadow:inset 0 -2px #1769e8!important}
+#adminPanel .admin-mobile-nav .admin-nav-item.active span{color:#1769e8!important}
+@media(max-width:900px){#adminPanel .admin-layout{grid-template-columns:200px minmax(0,1fr)!important}#adminPanel #adminOverviewPanel>.grid.admin-headline-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}#adminPanel .admin-secondary-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){
+ #adminPanel{padding-bottom:calc(102px + env(safe-area-inset-bottom))!important}
+ #adminPanel .admin-layout{display:block!important}
+ #adminPanel .admin-sidebar{display:none!important}
+ #adminPanel .admin-content>.panel{margin-bottom:12px!important;padding:15px!important;border-radius:17px!important}
+ #adminPanel .admin-dashboard-welcome{display:block;padding:5px 3px 8px}
+ #adminPanel .admin-dashboard-welcome h1{font-size:24px}
+ #adminPanel .admin-system-status{display:inline-flex;margin-top:12px}
+ #adminPanel #adminOverviewPanel>.grid.admin-headline-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+ #adminPanel #adminOverviewPanel>.grid.admin-headline-stats>.stat{min-height:102px;padding:13px!important}
+ #adminPanel .admin-overview-tools{grid-template-columns:1fr!important}
+ #adminPanel .admin-financial-items{grid-template-columns:1fr}
+ #adminPanel .admin-dashboard-bottom-grid{grid-template-columns:1fr}
+ #adminPanel .admin-overview-extra-grid{grid-template-columns:1fr}
+ #adminPanel .admin-quick-actions,#adminPanel .admin-sales-card,#adminPanel .admin-recent-card,#adminPanel .admin-data-card{padding:14px!important}
+ #adminPanel #adminNotificationsPanel{padding:13px!important}
+ #adminPanel #adminDeliveryMonitor{padding:14px!important}
+ #adminPanel .admin-mobile-nav{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));position:fixed!important;z-index:1000!important;left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom));gap:2px;padding:7px 5px calc(7px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96)!important;border:1px solid #e6ebf2!important;border-radius:18px!important;box-shadow:0 8px 32px rgba(20,42,78,.13)!important;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+ #adminPanel .admin-mobile-nav .admin-nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:0;width:100%;padding:7px 2px;background:transparent!important;border:0!important;color:#8994a5!important;font-size:10px;white-space:nowrap}
+ #adminPanel .admin-mobile-nav .admin-nav-item span{color:#8994a5!important;font-size:18px;line-height:1}
+ #adminPanel .admin-mobile-nav .admin-nav-item.active{background:#edf4ff!important;color:#1769e8!important;box-shadow:none!important;border-radius:12px!important}
+ #adminPanel .admin-mobile-nav .admin-nav-item.active span{color:#1769e8!important}
+ #adminPanel .admin-more-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;position:fixed;z-index:999;left:10px;right:10px;bottom:calc(80px + env(safe-area-inset-bottom));max-height:58vh;overflow:auto;padding:12px;background:rgba(255,255,255,.98)!important;border:1px solid #e6ebf2!important;border-radius:18px!important;box-shadow:0 14px 38px rgba(20,42,78,.18)!important;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+ #adminPanel .admin-more-menu .admin-nav-item{display:flex;align-items:center;gap:9px;padding:11px 10px;background:#f7f9fc!important;color:#536176!important;border:1px solid #edf0f5!important;border-radius:12px!important;text-align:left;font-size:11px}
+ #adminPanel .admin-more-menu .admin-nav-item span{color:#1769e8!important}
+ #adminPanel .admin-recent-card .tablewrap{overflow-x:auto}
+ #adminPanel .admin-content .tablewrap{max-width:100%;overflow-x:auto}
+ #adminPanel .admin-content table{min-width:620px}
+}
+@media(max-width:380px){#adminPanel .admin-dashboard-welcome h1{font-size:22px}#adminPanel .admin-content>.panel{padding:13px!important}#adminPanel #adminOverviewPanel>.grid.admin-headline-stats>.stat{padding:11px!important}#adminPanel #adminOverviewPanel>.grid.admin-headline-stats>.stat b{font-size:18px}}
+@media(prefers-reduced-motion:reduce){#adminPanel *,#adminPanel *:before,#adminPanel *:after{transition:none!important;animation:none!important}}
+
+/* Light-mode app chrome: header, controls and safe-area surfaces */
+body.admin-light-mode .top{background:rgba(255,255,255,.96)!important;color:#17243b!important;border-bottom:1px solid #e8edf4!important;box-shadow:0 3px 14px rgba(20,42,78,.035)!important;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+body.admin-light-mode .top .brand{color:#17243b!important}
+body.admin-light-mode .top .iconbtn,body.admin-light-mode .top .outline{background:#fff!important;color:#536176!important;border:1px solid #e3e9f1!important}
+body.admin-light-mode .top .profileBtn{background:#eaf2ff!important;color:#1769e8!important}
+body.admin-light-mode .top .light{background:#edf4ff!important;color:#1769e8!important}
+body.admin-light-mode{background:#f6f8fc!important;color:#17243b!important;color-scheme:light}
 </style></head><body class="session-pending">
 <header class="top"><div class="nav"><div class="brand"><span class="logo">N</span><span>NetVanta</span></div><div class="navright"><button type="button" id="menuOpen" class="iconbtn menu-trigger hidden" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button><button type="button" id="profileOpen" class="profileBtn hidden" aria-label="Open profile">◎</button><button type="button" id="navLogin" class="light">Log in</button><button type="button" id="navSignup" class="primary">Create account</button><button type="button" id="adminOpen" class="light hidden">Admin</button><button type="button" id="navLogout" class="outline hidden">Log out</button></div></div></header>
 <div id="drawerShade" class="drawerShade hidden"></div>
@@ -1871,12 +2072,12 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
 <section id="profilePanel" class="panel hidden"><div class="head"><div><h2>My Profile</h2><div class="muted">Keep your contact details up to date and protect your account.</div></div><button class="btn soft" data-back type="button">← Back</button></div><div class="profile-section"><div class="profile-section-heading"><span class="profile-section-icon">👤</span><div><h3>Personal Information</h3><p class="muted">Your details used for your NetVanta account.</p></div></div><div class="profile-fields"><div class="field"><label for="profileFirst">First Name</label><input id="profileFirst" autocomplete="given-name" placeholder="First name"></div><div class="field"><label for="profileLast">Last Name</label><input id="profileLast" autocomplete="family-name" placeholder="Last name"></div><div class="field"><label for="profilePhone">Phone Number</label><input id="profilePhone" type="tel" autocomplete="tel" placeholder="+233..."><div class="muted">Changing this number requires SMS verification.</div><div class="row" style="margin-top:9px"><button type="button" id="sendProfilePhoneOtp" class="btn soft">Send code to new number</button></div><div id="profileOtpArea" class="hidden"><div class="field"><label for="profilePhoneOtp">Six-digit SMS code</label><input id="profilePhoneOtp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="Enter verification code"></div><button type="button" id="verifyProfilePhoneOtp" class="btn soft">Verify and update number</button></div><p id="profilePhoneOtpMsg" class="muted" aria-live="polite"></p></div><div class="field"><label for="profileEmail">Email Address</label><input id="profileEmail" type="email" autocomplete="email" disabled><div class="muted">Email address cannot be changed here. Contact support if it needs updating.</div></div></div><button id="saveProfile" class="btn primary">Save Profile Changes</button><p id="profileMsg" class="muted" aria-live="polite"></p></div><div class="profile-section"><div class="profile-section-heading"><span class="profile-section-icon">🔒</span><div><h3>Change Password</h3><p class="muted">Use at least 8 characters for your new password.</p></div></div><div class="field"><label for="currentPassword">Current Password</label><input id="currentPassword" type="password" autocomplete="current-password" placeholder="Enter current password"></div><div class="field"><label for="newPassword">New Password</label><input id="newPassword" type="password" autocomplete="new-password" placeholder="At least 8 characters"></div><div class="field"><label for="confirmNewPassword">Confirm New Password</label><input id="confirmNewPassword" type="password" autocomplete="new-password" placeholder="Enter new password again"></div><button id="updatePassword" class="btn primary">Update Password</button><p id="passwordMsg" class="muted" aria-live="polite"></p></div><div class="profile-danger"><h3>Delete Account</h3><p class="muted">Permanently delete your account and every record attached to it — orders, transactions, wallet, and history. This cannot be undone and support cannot restore it.</p><button id="deleteAccount" class="btn danger">Delete My Account</button><p id="deleteMsg" class="muted" aria-live="polite"></p></div></section>
 <section id="supportPanel" class="panel hidden" role="dialog" aria-modal="true" aria-labelledby="supportTitle"><div class="head"><div><h2 id="supportTitle">NetVanta Support</h2></div><button id="closeSupportPopup" class="btn soft" type="button" aria-label="Close support chat">✕</button></div><div class="support-chat-shell"><div class="support-chat-top"><span class="support-chat-avatar">N</span><div><b>NetVanta Support</b><div id="supportStatus" class="support-status-line" aria-live="polite">Connecting to support…</div></div></div><div id="customerSupportMessages" class="support-chat-messages" aria-live="polite"><div class="empty">Loading your conversation…</div></div><div class="support-chat-compose"><input id="customerSupportInput" placeholder="Type your message…" maxlength="5000" aria-label="Your support message"><button id="sendCustomerSupport" class="btn primary">Send</button></div><button id="requestHumanSupport" class="btn soft support-human-button">Speak to an Admin</button><div class="support-chat-footnote">Please do not share passwords, PINs or one-time codes in chat.</div></div></section>
 <section id="adminPanel" class="hidden"><div class="admin-layout"><aside class="admin-sidebar" aria-label="Admin navigation"><div class="admin-brand"><span class="admin-brand-mark">N</span><span><b>NetVanta</b><small>ADMIN CONSOLE</small></span></div><div class="admin-nav-label">WORKSPACE</div><button type="button" class="admin-nav-item active" data-admin-jump="adminOverviewPanel"><span>▦</span>Dashboard</button><button type="button" class="admin-nav-item" data-admin-jump="adminOrdersPanel"><span>▤</span>Orders</button><button type="button" class="admin-nav-item" data-admin-jump="adminCustomersPanel"><span>♙</span>Customers</button><button type="button" class="admin-nav-item" data-admin-jump="financialOverviewPanel"><span>◈</span>Wallet &amp; Finances</button><button type="button" class="admin-nav-item" data-admin-jump="adminBuyDataPanel"><span>⇄</span>Supplier Management</button><button type="button" class="admin-nav-item" data-admin-jump="pricingManagerPanel"><span>◇</span>Pricing Control</button><button type="button" class="admin-nav-item" data-admin-jump="profitManagementPanel"><span>↗</span>Profit Withdrawals</button><button type="button" class="admin-nav-item" data-admin-jump="adminSupportInboxPanel"><span>✉</span>Support Messages</button><button type="button" class="admin-nav-item" data-admin-jump="manualRefundsPanel"><span>↩</span>Refunds</button><button type="button" class="admin-nav-item" data-admin-jump="supplierAuditPanel"><span>◷</span>Supplier Audit</button><div class="admin-sidebar-foot"><span class="admin-live-dot"></span> Admin access active</div></aside><div class="admin-content"><div class="panel" id="adminOverviewPanel"><div class="head"><div><h2>Admin Dashboard</h2><div class="muted">NetVanta store overview</div></div><span class="pill" style="color:#087f5b;border-color:#bdebdc">ADMIN</span></div>
-<div class="grid"><div class="stat"><small>Total customers</small><b id="aCustomers">0</b></div><div class="stat"><small>Total orders</small><b id="aOrders">0</b></div><div class="stat"><small>Sales revenue</small><b id="aSales">GHS 0.00</b></div><div class="stat"><small>Orders today</small><b id="aToday">0</b></div><div class="stat"><small>Data orders</small><b id="aDataOrders">0</b></div><div class="stat"><small>Airtime orders</small><b id="aAirtimeOrders">0</b></div><div class="stat"><small>MTN data</small><b id="aMtn">0</b></div><div class="stat"><small>Telecel data</small><b id="aTelecel">0</b></div><div class="stat"><small>AT data</small><b id="aAt">0</b></div><div class="stat"><small>MTN Fibre</small><b id="aFibre">0</b></div><div class="stat"><small>Open support chats</small><b id="aChats">0</b></div></div><div class="panel" id="adminNotificationsPanel" style="margin:14px 0;border:1px solid #dce5ef;background:#fbfdff">
+<div class="grid admin-headline-stats"><div class="stat"><small>Total Orders</small><b id="aOrders">0</b><span>Recorded orders</span></div><div class="stat"><small>Total Customers</small><b id="aCustomers">0</b><span>Registered accounts</span></div><div class="stat"><small>Total Revenue</small><b id="aSales">GHS 0.00</b><span>Completed orders</span></div><div class="stat"><small>Business Profit</small><b id="aDashboardProfit">GHS 0.00</b><span>Settled gross profit</span></div><div class="stat"><small>Orders today</small><b id="aToday">0</b></div><div class="stat"><small>Data orders</small><b id="aDataOrders">0</b></div><div class="stat"><small>Airtime orders</small><b id="aAirtimeOrders">0</b></div><div class="stat"><small>MTN data</small><b id="aMtn">0</b></div><div class="stat"><small>Telecel data</small><b id="aTelecel">0</b></div><div class="stat"><small>AT data</small><b id="aAt">0</b></div><div class="stat"><small>MTN Fibre</small><b id="aFibre">0</b></div><div class="stat"><small>Open support chats</small><b id="aChats">0</b></div></div><div class="panel" id="adminNotificationsPanel" style="margin:14px 0;border:1px solid #dce5ef;background:#fbfdff">
  <div class="head" style="align-items:center"><div><h2 style="font-size:18px;margin:0">Live Notifications <span id="adminNotificationUnread" class="pill">0 unread</span></h2><div class="muted">New registrations, successful wallet top-ups and delivered data orders</div></div><button type="button" class="btn soft" id="adminMarkAllNotificationsRead">Mark all read</button></div>
  <div id="adminNotificationEmailStatus" class="muted" style="font-size:12px;margin:8px 0">Email notifications are queued for delivery.</div>
  <div id="adminNotificationsList" aria-live="polite"><div class="empty">Loading notifications…</div></div>
 </div>
-<div class="admin-quick-actions"><div class="admin-subhead"><div><h3>Quick Actions</h3><p>Jump straight to the tools you use most</p></div></div><div class="admin-action-grid"><button type="button" class="admin-action" data-admin-jump="pricingManagerPanel"><span>＋</span><b>Manage pricing</b><small>Products and margins</small></button><button type="button" class="admin-action" data-admin-jump="profitManagementPanel"><span>↗</span><b>Withdraw profit</b><small>Business wallet</small></button><button type="button" class="admin-action" data-admin-jump="adminOrdersPanel"><span>▤</span><b>View orders</b><small>Customer purchases</small></button><button type="button" class="admin-action" data-admin-jump="adminSupportInboxPanel"><span>✉</span><b>Reply to support</b><small>Customer messages</small></button></div></div><div class="panel nv-delivery-shell" id="adminDeliveryMonitor" style="margin:14px 0;background:linear-gradient(125deg,#f4eacb 0%,#dff0e8 48%,#c9e6e8 100%);border:1px solid rgba(255,255,255,.8);border-radius:28px;padding:20px;color:#101827;box-shadow:0 14px 34px rgba(20,45,80,.12)">
+<div class="admin-quick-actions"><div class="admin-subhead"><div><h3>Quick Actions</h3><p>Jump straight to the tools you use most</p></div></div><div class="admin-action-grid"><button type="button" class="admin-action" data-admin-jump="pricingManagerPanel"><span>＋</span><b>Manage pricing</b><small>Products and margins</small></button><button type="button" class="admin-action" data-admin-jump="profitManagementPanel"><span>↗</span><b>Withdraw profit</b><small>Business wallet</small></button><button type="button" class="admin-action" data-admin-jump="adminOrdersPanel"><span>▤</span><b>View orders</b><small>Customer purchases</small></button><button type="button" class="admin-action" data-admin-jump="adminSupportInboxPanel"><span>✉</span><b>Reply to support</b><small>Customer messages</small></button></div></div><div class="admin-financial-summary"><div class="admin-subhead"><div><h3>Financial Summary</h3><p>Live values from NetVanta wallet and order records</p></div><button type="button" class="admin-text-action" data-admin-jump="financialOverviewPanel">Manage wallets →</button></div><div class="admin-financial-items"><div><span class="admin-finance-icon blue">◈</span><small>Customer Wallet Balance</small><b id="adminDashboardWallets">GHS 0.00</b></div><div><span class="admin-finance-icon green">₵</span><small>Business Wallet (Profit)</small><b id="adminDashboardBusinessProfit">GHS 0.00</b></div><div><span class="admin-finance-icon orange">◷</span><small>Pending / Processing Orders</small><b id="adminDashboardPendingValue">GHS 0.00</b></div></div></div><div class="panel nv-delivery-shell" id="adminDeliveryMonitor" style="margin:14px 0;background:linear-gradient(125deg,#f4eacb 0%,#dff0e8 48%,#c9e6e8 100%);border:1px solid rgba(255,255,255,.8);border-radius:28px;padding:20px;color:#101827;box-shadow:0 14px 34px rgba(20,45,80,.12)">
  <div class="nv-delivery-heading"><div><h2 style="font-size:21px;color:#101827;margin:0 0 5px">Delivery Status</h2><div style="color:#64748b">Live network delivery performance · Admin controls</div></div></div>
  <div id="adminDeliveryMonitorRows"><div class="empty">Loading delivery performance…</div></div>
  <div style="font-size:11px;color:#64748b;margin-top:12px">Choose Automatic to use measured NetVanta order performance, or manually set the status customers see.</div>
@@ -1961,14 +2162,29 @@ function authStorageStatus(){try{return localStorage.getItem(AUTH_STORAGE_KEY)?'
 const ADMIN='princeafful079@gmail.com', $=id=>document.getElementById(id);
 
 
+
 let user=null,isAdmin=false,profile=null,wallet=0,orders=[],transactions=[],activeFilter='all',airNetwork='MTN',dataNetwork='MTN',customerConversation=null,adminConversations=[],activeAdminConversation=null,adminProfileMap={},adminCustomers=[],adminOrders=[],adminWalletMap={},signupOtpChallenge=null,signupOtpVerifiedPhone=null,signupOtpToken=null,profileOtpChallenge=null;
 const pages=['welcomePanel','authPanel','passwordResetPanel','customerPanel','topupPanel','airtimePanel','dataPanel','ordersPanel','transactionsPanel','pendingPaymentsPanel','profilePanel','supportPanel','adminPanel'];
+initAdminWorkspace();
 const money=n=>'GHS '+Number(n||0).toFixed(2);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const date=s=>s?new Date(s).toLocaleString('en-GH',{dateStyle:'medium',timeStyle:'short'}):'—';
+function renderAdminOverviewExtras(){
+ const products=$('adminTopProductsList'),activities=$('adminRecentActivitiesList');
+ if(products){
+  const counts=new Map();
+  (adminOrders||[]).forEach(order=>{const network=String(order.network||'Data').trim();const bundle=String(order.bundle_name|| (order.bundle_gb?order.bundle_gb+'GB':'') || order.product_type || 'Bundle').trim();const label=(network+' '+bundle).replace(/\\s+/g,' ').trim();counts.set(label,(counts.get(label)||0)+1)});
+  const ranked=[...counts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,3),total=(adminOrders||[]).length;
+  products.innerHTML=ranked.length?ranked.map(([label,count],index)=>{const pct=total?Math.round(count/total*100):0;return '<div class="admin-product-rank"><div class="admin-product-rank-top"><span><i class="admin-product-dot dot-'+index+'"></i><b>'+esc(label)+'</b></span><strong>'+pct+'%</strong></div><div class="admin-product-track"><i style="width:'+pct+'%"></i></div><small>'+count+' recorded order'+(count===1?'':'s')+'</small></div>'}).join(''):'<div class="empty">No order records yet, so product rankings are not available.</div>';
+ }
+ if(activities){
+  const rows=(adminNotifications||[]).slice(0,5);
+  activities.innerHTML=rows.length?rows.map(n=>{const icon=n.event_type==='customer_registered'?'♙':n.event_type==='wallet_top_up'?'₵':n.event_type==='support_message'?'✉':'✓';return '<div class="admin-activity-row"><span class="admin-activity-icon">'+icon+'</span><div><b>'+esc(n.title||'Account activity')+'</b><p>'+esc(n.message||'')+'</p><small>'+esc(date(n.created_at))+'</small></div></div>'}).join(''):'<div class="empty">No activity notifications have been recorded yet.</div>';
+ }
+}
 function normalizeOtpPhone(value){let v=String(value||'').trim().replace(/[\s()-]/g,'');if(v.startsWith('00'))v='+'+v.slice(2);if(/^0\d{9}$/.test(v))v='+233'+v.slice(1);else if(/^233\d{9}$/.test(v))v='+'+v;return /^\+[1-9]\d{7,14}$/.test(v)?v:null}
 async function otpErrorMessage(error,fallback){if(error){try{const body=await error.context.json();return body.error||body.message||fallback}catch{return error.message||fallback}}return fallback}
-function page(name){pages.forEach(id=>{const el=$(id),active=id===name;el.classList.toggle('hidden',!active);if(active)el.style.removeProperty('display');else el.style.setProperty('display','none','important')});if(name==='dataPanel'&&user)loadCustomerCatalog();$('heroSection').classList.toggle('hidden',name!=='welcomePanel');$('menuOpen').classList.toggle('hidden',!user||isAdmin);$('profileOpen').classList.toggle('hidden',!user||isAdmin);$('navLogin').classList.toggle('hidden',!!user);$('navSignup').classList.toggle('hidden',!!user);$('adminOpen').classList.toggle('hidden',!user||!isAdmin);$('navLogout').classList.toggle('hidden',!user);if(user&&!isAdmin){$('chatFab').classList.remove('hidden')}else $('chatFab').classList.add('hidden');$('floatingRefresh').classList.toggle('hidden',!(user&&(name==='customerPanel'||(isAdmin&&name==='adminPanel'))));closeMenu();window.scrollTo({top:0,behavior:'instant'})}
+function page(name){pages.forEach(id=>{const el=$(id),active=id===name;el.classList.toggle('hidden',!active);if(active)el.style.removeProperty('display');else el.style.setProperty('display','none','important')});if(name==='dataPanel'&&user)loadCustomerCatalog();$('heroSection').classList.toggle('hidden',name!=='welcomePanel');$('menuOpen').classList.toggle('hidden',!user||isAdmin);$('profileOpen').classList.toggle('hidden',!user||isAdmin);$('navLogin').classList.toggle('hidden',!!user);$('navSignup').classList.toggle('hidden',!!user);$('adminOpen').classList.toggle('hidden',!user||!isAdmin);$('navLogout').classList.toggle('hidden',!user);if(user&&!isAdmin){$('chatFab').classList.remove('hidden')}else $('chatFab').classList.add('hidden');$('floatingRefresh').classList.toggle('hidden',!(user&&(name==='customerPanel'||(isAdmin&&name==='adminPanel'))));document.body.classList.toggle('admin-light-mode',!!(isAdmin&&name==='adminPanel'));closeMenu();window.scrollTo({top:0,behavior:'instant'})}
 function openMenu(){$('drawer').classList.remove('hidden');$('drawerShade').classList.remove('hidden');$('drawer').setAttribute('aria-hidden','false');$('menuOpen').setAttribute('aria-expanded','true');document.body.classList.add('menu-open')}
 function closeMenu(){$('drawer').classList.add('hidden');$('drawerShade').classList.add('hidden');$('drawer').setAttribute('aria-hidden','true');$('menuOpen').setAttribute('aria-expanded','false');document.body.classList.remove('menu-open')}
 function normalizeOrderStatus(value){const s=String(value||'unknown').toLowerCase().trim().replace(/[ -]+/g,'_');if(['success','successful','complete','delivered'].includes(s))return 'completed';if(['in_progress','inprogress','submitted'].includes(s))return 'processing';if(['awaiting_supplier','waiting_supplier'].includes(s))return 'queued';if(['awaiting_payment','payment_pending'].includes(s))return 'pending';if(['canceled'].includes(s))return 'cancelled';return s}
@@ -2418,6 +2634,7 @@ async function renderAdmin(){loadDeliveryMonitor();
  $('aSales').textContent=money(all.filter(x=>x.status==='completed').reduce((s,x)=>s+Number(x.amount||0),0));
  const now=new Date();
  $('aToday').textContent=all.filter(x=>new Date(x.created_at).toDateString()===now.toDateString()).length;
+ $('aDashboardProfit').textContent=$('aGrossProfit')?.textContent||'GHS 0.00';
  $('aDataOrders').textContent=dataOrders.length;$('aAirtimeOrders').textContent=airtimeOrders.length;
  $('aMtn').textContent=dataOrders.filter(x=>x.network==='MTN').length;
  $('aTelecel').textContent=dataOrders.filter(x=>x.network==='Telecel').length;
@@ -2431,6 +2648,7 @@ async function renderAdmin(){loadDeliveryMonitor();
  $('adminRecentOrders').innerHTML=all.length?all.slice(0,5).map(x=>{const c=adminProfileMap[x.user_id]||{},name=[c.first_name,c.last_name].filter(Boolean).join(' ')||c.full_name||c.email||('Customer '+String(x.user_id).slice(0,8));const product=[x.network||'',x.bundle_name||x.bundle_gb||x.product_type||'Data'].filter(Boolean).join(' · ');return '<tr><td><span class="admin-customer-name">'+esc(name)+'</span></td><td><span>'+esc(product)+'</span></td><td>'+money(x.amount)+'</td><td>'+esc(x.status||'—')+'</td><td>'+date(x.created_at)+'</td></tr>'}).join(''):'<tr><td colspan="5" class="empty">No customer orders recorded yet.</td></tr>';
 
  $('aWalletLiability').textContent=money((w.data||[]).reduce((s,x)=>s+Number(x.balance||0),0));
+ $('adminDashboardWallets').textContent=$('aWalletLiability').textContent;
  $('aTopups').textContent=money((t.data||[]).filter(x=>x.type==='top_up'&&x.status==='completed').reduce((s,x)=>s+Number(x.amount||0),0));
  $('aRefunds').textContent=money((t.data||[]).filter(x=>x.type==='refund'&&['completed','reversed'].includes(x.status)).reduce((s,x)=>s+Number(x.amount||0),0));
  $('aFailedOrders').textContent=all.filter(x=>x.status==='failed').length;
@@ -2440,7 +2658,11 @@ async function renderAdmin(){loadDeliveryMonitor();
  const settled=completed.filter(x=>Boolean(x.profit_settled_at));
  $('aSupplierCosts').textContent=money(settled.reduce((sum,x)=>sum+Number(x.supplier_cost||0),0));
  $('aGrossProfit').textContent=money(settled.reduce((sum,x)=>sum+Number(x.profit_amount||0),0));
+ $('aDashboardProfit').textContent=$('aGrossProfit').textContent;
+ renderAdminOverviewExtras();
  $('aOpenOrderValue').textContent=money(all.filter(x=>['pending','processing','queued','blacklisted'].includes(String(x.status||'').toLowerCase())).reduce((sum,x)=>sum+Number(x.amount||0),0));
+ $('adminDashboardPendingValue').textContent=$('aOpenOrderValue').textContent;
+ $('adminDashboardBusinessProfit').textContent=$('aGrossProfit').textContent;
  $('aRefundExposure').textContent=money(all.filter(x=>String(x.status||'').toLowerCase()==='failed'&&!x.customer_refunded_at).reduce((sum,x)=>sum+Number(x.amount||0),0));
  $('aCostMissing').textContent=String(completed.filter(x=>!x.profit_settled_at).length);
   $('adminOrderRows').innerHTML=all.length?all.map(x=>{const c=adminProfileMap[x.user_id]||{},name=[c.first_name,c.last_name].filter(Boolean).join(' ')||c.full_name||c.email||('Customer '+String(x.user_id).slice(0,8));let refundControl='<span class="muted">Not eligible</span>';if(x.customer_refunded_at){refundControl='<span class="order-status status-completed">Customer refunded</span>'}else if(String(x.status||'').toLowerCase()==='failed'){refundControl='<button class="btn primary" data-order-refund-action="refund" data-order-id="'+esc(x.id)+'">Refund customer '+money(x.amount)+'</button>'}return '<tr><td>'+esc(name)+(c.email?'<div class="muted">'+esc(c.email)+'</div>':'')+'</td><td>'+esc(c.phone||'—')+'</td><td>'+esc(x.product_type||'data')+'</td><td>'+esc(x.network)+'</td><td>'+esc(x.bundle_name||x.bundle_gb||'—')+'</td><td>'+money(x.amount)+'</td><td>'+esc(x.status)+'</td><td>'+date(x.created_at)+'</td><td>'+refundControl+'</td></tr>'}).join(''):'<tr><td colspan="9" class="empty">No orders yet.</td></tr>';
@@ -2469,7 +2691,7 @@ async function loadAdminNotifications(){
  if(!user||!isAdmin)return false;
  const {data,error}=await supabase.from('admin_notifications').select('id,event_type,title,message,details,created_at,read_at,email_status,email_error').order('created_at',{ascending:false}).limit(60);
  if(error){console.error('Admin notifications could not be loaded:',error);$('adminNotificationsList').innerHTML='<div class="empty">Notifications unavailable: '+esc(error.message)+'</div>';return false}
- adminNotifications=data||[];renderAdminNotifications();return true;
+ adminNotifications=data||[];renderAdminNotifications();renderAdminOverviewExtras();return true;
 }
 async function markAdminNotificationRead(id){
  if(!user||!isAdmin||!id)return;
@@ -2635,7 +2857,95 @@ $('refreshTransactions').onclick=()=>runCustomerRefresh($('refreshTransactions')
 $('refreshPendingPayments').onclick=()=>runCustomerRefresh($('refreshPendingPayments'),$('pendingRefreshMsg'),loadTransactions);$('pendingPaymentRows').addEventListener('click',e=>{const b=e.target.closest('[data-pending-verify]');if(b)explainPendingVerification()});$('transactionSearch').oninput=renderTransactions;$('transactionStatusFilter').onchange=renderTransactions;$('transactionTypeFilter').onchange=renderTransactions;$('exportTransactions').onclick=()=>csvDownload([['Date','Description','Type','Amount','Status','Reference'],...transactions.map(t=>[t.created_at,t.description,t.type,t.amount,t.status,t.reference])],'netvanta-transactions.csv');
 $('saveProfile').onclick=saveProfile;$('sendSignupOtp').onclick=sendSignupOtp;$('verifySignupOtp').onclick=verifySignupOtp;$('phone').addEventListener('input',()=>{signupOtpChallenge=null;signupOtpVerifiedPhone=null;signupOtpToken=null;$('signupOtpMsg').textContent='Phone changed. Send a new code to verify this number.'});$('sendProfilePhoneOtp').onclick=sendProfilePhoneOtp;$('verifyProfilePhoneOtp').onclick=verifyProfilePhoneOtp;$('profilePhone').addEventListener('input',()=>{profileOtpChallenge=null;$('profileOtpArea').classList.add('hidden');$('profilePhoneOtpMsg').textContent='Phone changed. Send a new code to verify this number.'});$('updatePassword').onclick=changePassword;$('deleteAccount').onclick=()=>$('deleteMsg').textContent='For your security, account deletion must be handled through a verified support request. Please contact NetVanta support so the request and identity can be checked before permanent deletion.';$('chatFab').onclick=()=>{if(!user||isAdmin)return;page('supportPanel');loadCustomerSupport();setTimeout(()=>$('customerSupportInput').focus(),150)};$('closeSupportPopup').onclick=()=>page('customerPanel');$('sendCustomerSupport').onclick=sendCustomerSupport;$('requestHumanSupport').onclick=()=>{if(!$('customerSupportInput').value.trim())$('customerSupportInput').value='I would like to speak to a human agent, please.';sendCustomerSupport()};$('customerSupportInput').onkeydown=e=>{if(e.key==='Enter')sendCustomerSupport()};$('adminConversationSearch').oninput=renderAdminConversationList;$('adminConversationFilter').onchange=renderAdminConversationList;$('adminSupportBack').onclick=()=>{$('adminSupportInboxPanel').classList.remove('chat-open')};$('sendAdminSupport').onclick=sendAdminSupport;$('adminSupportInput').onkeydown=e=>{if(e.key==='Enter')sendAdminSupport()};$('resolveAdminSupport').onclick=resolveAdminSupport;
  async function runManualCustomerRefund(id,button){if(!id||!isAdmin)return;const order=adminOrders.find(o=>o.id===id);if(!order){alert('Order details are not loaded. Refresh the dashboard and try again.');return}if(String(order.status||'').toLowerCase()!=='failed'){alert('Only failed customer orders can be refunded.');return}if(order.customer_refunded_at){alert('This customer order has already been refunded.');await renderAdmin();return}if(!confirm('Before continuing, personally check KiNG FLEXY: have the supplier funds for this failed order actually returned to your KiNG FLEXY wallet? Choose OK only if the funds are back.'))return;if(!confirm('Refund '+money(order.amount)+' to this customer’s NetVanta wallet now? This action can only be completed once.'))return;button.disabled=true;const original=button.textContent;button.textContent='Processing refund…';try{if(!order.supplier_refund_confirmed_at){const {error:confirmError}=await supabase.rpc('confirm_order_supplier_refund',{p_order_id:id});if(confirmError)throw new Error('Supplier refund check could not be saved: '+confirmError.message)}const {data,error}=await supabase.rpc('refund_customer_order',{p_order_id:id});if(error)throw error;alert(data?.already_refunded?'This order was already refunded.':'Customer wallet refunded successfully.');await renderAdmin()}catch(error){alert('Refund action failed: '+(error?.message||'Please try again.'));button.disabled=false;button.textContent=original}} $('adminOrderRows').addEventListener('click',e=>{const b=e.target.closest('[data-order-refund-action="refund"]');if(b)runManualCustomerRefund(b.dataset.orderId,b)}); $('adminRefundRows').addEventListener('click',e=>{const b=e.target.closest('[data-order-refund-action="refund"]');if(b)runManualCustomerRefund(b.dataset.orderId,b)});
-$('adminPanel').addEventListener('click',e=>{const b=e.target.closest('[data-admin-jump]');if(!b)return;const target=$(b.dataset.adminJump);if(!target)return;target.scrollIntoView({behavior:'smooth',block:'start'});$('adminPanel').querySelectorAll('.admin-nav-item').forEach(x=>x.classList.toggle('active',x.dataset.adminJump===b.dataset.adminJump))});
+
+// Admin workspace navigation: dedicated views, persistent desktop sidebar and mobile quick-nav.
+function initAdminWorkspace(){
+ const root=$('adminPanel'); if(!root || root.dataset.workspaceReady==='1') return;
+ root.dataset.workspaceReady='1';
+ const content=root.querySelector('.admin-content');
+ const sidebar=root.querySelector('.admin-sidebar');
+ if(!content || !sidebar) return;
+ const navItems=[
+  ['adminOverviewPanel','▦','Dashboard'],['adminOrdersPanel','▤','Orders'],['adminCustomersPanel','♙','Customers'],
+  ['financialOverviewPanel','◈','Wallet & Finances'],['adminBuyDataPanel','⇄','Supplier Management'],
+  ['pricingManagerPanel','◇','Pricing Control'],['profitManagementPanel','↗','Profit Withdrawals'],
+  ['adminSupportInboxPanel','✉','Support Messages'],['manualRefundsPanel','↩','Refunds'],
+  ['supplierAuditPanel','◷','Supplier Audit'],['integrationReadinessPanel','⌘','Integrations'],
+  ['adminReportsPlaceholder','▥','Reports'],['adminSettingsPlaceholder','⚙','Settings'],
+  ['adminProfilePlaceholder','◎','Profile']
+ ];
+ const existing=new Map([...sidebar.querySelectorAll('[data-admin-jump]')].map(b=>[b.dataset.adminJump,b]));
+ const navButton=(id,icon,label,extra='')=>{const b=document.createElement('button');b.type='button';b.className='admin-nav-item';b.dataset.adminJump=id;b.innerHTML='<span>'+icon+'</span><small>'+label+'</small>';if(extra)b.classList.add(extra);return b};
+ // Restore the approved navigation items while preserving every existing target and handler.
+ const foot=sidebar.querySelector('.admin-sidebar-foot');
+ navItems.forEach(([id,icon,label])=>{
+  let b=existing.get(id);
+  if(!b){b=navButton(id,icon,label); if(foot)sidebar.insertBefore(b,foot);else sidebar.appendChild(b)}
+  b.setAttribute('aria-label',label); b.title=label;
+ });
+ const logout=navButton('adminLogout','↪','Logout','admin-logout-item');
+ logout.dataset.adminLogout='1'; if(foot)sidebar.insertBefore(logout,foot);else sidebar.appendChild(logout);
+ // Clearly marked placeholders only: no invented reporting, settings or profile mutations.
+ const placeholder=(id,title,copy)=>{if($(id))return;const section=document.createElement('section');section.className='panel admin-placeholder-view';section.id=id;section.innerHTML='<div class="head"><div><h2>'+title+'</h2><div class="muted">'+copy+'</div></div></div><div class="notice"><b>Not yet implemented.</b> This destination is restored in the navigation, but no existing data source or approved workflow was found. No settings, reports or account data have been changed.</div>';content.appendChild(section)};
+ placeholder('adminReportsPlaceholder','Reports','Reporting and export tools are not currently implemented in the existing application.');
+ placeholder('adminSettingsPlaceholder','Settings','No admin settings workflow is currently implemented. Existing payment, supplier and security configuration remains unchanged.');
+ placeholder('adminProfilePlaceholder','Administrator Profile','Your signed-in administrator identity and safe session actions.');
+ const profilePanel=$('adminProfilePlaceholder');
+ profilePanel.querySelector('.notice').insertAdjacentHTML('beforebegin','<div class="admin-profile-summary"><div class="admin-profile-avatar">N</div><div><b id="adminProfileEmail">Administrator account</b><div class="muted">Authenticated NetVanta administrator</div></div></div><button type="button" class="btn soft" data-admin-logout>Sign out</button>');
+ // Add overview cards for requested areas where no existing records or reliable metric source exists.
+ const overview=$('adminOverviewPanel');
+ if(overview && !$('adminDashboardWelcome')){
+  const welcome=document.createElement('div');welcome.id='adminDashboardWelcome';welcome.className='admin-dashboard-welcome';
+  welcome.innerHTML='<div><div class="admin-welcome-kicker">NETVANTA ADMIN</div><h1>Welcome back, Admin <span>👋</span></h1><p>Here’s what’s happening with NetVanta today.</p></div><div class="admin-system-status"><i></i><span>System status · Admin access active</span></div>';
+  overview.insertBefore(welcome,overview.firstChild);
+ }
+ if(overview && !$('adminOverviewCompleteness')){
+  const extras=document.createElement('div');extras.id='adminOverviewCompleteness';extras.className='admin-overview-extras';
+  extras.innerHTML='<div class="admin-subhead"><div><h3>Workspace at a glance</h3><p>Operational destinations and feature readiness</p></div></div><div class="admin-overview-extra-grid"><button type="button" data-admin-jump="integrationReadinessPanel"><b>Integration Readiness</b><small>Payments, supplier delivery and payout connections</small><span>Open integrations →</span></button></div><div class="admin-dashboard-bottom-grid"><section class="admin-data-card"><div class="admin-subhead"><div><h3>Top Products</h3><p>Most ordered bundles · based on recorded orders</p></div></div><div id="adminTopProductsList" class="admin-dashboard-list"><div class="empty">Product rankings will appear when order data loads.</div></div></section><section class="admin-data-card"><div class="admin-subhead"><div><h3>Recent Activities</h3><p>Latest system notifications and account events</p></div></div><div id="adminRecentActivitiesList" class="admin-dashboard-list"><div class="empty">Recent activity will appear when notifications load.</div></div></section></div>';
+  const recent=overview.querySelector('.admin-recent-card'); if(recent)recent.insertAdjacentElement('afterend',extras);else overview.appendChild(extras);
+ }
+ // Keep all operational metrics, but separate the four headline cards from the secondary counters.
+ const stats=overview?.querySelector(':scope > .grid');
+ if(stats && !stats.dataset.organized){
+  stats.dataset.organized='1';
+  const cards=[...stats.children];
+  if(cards.length>4){
+   const secondary=document.createElement('div');secondary.className='admin-secondary-stats';
+   secondary.innerHTML='<div class="admin-subhead"><div><h3>Operational Snapshot</h3><p>Additional network and service counters</p></div></div>';
+   const grid=document.createElement('div');grid.className='admin-secondary-stat-grid';
+   cards.slice(4).forEach(node=>grid.appendChild(node));secondary.appendChild(grid);stats.insertAdjacentElement('afterend',secondary);
+  }
+ }
+ const mobile=document.createElement('nav');mobile.className='admin-mobile-nav';mobile.setAttribute('aria-label','Admin quick navigation');
+ [['adminOverviewPanel','⌂','Home'],['adminOrdersPanel','▤','Orders'],['financialOverviewPanel','◈','Finance']].forEach(([id,ic,label])=>mobile.appendChild(navButton(id,ic,label)));
+ const more=navButton('adminMoreMenu','⋯','More');more.dataset.adminMore='1';mobile.appendChild(more);
+ root.querySelector('.admin-layout').appendChild(mobile);
+ const moreMenu=document.createElement('div');moreMenu.className='admin-more-menu';moreMenu.id='adminMoreMenu';moreMenu.hidden=true;
+ navItems.filter(([id])=>!['adminOverviewPanel','adminOrdersPanel','financialOverviewPanel'].includes(id)).forEach(([id,ic,label])=>moreMenu.appendChild(navButton(id,ic,label)));
+ moreMenu.appendChild(navButton('adminLogout','↪','Logout'));
+ root.querySelector('.admin-layout').appendChild(moreMenu);
+ function showView(id){
+  if(id==='adminLogout'){leaveApp();return}
+  const target=$(id); if(!target || !content.contains(target))return;
+  [...content.children].forEach(el=>{if(el.classList.contains('panel'))el.hidden=el!==target});
+  root.querySelectorAll('[data-admin-jump]').forEach(b=>b.classList.toggle('active',b.dataset.adminJump===id));
+  moreMenu.hidden=true;
+  if(id==='adminSupportInboxPanel') target.classList.remove('chat-open');
+  if(id==='adminProfilePlaceholder' && user){const el=$('adminProfileEmail');if(el)el.textContent=user.email||user.user_metadata?.full_name||'Administrator account'}
+  target.scrollIntoView({behavior:'auto',block:'start'});
+  window.scrollTo({top:0,behavior:'auto'});
+ }
+ root.addEventListener('click',e=>{
+  const logoutButton=e.target.closest('[data-admin-logout]');if(logoutButton){leaveApp();return}
+  const moreButton=e.target.closest('[data-admin-more]');if(moreButton){moreMenu.hidden=!moreMenu.hidden;return}
+  const b=e.target.closest('[data-admin-jump]');if(!b)return;
+  showView(b.dataset.adminJump);
+ });
+ document.addEventListener('click',e=>{if(!moreMenu.hidden&&!e.target.closest('#adminMoreMenu')&&!e.target.closest('[data-admin-more]'))moreMenu.hidden=true});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')moreMenu.hidden=true});
+ showView('adminOverviewPanel');
+}
+
 $('customerSearch').oninput=renderAdminCustomers;async function runAdminRefresh(button,task,loadingText,successText,errorTarget){
  if(!button||button.disabled)return;
  const original=button.textContent;
