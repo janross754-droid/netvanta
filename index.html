@@ -3194,6 +3194,17 @@ function initAdminWorkspace(){
   const b=e.target.closest('[data-admin-jump]');if(!b)return;
   showView(b.dataset.adminJump);closeMenus();
  });
+ // Bind each navigation control directly as well as keeping the delegated fallback.
+ // This avoids iOS tap/event-delegation failures on the dashboard Quick Actions.
+ root.querySelectorAll('[data-admin-jump]').forEach(button=>{
+  if(button.dataset.directAdminJumpBound==='1')return;
+  button.dataset.directAdminJumpBound='1';
+  button.addEventListener('click',event=>{
+   event.preventDefault();event.stopPropagation();
+   showView(button.dataset.adminJump);
+   closeMenus();
+  });
+ });
  document.addEventListener('click',e=>{if(!moreMenu.hidden&&!e.target.closest('#adminMoreMenu')&&!e.target.closest('[data-admin-more]'))moreMenu.hidden=true;if(!optionsMenu.hidden&&!e.target.closest('#adminOptionsMenu')&&!e.target.closest('[data-admin-options]'))optionsMenu.hidden=true});
  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenus()});
  showView('adminOverviewPanel');
