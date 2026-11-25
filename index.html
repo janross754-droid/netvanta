@@ -1824,6 +1824,103 @@ body:has(#customerPanel:not(.hidden)) .chatFab{bottom:calc(70px + env(safe-area-
 }
 
 
+
+
+/* NetVanta Admin Blue Modern theme — colour-only, isolated to admin workspace */
+#adminPanel{
+ --admin-blue:#1769e8;
+ --admin-blue-deep:#082b60;
+ --admin-blue-soft:#edf5ff;
+ --admin-blue-line:#d7e7fb;
+}
+#adminPanel .admin-sidebar{
+ background:linear-gradient(180deg,#0a2b5e 0%,#104b99 58%,#1769e8 100%)!important;
+ border:1px solid #174f99!important;
+ color:#f4f8ff!important;
+ box-shadow:0 14px 34px rgba(8,43,96,.2)!important;
+}
+#adminPanel .admin-brand,#adminPanel .admin-sidebar-foot{
+ color:#f4f8ff!important;border-color:rgba(255,255,255,.18)!important;
+}
+#adminPanel .admin-brand small,#adminPanel .admin-nav-label{color:#bcd7ff!important}
+#adminPanel .admin-nav-item{color:#eaf3ff!important}
+#adminPanel .admin-nav-item span{color:#9fc7ff!important}
+#adminPanel .admin-nav-item:hover{background:rgba(255,255,255,.12)!important;color:#fff!important}
+#adminPanel .admin-nav-item.active{
+ background:linear-gradient(100deg,#fff 0%,#e5f1ff 100%)!important;
+ color:#104b99!important;box-shadow:inset 3px 0 #45a0ff!important;
+}
+#adminPanel .admin-nav-item.active span{color:#1769e8!important}
+#adminPanel #adminDashboardWelcome{
+ background:linear-gradient(112deg,#082b60 0%,#1054b5 56%,#2588f0 100%)!important;
+ border:1px solid #2d82e8!important;
+ box-shadow:0 14px 32px rgba(23,105,232,.2)!important;
+}
+#adminPanel #adminDashboardWelcome .admin-welcome-kicker{color:#b9dcff!important}
+#adminPanel #adminDashboardWelcome h1{color:#fff!important}
+#adminPanel #adminDashboardWelcome p{color:#e2efff!important}
+#adminPanel #adminDashboardWelcome .admin-hamburger{
+ background:rgba(255,255,255,.15)!important;
+ border:1px solid rgba(255,255,255,.3)!important;
+}
+#adminPanel #adminDashboardWelcome .admin-hamburger span{background:#fff!important}
+#adminPanel .admin-content>.panel,
+#adminPanel .admin-quick-actions,
+#adminPanel .admin-sales-card,
+#adminPanel .admin-recent-card,
+#adminPanel .admin-data-card,
+#adminPanel .admin-overview-extras,
+#adminPanel .admin-secondary-stats{
+ border-color:var(--admin-blue-line)!important;
+}
+#adminPanel .admin-content .head h2,
+#adminPanel .admin-subhead h3{color:#102f5f!important}
+#adminPanel .admin-content .muted,
+#adminPanel .admin-subhead p{color:#647b9a!important}
+#adminPanel .admin-content .stat{
+ border-color:#d8e8fb!important;
+ background:linear-gradient(145deg,#fff 0%,#f4f8ff 100%)!important;
+}
+#adminPanel .admin-content .stat b,
+#adminPanel .admin-content .stat strong{color:#0b2e62!important}
+#adminPanel .admin-content .stat small{color:#607795!important}
+#adminPanel .admin-content .btn.primary,
+#adminPanel .admin-content button.primary{background:linear-gradient(110deg,#1769e8,#2788f5)!important}
+#adminPanel .admin-content .tab.active{
+ background:#eaf3ff!important;border-color:#9fc5fa!important;color:#1458b5!important;
+}
+#adminPanel .admin-action .admin-action-icon,
+#adminPanel .admin-quick-actions .admin-action-icon{color:#1769e8}
+#adminPanel .admin-mobile-nav{
+ background:rgba(255,255,255,.97)!important;
+ border:1px solid #d8e7fa!important;
+ box-shadow:0 10px 30px rgba(8,43,96,.16)!important;
+}
+#adminPanel .admin-mobile-nav .admin-nav-item{color:#657a98!important}
+#adminPanel .admin-mobile-nav .admin-nav-item span{color:#7792b8!important}
+#adminPanel .admin-mobile-nav .admin-nav-item.active{
+ background:#eaf3ff!important;color:#1458b5!important;
+ box-shadow:inset 0 -2px #1769e8!important;
+}
+#adminPanel .admin-mobile-nav .admin-nav-item.active span{color:#1769e8!important}
+#adminPanel .admin-more-menu{
+ border-color:#d8e7fa!important;
+}
+#adminPanel .admin-more-menu .admin-nav-item{color:#23466f!important}
+#adminPanel .admin-more-menu .admin-nav-item span{color:#1769e8!important}
+#adminPanel .admin-hamburger{accent-color:#1769e8}
+@media(max-width:680px){
+ #adminPanel .admin-sidebar.admin-menu-open{
+  background:linear-gradient(180deg,#0a2b5e 0%,#104b99 58%,#1769e8 100%)!important;
+ }
+ #adminPanel .admin-sidebar.admin-menu-open .admin-nav-item{color:#eaf3ff!important}
+ #adminPanel .admin-sidebar.admin-menu-open .admin-nav-item span{color:#b9dcff!important}
+ #adminPanel .admin-sidebar.admin-menu-open .admin-nav-item.active{
+  background:#fff!important;color:#1458b5!important;
+ }
+ #adminPanel .admin-sidebar.admin-menu-open .admin-nav-item.active span{color:#1769e8!important}
+}
+
 </style>
 <!-- Meta Pixel Code (NetVanta) -->
 <script>
