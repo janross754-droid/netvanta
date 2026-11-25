@@ -2030,6 +2030,56 @@ body.admin-light-mode .top .iconbtn,body.admin-light-mode .top .outline{backgrou
 body.admin-light-mode .top .profileBtn{background:#eaf2ff!important;color:#1769e8!important}
 body.admin-light-mode .top .light{background:#edf4ff!important;color:#1769e8!important}
 body.admin-light-mode{background:#f6f8fc!important;color:#17243b!important;color-scheme:light}
+
+/* Admin dashboard layout correction: structured two-column workspace, no duplicated overview widgets. */
+#adminPanel #adminOverviewPanel{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ align-items:start;
+ gap:16px!important;
+}
+#adminPanel #adminOverviewPanel>.admin-dashboard-welcome,
+#adminPanel #adminOverviewPanel>.head,
+#adminPanel #adminOverviewPanel>.grid,
+#adminPanel #adminOverviewPanel>.admin-secondary-stats,
+#adminPanel #adminOverviewPanel>.row{grid-column:1/-1!important;width:100%;min-width:0}
+#adminPanel #adminOverviewPanel>#adminNotificationsPanel,
+#adminPanel #adminOverviewPanel>.admin-quick-actions,
+#adminPanel #adminOverviewPanel>.admin-financial-summary,
+#adminPanel #adminOverviewPanel>#adminDeliveryMonitor,
+#adminPanel #adminOverviewPanel>.admin-sales-card,
+#adminPanel #adminOverviewPanel>.admin-recent-card{grid-column:span 1!important;min-width:0;width:100%;margin:0!important}
+#adminPanel #adminOverviewPanel>.admin-secondary-stats{margin:0!important}
+#adminPanel #adminOverviewPanel .admin-subhead h3,
+#adminPanel #adminOverviewPanel .head h2,
+#adminPanel #adminOverviewPanel .stat b,
+#adminPanel #adminOverviewPanel .admin-financial-items b{color:#080d18!important;font-weight:900!important}
+#adminPanel #adminOverviewPanel .admin-quick-actions,
+#adminPanel #adminOverviewPanel .admin-financial-summary,
+#adminPanel #adminOverviewPanel #adminNotificationsPanel,
+#adminPanel #adminOverviewPanel #adminDeliveryMonitor,
+#adminPanel #adminOverviewPanel .admin-sales-card,
+#adminPanel #adminOverviewPanel .admin-recent-card{
+ border:1px solid #e4e9f1!important;border-radius:18px!important;
+ background:#fff!important;box-shadow:0 8px 24px rgba(16,24,40,.055)!important;
+ padding:18px!important;min-width:0;overflow:hidden;
+}
+#adminPanel #adminOverviewPanel #adminNotificationsPanel{max-height:410px;display:flex;flex-direction:column}
+#adminPanel #adminOverviewPanel #adminNotificationsList{min-height:0;overflow:auto;overscroll-behavior:contain}
+#adminPanel #adminOverviewPanel .admin-alert-bell{flex:0 0 38px}
+#adminPanel #adminOverviewPanel .admin-alert-count{display:grid!important}
+@media(max-width:680px){
+ #adminPanel #adminOverviewPanel{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+ #adminPanel #adminOverviewPanel>*{grid-column:1/-1!important;width:100%;min-width:0}
+ #adminPanel #adminOverviewPanel>.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #adminPanel #adminOverviewPanel #adminNotificationsPanel,
+ #adminPanel #adminOverviewPanel .admin-quick-actions,
+ #adminPanel #adminOverviewPanel .admin-financial-summary,
+ #adminPanel #adminOverviewPanel #adminDeliveryMonitor,
+ #adminPanel #adminOverviewPanel .admin-sales-card,
+ #adminPanel #adminOverviewPanel .admin-recent-card{padding:14px!important}
+ #adminPanel #adminOverviewPanel .admin-recent-card{overflow-x:auto}
+}
 </style></head><body class="session-pending">
 <header class="top"><div class="nav"><div class="brand"><span class="logo">N</span><span>NetVanta</span></div><div class="navright"><button type="button" id="menuOpen" class="iconbtn menu-trigger hidden" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button><button type="button" id="profileOpen" class="profileBtn hidden" aria-label="Open profile">◎</button><button type="button" id="navLogin" class="light">Log in</button><button type="button" id="navSignup" class="primary">Create account</button><button type="button" id="adminOpen" class="light hidden">Admin</button><button type="button" id="navLogout" class="outline hidden">Log out</button></div></div></header>
 <div id="drawerShade" class="drawerShade hidden"></div>
@@ -2943,17 +2993,12 @@ function initAdminWorkspace(){
  placeholder('adminProfilePlaceholder','Administrator Profile','Your signed-in administrator identity and safe session actions.');
  const profilePanel=$('adminProfilePlaceholder');
  profilePanel.querySelector('.notice').insertAdjacentHTML('beforebegin','<div class="admin-profile-summary"><div class="admin-profile-avatar">N</div><div><b id="adminProfileEmail">Administrator account</b><div class="muted">Authenticated NetVanta administrator</div></div></div><button type="button" class="btn soft" data-admin-logout>Sign out</button>');
- // Add overview cards for requested areas where no existing records or reliable metric source exists.
+ // Preserve the approved welcome header while removing only the redundant extra dashboard cards.
  const overview=$('adminOverviewPanel');
  if(overview && !$('adminDashboardWelcome')){
   const welcome=document.createElement('div');welcome.id='adminDashboardWelcome';welcome.className='admin-dashboard-welcome';
   welcome.innerHTML='<div><div class="admin-welcome-kicker">NETVANTA ADMIN</div><h1>Welcome back, Admin <span>👋</span></h1><p>Here’s what’s happening with NetVanta today.</p></div><div class="admin-system-status"><i></i><span>System status · Admin access active</span></div>';
   overview.insertBefore(welcome,overview.firstChild);
- }
- if(overview && !$('adminOverviewCompleteness')){
-  const extras=document.createElement('div');extras.id='adminOverviewCompleteness';extras.className='admin-overview-extras';
-  extras.innerHTML='<div class="admin-subhead"><div><h3>Workspace at a glance</h3><p>Operational destinations and feature readiness</p></div></div><div class="admin-overview-extra-grid"><button type="button" data-admin-jump="integrationReadinessPanel"><b>Integration Readiness</b><small>Payments, supplier delivery and payout connections</small><span>Open integrations →</span></button></div><div class="admin-dashboard-bottom-grid"><section class="admin-data-card"><div class="admin-subhead"><div><h3>Top Products</h3><p>Most ordered bundles · based on recorded orders</p></div></div><div id="adminTopProductsList" class="admin-dashboard-list"><div class="empty">Product rankings will appear when order data loads.</div></div></section><section class="admin-data-card"><div class="admin-subhead"><div><h3>Recent Activities</h3><p>Latest system notifications and account events</p></div></div><div id="adminRecentActivitiesList" class="admin-dashboard-list"><div class="empty">Recent activity will appear when notifications load.</div></div></section></div>';
-  const recent=overview.querySelector('.admin-recent-card'); if(recent)recent.insertAdjacentElement('afterend',extras);else overview.appendChild(extras);
  }
  // Keep all operational metrics, but separate the four headline cards from the secondary counters.
  const stats=overview?.querySelector(':scope > .grid');
@@ -2994,7 +3039,6 @@ function initAdminWorkspace(){
   const heading=$('adminNotificationsPanel')?.querySelector('.head');
   if(!heading)return;
   let bell=heading.querySelector('.admin-alert-bell');
-  if(count<=0){if(bell)bell.remove();return}
   if(!bell){bell=document.createElement('span');bell.className='admin-alert-bell';bell.textContent='🔔';heading.appendChild(bell)}
   let badge=bell.querySelector('.admin-alert-count');
   if(!badge){badge=document.createElement('b');badge.className='admin-alert-count';bell.appendChild(badge)}
