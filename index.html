@@ -3010,7 +3010,7 @@ function initAdminWorkspace(){
   const logoutButton=e.target.closest('[data-admin-logout]');if(logoutButton){leaveApp();return}
   const moreButton=e.target.closest('[data-admin-more]');if(moreButton){moreMenu.hidden=!moreMenu.hidden;optionsMenu.hidden=true;return}
   const optionsButton=e.target.closest('[data-admin-options]');if(optionsButton){optionsMenu.hidden=!optionsMenu.hidden;moreMenu.hidden=true;optionsButton.setAttribute('aria-expanded',String(!optionsMenu.hidden));return}
-  const hamburgerButton=e.target.closest('.admin-hamburger');if(hamburgerButton){const open=!sidebar.classList.contains('admin-menu-open');sidebar.classList.toggle('admin-menu-open',open);menuShade.hidden=!open;hamburgerButton.setAttribute('aria-expanded',String(open));return}
+  const hamburgerButton=e.target.closest('.admin-hamburger');if(hamburgerButton){if(window.matchMedia('(max-width: 680px)').matches){const open=!sidebar.classList.contains('admin-menu-open');sidebar.classList.toggle('admin-menu-open',open);menuShade.hidden=!open;hamburgerButton.setAttribute('aria-expanded',String(open));}else{const collapsed=!root.classList.contains('admin-sidebar-collapsed');root.classList.toggle('admin-sidebar-collapsed',collapsed);hamburgerButton.setAttribute('aria-expanded',String(!collapsed));}return}
   if(e.target.closest('.admin-menu-shade')){closeMenus();return}
   const b=e.target.closest('[data-admin-jump]');if(!b)return;
   showView(b.dataset.adminJump);closeMenus();
